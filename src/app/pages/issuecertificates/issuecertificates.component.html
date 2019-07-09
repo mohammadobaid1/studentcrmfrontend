@@ -1,0 +1,45 @@
+
+
+<div class="row">
+ <div class="col-12 col-md-8">
+   <tc-card [outline]="true" [title]="'Issue Certificates'">
+      <form (ngSubmit)="submit()" [formGroup]="submitForm" novalidate>
+        <tc-form-group>
+          <tc-input [placeholder]="'Student Name *'" formControlName="studentname" ></tc-input>
+        </tc-form-group>
+
+        <tc-form-group>
+          <tc-input [placeholder]="'Father name *'" formControlName="fathername" ></tc-input>
+        </tc-form-group>
+
+        <tc-form-group>
+          <tc-input [placeholder]="'Passing Year *'" formControlName="passingyear"  ></tc-input>
+        </tc-form-group>
+
+        <tc-form-group>
+          <tc-input [placeholder]="'Revocation Year  *'" formControlName="revocationyear"></tc-input>
+        </tc-form-group>
+
+        <tc-form-group>
+          <tc-input [placeholder]="'Discipline  *'" formControlName="discipline"></tc-input>
+        </tc-form-group>
+
+
+        <tc-form-group>
+          <tc-input [placeholder]="'Batch  *'" formControlName="batch"></tc-input>
+        </tc-form-group>
+
+
+        <tc-form-group>
+          <tc-input [placeholder]="'Enrollment Number  *'" formControlName="enrollmentnumber"></tc-input>
+        </tc-form-group>
+
+       
+
+        <button tc-button [block]="true" [view]="'accent'" >
+          Issue Degree
+        </button>
+      </form>
+    </tc-card>
+  </div>
+</div>

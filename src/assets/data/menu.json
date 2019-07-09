@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Main page",
+    "icon": {
+      "class": "icofont-thermometer-alt"
+    },
+    "routing": "main"
+  },
+  {
+    "title": "Transactions",
+    "icon": {
+      "class": "icofont-thermometer-alt"
+    },
+    "routing": "transactions"
+  },
+  {
+    "title": "Issue Certificates",
+    "icon": {
+      "class": "icofont-thermometer-alt"
+    },
+    "routing": "issuecertificates"
+  },
+
+  {
+    "title": "Users",
+    "icon": {
+      "class": "icofont-thermometer-alt"
+    },
+    "routing": "users"
+  }  
+]

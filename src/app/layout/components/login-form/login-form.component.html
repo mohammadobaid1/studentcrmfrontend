@@ -1,0 +1,23 @@
+<form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+  <div *ngIf="validationfail">
+          Form validation failed
+        </div>
+  <tc-form-group>
+    <tc-input [placeholder]="'emailaddress'" formControlName="emailaddress"></tc-input>
+  </tc-form-group>
+
+  <tc-form-group>
+    <tc-input [placeholder]="'Password'" [type]="'password'" formControlName="pass"></tc-input>
+  </tc-form-group>
+
+  <tc-form-group>
+    <tc-switcher [value]="true">Remember me</tc-switcher>
+  </tc-form-group>
+
+  <div class="actions justify-content-between">
+    <button tc-button [view]="'accent'" [beforeIcon]="'icofont-login'">
+      Login
+    </button>
+  </div>
+</form>
+
