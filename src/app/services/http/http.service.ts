@@ -37,7 +37,7 @@ export class HttpService {
   console.log("body",body.toString());
 
 
-    return this.http.post('http://localhost:3000/login',body.toString(), options);
+    return this.http.post('https://demo.edcerts.io/api/login',body.toString(), options);
   }
 
 
@@ -57,13 +57,13 @@ export class HttpService {
     };
 
 
-    return this.http.post('http://localhost:3000/signup',body.toString(),options);
+    return this.http.post('https://demo.edcerts.io/api/signup',body.toString(),options);
 
   }
 
 
   useraccessrole(){
-    return this.http.get('http://localhost:3000/getuseraccessrole');
+    return this.http.get('https://demo.edcerts.io/api/getuseraccessrole');
   }
 
 
@@ -82,7 +82,7 @@ export class HttpService {
     };
 
 
-      return this.http.post('http://localhost:3000/adduser',body.toString(),options);
+      return this.http.post('https://demo.edcerts.io/api/adduser',body.toString(),options);
 
 
 
@@ -99,7 +99,7 @@ export class HttpService {
           withCredentials: true
     };
 
-    return this.http.get('http://localhost:3000/authenticate',options);
+    return this.http.get('https://demo.edcerts.io/api/authenticate',options);
 
   }
 
@@ -123,7 +123,7 @@ export class HttpService {
     };
 
 
-      return this.http.post('http://localhost:3000/posttransaction',body.toString(),options);    
+      return this.http.post('https://demo.edcerts.io/api/posttransaction',body.toString(),options);    
 
   }
 
@@ -136,7 +136,7 @@ export class HttpService {
           withCredentials: true
     };
 
-    return this.http.get('http://localhost:3000/listalltransactions',options);
+    return this.http.get('https://demo.edcerts.io/api/listalltransactions',options);
 
 
   }
@@ -150,7 +150,7 @@ export class HttpService {
           withCredentials: true
     };
 
-    return this.http.get('http://localhost:3000/listallusers',options);
+    return this.http.get('https://demo.edcerts.io/api/listallusers',options);
 
 
   }
@@ -164,7 +164,7 @@ export class HttpService {
           withCredentials: true
     };
 
-    return this.http.get('http://localhost:3000/logout',options);
+    return this.http.get('https://demo.edcerts.io/api/logout',options);
   }
 
 }
