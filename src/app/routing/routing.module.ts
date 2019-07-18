@@ -15,6 +15,7 @@ import { EditaccountComponent } from '../pages/editaccount';
 import { PagesettingsComponent } from '../pages/pagesettings';
 import { UsersComponent } from '../pages/users';
 import { AuthGuardService } from '../services/AuthGuard/auth-guard.service';
+import { EmailverificationComponent } from '../pages/emailverification/emailverification.component';
 
 
 const VERTICAL_ROUTES: Routes = [
@@ -48,6 +49,11 @@ export const ROUTES: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'verify/:verificationtoken',
+    component: EmailverificationComponent
+  },
+  
+  {
     path: 'vertical',
     component: VerticalLayoutComponent,
     children: VERTICAL_ROUTES
@@ -62,11 +68,14 @@ export const ROUTES: Routes = [
     component: PublicLayoutComponent,
     children: PUBLIC_ROUTES
   },
+
   {
     path: '**',
     component: VerticalLayoutComponent,
     children: VERTICAL_ROUTES
   }
+
+
 ];
 
 @NgModule({

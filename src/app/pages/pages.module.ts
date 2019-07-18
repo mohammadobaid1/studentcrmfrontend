@@ -16,6 +16,7 @@ import { IssuecertificatesComponent } from './issuecertificates';
 import { EditaccountComponent } from './editaccount';
 import { PagesettingsComponent } from './pagesettings';
 import { UsersComponent } from './users';
+import { EmailverificationComponent } from './emailverification/emailverification.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { UsersComponent } from './users';
     IssuecertificatesComponent,
     EditaccountComponent,
     PagesettingsComponent,
-    UsersComponent
+    UsersComponent,
+    EmailverificationComponent
   ],
   exports: [ ],
   entryComponents: [ ]

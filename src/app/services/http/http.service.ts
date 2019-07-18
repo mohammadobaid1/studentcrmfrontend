@@ -167,4 +167,12 @@ export class HttpService {
     return this.http.get('https://demo.edcerts.io/api/logout',options);
   }
 
+
+  verifyemail(token){
+   let body = new URLSearchParams();
+   body.set('verificationtoken',token);
+   return this.http.post('https://demo.edcerts.io/api/verifyemail',body.toString());
+
+  }
+
 }
