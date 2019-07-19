@@ -169,9 +169,15 @@ export class HttpService {
 
 
   verifyemail(token){
+   console.log("service token",token);
+   
+    let options = {
+          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache'})
+    };
+  
    let body = new URLSearchParams();
-   body.set('verificationtoken',token);
-   return this.http.post('https://demo.edcerts.io/api/verifyemail',body.toString());
+   body.set('token',token);
+   return this.http.post('https://demo.edcerts.io/api/verifyemail',body.toString(),options);
 
   }
 

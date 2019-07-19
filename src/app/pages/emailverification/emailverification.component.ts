@@ -11,7 +11,7 @@ export class EmailverificationComponent implements OnInit {
 
   emailconfirmation :any = '';
 
-  constructor(private route:ActivatedRoute,private httpSv: HttpService) {
+  constructor(private route:ActivatedRoute,private httpSv: HttpService,private router:Router) {
 
 
    }
@@ -24,9 +24,10 @@ export class EmailverificationComponent implements OnInit {
   			.subscribe(data=>{
   				this.emailconfirmation = data	
   				console.log("Email verified",this.emailconfirmation);
+                                this.router.navigate(['/public/login']);
   			},
   			error=>{
-  				this.route.navigate(['/public/login']);
+  				this.router.navigate(['/public/login']);
   			})
   	})
   }
