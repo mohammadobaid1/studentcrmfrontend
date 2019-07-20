@@ -50,4 +50,11 @@ export class UsersComponent extends BasePageComponent implements OnInit, OnDestr
     super.ngOnDestroy();
   }
 
+
+
+   remove(tableRow: any) {
+    //this.appointments = this.appointments.filter(row => row !== tableRow);
+    console.log(tableRow);
+  }
+
 }

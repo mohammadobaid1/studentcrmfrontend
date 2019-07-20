@@ -39,8 +39,8 @@ export class RegisterFormComponent implements OnInit {
                         body: 'Account created successfully . Confirmation link has been send to your email .',
                         header: 'Account Created'
                       });
-            })
-            },
+            }
+            ,
             error=>{
               console.log(error);
               this.modal.open({
