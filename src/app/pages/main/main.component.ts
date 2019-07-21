@@ -11,6 +11,10 @@ import { HttpService } from '../../services/http/http.service';
 })
 export class MainPageComponentnt extends BasePageComponent implements OnInit, OnDestroy {
 
+
+ totalcertificates:any;
+ totaltokensleft:any;
+
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService
@@ -30,6 +34,26 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
 
   ngOnInit() {
     super.ngOnInit();
+    this.httpSv.gettokenleft()
+      .subscribe(data=>{
+
+        this.totaltokensleft=data;
+
+      },error=>{
+        console.log(error);
+
+      })
+
+    this.httpSv.gettotalcertficates()
+      .subscribe(data=>{
+
+        this.totalcertificates=data;
+
+      },error=>{
+        console.log(error);
+
+      })
+
 
   }
 

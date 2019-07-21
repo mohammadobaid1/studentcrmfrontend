@@ -181,4 +181,54 @@ export class HttpService {
 
   }
 
+
+  deleteuser(email){
+
+
+       let body = new URLSearchParams();
+       body.set('emailaddress',email)
+
+
+
+       let options = {
+          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
+    'Credentials': 'same-origin'}),
+          withCredentials: true
+    };
+
+
+      return this.http.post('https://demo.edcerts.io/api/deleteuser',body.toString(),options);  
+
+
+  }
+
+
+  gettokenleft(){
+
+    let options = {
+          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache'})
+    };
+
+
+   return this.http.get('https://demo.edcerts.io/api/companytoken',options);
+ 
+
+  }
+
+
+  gettotalcertficates(){
+
+      let options = {
+          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache'})
+    };
+
+
+   return this.http.get('https://demo.edcerts.io/api/totaltransactions',options);
+
+
+
+
+  }
+
+
 }
