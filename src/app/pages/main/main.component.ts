@@ -36,8 +36,8 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
     super.ngOnInit();
     this.httpSv.gettokenleft()
       .subscribe(data=>{
-
-        this.totaltokensleft=data;
+        var fetchdata = data;
+        this.totaltokensleft=fetchdata.token;
 
       },error=>{
         console.log(error);
@@ -45,9 +45,9 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
       })
 
     this.httpSv.gettotalcertficates()
-      .subscribe(data=>{
-
-        this.totalcertificates=data;
+        .subscribe(data=>{
+         var fetchdata  = data; 
+        this.totalcertificates=fetchdata.totaltransaction;
 
       },error=>{
         console.log(error);
