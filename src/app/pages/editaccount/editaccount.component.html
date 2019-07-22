@@ -1,3 +1,28 @@
-<p>
-  editaccount works!
-</p>
+
+
+<div class="row">
+ <div class="col-12 col-md-8">
+   <tc-card [outline]="true" [title]="'Change Password'">
+      <form (ngSubmit)="submit()" [formGroup]="submitForm" novalidate>
+        <tc-form-group>
+          <tc-input [placeholder]="'Current Password *'" formControlName="currentpassword" ></tc-input>
+        </tc-form-group>
+
+        <tc-form-group>
+          <tc-input [placeholder]="'New Password *'" formControlName="newpassword" ></tc-input>
+        </tc-form-group>
+
+        <tc-form-group>
+          <tc-input [placeholder]="'Confirm Password *'" formControlName="confirmpassword"  ></tc-input>
+        </tc-form-group>
+
+        
+       
+
+        <button tc-button [block]="true" [view]="'accent'" >
+          Change Password
+        </button>
+      </form>
+    </tc-card>
+  </div>
+</div>
