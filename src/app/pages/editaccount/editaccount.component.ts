@@ -15,6 +15,7 @@ import { Content } from '../../ui/interfaces/modal';
   styleUrls: ['./editaccount.component.scss']
 })
 export class EditaccountComponent extends BasePageComponent implements OnInit, OnDestroy {
+submitForm: FormGroup;
 
    constructor(
     store: Store<IAppState>,
