@@ -64,7 +64,7 @@ export class ActionsComponent implements OnInit {
     this.httpSv.logout()
     .subscribe(data=>{
       this.cookieservice.deleteAll();
-     // this.router.navigate(['/public/login']);
+     this.router.navigate(['/public/login']);
     },
     error=>{
       console.log(error);

@@ -5,15 +5,15 @@
    <tc-card [outline]="true" [title]="'Change Password'">
       <form (ngSubmit)="submit()" [formGroup]="submitForm" novalidate>
         <tc-form-group>
-          <tc-input [placeholder]="'Current Password *'" formControlName="currentpassword" ></tc-input>
+          <tc-input [placeholder]="'Current Password *'" [type]="'password'" formControlName="currentpassword" ></tc-input>
         </tc-form-group>
 
         <tc-form-group>
-          <tc-input [placeholder]="'New Password *'" formControlName="newpassword" ></tc-input>
+          <tc-input [placeholder]="'New Password *'" [type]="'password'" formControlName="newpassword" ></tc-input>
         </tc-form-group>
 
         <tc-form-group>
-          <tc-input [placeholder]="'Confirm Password *'" formControlName="confirmpassword"  ></tc-input>
+          <tc-input [placeholder]="'Confirm Password *'" [type]="'password'" formControlName="confirmpassword"  ></tc-input>
         </tc-form-group>
 
         

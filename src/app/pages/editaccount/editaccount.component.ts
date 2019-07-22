@@ -62,6 +62,11 @@ submitForm: FormGroup;
       else {
         this.httpSv.changepassword(this.submitForm.value.currentpassword,this.submitForm.value.newpassword)
           .subscribe(data=>{
+              this.modal.open({
+                        body: 'Password successfully changed',
+                        header: 'Password changed'
+                      });
+
 
           },error=>{
             this.modal.open({
