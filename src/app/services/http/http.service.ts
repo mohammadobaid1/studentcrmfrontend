@@ -231,4 +231,25 @@ export class HttpService {
   }
 
 
+  changepassword(existingpassword,newpassword){
+
+       let body = new URLSearchParams();
+       body.set('existingpassword',existingpassword);
+       body.set('newpassword',newpassword);
+
+
+
+       let options = {
+          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
+    'Credentials': 'same-origin'}),
+          withCredentials: true
+    };
+
+
+      return this.http.post('https://demo.edcerts.io/api/changepassword',body.toString(),options);  
+
+
+  }
+
+
 }
