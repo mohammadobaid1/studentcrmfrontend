@@ -51,6 +51,7 @@ constructor(store: Store<IAppState>,httpSv: HttpService,private fb:FormBuilder,p
 	submit(){
 
 		console.log(this.submitForm.value);
+    this.httpSv.eventEmitter("IssuancePage", "Blockchain transaction", "User click on button to submit blockchain tx", 1);
 		this.httpSv.postransaction(this.submitForm.value.studentname,this.submitForm.value.fathername,this.submitForm.value.passingyear,this.submitForm.value.revocationyear,this.submitForm.value.discipline,this.submitForm.value.batch,this.submitForm.value.enrollmentnumber)
 			.subscribe(data=>{
 				console.log(data);

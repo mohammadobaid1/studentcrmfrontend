@@ -52,6 +52,7 @@ submitForm: FormGroup;
 
   submit(){
     console.log(this.submitForm.value);
+    this.httpSv.eventEmitter("UserEditPage", "User goes to edit page", "User tries to change its password", 1);
     if(this.submitForm.value.newpassword != this.submitForm.value.confirmpassword){
       this.modal.open({
                         body: 'Password not matchers',

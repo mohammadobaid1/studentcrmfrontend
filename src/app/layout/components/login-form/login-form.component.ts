@@ -39,7 +39,7 @@ export class LoginFormComponent implements OnInit {
       this.httpservice.loginuser(this.loginForm.value.emailaddress,this.loginForm.value.pass)
               .subscribe(data=>{
                 console.log(data);
-                this.httpservice.eventEmitter("userPage", "like", "userLabel", 1);
+                this.httpservice.eventEmitter("LoginPage", "login button", "User successfully logged in", 1);
                 this.router.navigateByUrl('/vertical/public');
 
               },

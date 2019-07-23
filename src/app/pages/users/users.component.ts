@@ -60,6 +60,7 @@ export class UsersComponent extends BasePageComponent implements OnInit, OnDestr
    remove(tableRow: any) {
     //this.appointments = this.appointments.filter(row => row !== tableRow);
     console.log(tableRow);
+    this.httpSv.eventEmitter("AddUser", "Admin User adding other memebers", "Admin clicks on adding member", 1);
     this.httpSv.deleteuser(tableRow.email)
       .subscribe(data=>{
 
