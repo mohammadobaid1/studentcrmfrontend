@@ -42,6 +42,7 @@ export class UsersComponent extends BasePageComponent implements OnInit, OnDestr
      this.httpSv.listusers()
      .subscribe(data=>{
        var parsedata = JSON.parse(JSON.stringify(data));
+       
        this.tableData = parsedata;
 
      },

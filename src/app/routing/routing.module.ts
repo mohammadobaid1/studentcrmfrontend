@@ -16,7 +16,7 @@ import { PagesettingsComponent } from '../pages/pagesettings';
 import { UsersComponent } from '../pages/users';
 import { AuthGuardService } from '../services/AuthGuard/auth-guard.service';
 import { EmailverificationComponent } from '../pages/emailverification/emailverification.component';
-
+import { PassswordresetComponent } from '../pages/passswordreset/passswordreset.component';
 
 const VERTICAL_ROUTES: Routes = [
   { path: 'main', component:  MainPageComponentnt ,canActivate: [AuthGuardService]},
@@ -39,6 +39,10 @@ const PUBLIC_ROUTES: Routes = [
   {
     path: 'signup',
     component: SignupComponent
+  },
+   {
+    path: 'reset',
+    component: PassswordresetComponent
   }
 ];
 
@@ -53,7 +57,8 @@ export const ROUTES: Routes = [
     component: EmailverificationComponent
   },
   
-  {
+ 
+ {
     path: 'vertical',
     component: VerticalLayoutComponent,
     children: VERTICAL_ROUTES

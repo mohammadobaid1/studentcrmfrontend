@@ -4,12 +4,14 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { throwError as observableThrowError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
+declare let ga:Function;
+
 @Injectable({
   providedIn: 'root',
 })
 
 
-declare let ga:Function;
+
 
 
 export class HttpService {
@@ -257,6 +259,24 @@ export class HttpService {
   }
 
 
+  passwordreset(email){
+    let body = new URLSearchParams();
+    body.set('email',email);
+
+    let options = {
+          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
+    'Credentials': 'same-origin'}),
+          withCredentials: true
+    };
+
+
+      return this.http.post('https://demo.edcerts.io/api/resetpasswordrequest',body.toString(),options);
+
+
+
+  }
+
+
 public eventEmitter(eventCategory: string,
                    eventAction: string,
                    eventLabel: string = null,
@@ -274,6 +294,8 @@ public eventEmitter(eventCategory: string,
 
 
 
+
+}
 
 }
 
