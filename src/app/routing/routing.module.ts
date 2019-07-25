@@ -17,6 +17,7 @@ import { UsersComponent } from '../pages/users';
 import { AuthGuardService } from '../services/AuthGuard/auth-guard.service';
 import { EmailverificationComponent } from '../pages/emailverification/emailverification.component';
 import { PassswordresetComponent } from '../pages/passswordreset/passswordreset.component';
+import { VerifynewpasswordComponent } from '../pages/verifynewpassword/verifynewpassword.component';
 
 const VERTICAL_ROUTES: Routes = [
   { path: 'main', component:  MainPageComponentnt ,canActivate: [AuthGuardService]},
@@ -55,6 +56,12 @@ export const ROUTES: Routes = [
   {
     path: 'verify/:verificationtoken',
     component: EmailverificationComponent
+  },
+
+  {
+    path: 'reset/:resettoken',
+    component: VerifynewpasswordComponent 
+
   },
   
  

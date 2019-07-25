@@ -18,6 +18,7 @@ import { PagesettingsComponent } from './pagesettings';
 import { UsersComponent } from './users';
 import { EmailverificationComponent } from './emailverification/emailverification.component';
 import { PassswordresetComponent } from './passswordreset/passswordreset.component';
+import { VerifynewpasswordComponent } from './verifynewpassword/verifynewpassword.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { PassswordresetComponent } from './passswordreset/passswordreset.compone
     PagesettingsComponent,
     UsersComponent,
     EmailverificationComponent,
-    PassswordresetComponent
+    PassswordresetComponent,
+    VerifynewpasswordComponent
   ],
   exports: [ ],
   entryComponents: [ ]

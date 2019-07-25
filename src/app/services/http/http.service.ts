@@ -276,6 +276,27 @@ export class HttpService {
 
   }
 
+  resetpasswordbytoken(token,newpassword){
+
+    let body = new URLSearchParams();
+    body.set('token',token);
+    body.set('newpassword',newpassword);
+
+
+    let options = {
+          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
+    'Credentials': 'same-origin'}),
+          withCredentials: true
+    };
+
+
+      return this.http.post('https://demo.edcerts.io/api/changepasswordviatoken',body.toString(),options);
+
+
+
+
+  }
+
 
 public eventEmitter(eventCategory: string,
                    eventAction: string,
