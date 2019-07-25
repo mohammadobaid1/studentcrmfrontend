@@ -3,6 +3,9 @@ import { BasePageComponent } from '../base-page';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../interfaces/app-state';
 import { HttpService } from '../../services/http/http.service';
+import { TCModalService } from '../../ui/services/modal/modal.service';
+import { Content } from '../../ui/interfaces/modal';
+
 
 @Component({
   selector: 'page-main',
@@ -17,7 +20,8 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
 
   constructor(
     store: Store<IAppState>,
-    httpSv: HttpService
+    httpSv: HttpService,
+    private model = TCModalService
   ) {
     super(store, httpSv);
 
@@ -36,26 +40,28 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
     super.ngOnInit();
     this.httpSv.gettokenleft()
       .subscribe(data=>{
-       console.log(data);
+
         var fetchdata = JSON.parse(JSON.stringify(data));
-        console.log(fetchdata);
-        console.log(fetchdata.token);
-        console.log(fetchdata.token[0].companytokens); 
         this.totaltokensleft=fetchdata.token[0].companytokens;
 
       },error=>{
-        console.log(error);
+          this.modal.open({
+                        body: 'Error in fetching remaining tokens',
+                        header: 'Error'
+                      });  
 
       })
 
     this.httpSv.gettotalcertficates()
         .subscribe(data=>{
          var fetchdata  = JSON.parse(JSON.stringify(data)); 
-         console.log(fetchdata.totaltransaction[0]);
         this.totalcertificates=fetchdata.totaltransaction[0].txcount;
 
       },error=>{
-        console.log(error);
+            this.modal.open({
+                        body: 'Error in fetching total transactions',
+                        header: 'Error'
+                      });  
 
       })
 

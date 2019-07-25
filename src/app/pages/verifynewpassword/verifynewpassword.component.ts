@@ -40,11 +40,11 @@ export class VerifynewpasswordComponent implements OnInit {
 
   submit(){
 
-  	console.log(this.verificationtoken);
+
 
   	this.httpservice.resetpasswordbytoken(this.verificationtoken,this.setnewpasswordForm.value.newpassword)
   		.subscribe(data=>{
-  			console.log(data);
+
   			this.router.navigate(['/public/login']);
 
   		},

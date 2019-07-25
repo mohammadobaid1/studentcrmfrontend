@@ -31,10 +31,10 @@ export class RegisterFormComponent implements OnInit {
           this.validationfail = true;
 
       else {  
-      console.log(this.registerForm);
+
       this.httpservice.signupcompany(this.registerForm.value.name,this.registerForm.value.email,this.registerForm.value.companyname,this.registerForm.value.pass)
             .subscribe(data=>{
-              console.log(data);
+
               this.modal.open({
                         body: 'Account created successfully . Confirmation link has been send to your email .',
                         header: 'Account Created'

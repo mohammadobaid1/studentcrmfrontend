@@ -38,16 +38,19 @@ export class UsersComponent extends BasePageComponent implements OnInit, OnDestr
 
   ngOnInit() {
     super.ngOnInit();
-    // this.getData('assets/data/table-sorting.json', 'tableData');
+
      this.httpSv.listusers()
      .subscribe(data=>{
        var parsedata = JSON.parse(JSON.stringify(data));
-       
        this.tableData = parsedata;
 
      },
      error=>{
-       console.log(error);
+          this.modal.open({
+                        body: 'Error in fetching users',
+                        header: 'Error'
+                      });
+
      })
 
   }
@@ -59,8 +62,7 @@ export class UsersComponent extends BasePageComponent implements OnInit, OnDestr
 
 
    remove(tableRow: any) {
-    //this.appointments = this.appointments.filter(row => row !== tableRow);
-    console.log(tableRow);
+
     this.httpSv.eventEmitter("AddUser", "Admin User adding other memebers", "Admin clicks on adding member", 1);
     this.httpSv.deleteuser(tableRow.email)
       .subscribe(data=>{

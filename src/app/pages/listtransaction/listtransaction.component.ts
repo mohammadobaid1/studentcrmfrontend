@@ -3,6 +3,9 @@ import { BasePageComponent } from '../base-page';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../interfaces/app-state';
 import { HttpService } from '../../services/http/http.service';
+import { TCModalService } from '../../ui/services/modal/modal.service';
+import { Content } from '../../ui/interfaces/modal';
+
 
 
 @Component({
@@ -15,7 +18,8 @@ export class ListtransactionComponent extends BasePageComponent implements OnIni
 
  constructor(
     store: Store<IAppState>,
-    httpSv: HttpService
+    httpSv: HttpService,
+    private modal: TCModalService
   ) {
     super(store, httpSv);
 
@@ -33,16 +37,18 @@ export class ListtransactionComponent extends BasePageComponent implements OnIni
 
   ngOnInit() {
     super.ngOnInit();
- //   this.getData('assets/data/table-sorting.json', 'tableData');
+
      this.httpSv.listtransaction()
        .subscribe(data=>{
           console.log(JSON.stringify(data));
           var parsedata = JSON.parse(JSON.stringify(data));
-         // this.getData(parsedata, 'tableData');
-         this.tableData = parsedata;
+          this.tableData = parsedata;
        },
        error=>{
-         console.log(error);
+         this.modal.open({
+                        body: 'Error in fetching transactions . Please try later',
+                        header: 'Transaction fetch error'
+                      });  
        })
 
   }

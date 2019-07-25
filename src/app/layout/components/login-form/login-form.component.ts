@@ -38,13 +38,13 @@ export class LoginFormComponent implements OnInit {
       console.log("loginusername",this.loginForm.value.emailaddress);
       this.httpservice.loginuser(this.loginForm.value.emailaddress,this.loginForm.value.pass)
               .subscribe(data=>{
-                console.log(data);
+
                 this.httpservice.eventEmitter("LoginPage", "login button", "User successfully logged in", 1);
                 this.router.navigateByUrl('/vertical/public');
 
               },
               error=>{
-                console.log("error",error);
+
                 //this.viewalert=true;
                 this.modal.open({
                         body: 'username or passwaord is incorrect',

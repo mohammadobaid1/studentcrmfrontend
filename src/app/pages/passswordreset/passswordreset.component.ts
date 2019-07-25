@@ -28,10 +28,13 @@ export class PassswordresetComponent implements OnInit {
 
   submit(){
 
-  	console.log(this.passwordresetForm.value);
+
   	this.httpservice.passwordreset(this.passwordresetForm.value.emailaddress)
   		.subscribe(data=>{
-
+  			this.modal.open({
+                        body: 'Password reset process initiated . Please check your email',
+                        header: 'Password reset initiated'
+                      });
   		},
   		error=>{
   			this.modal.open({
