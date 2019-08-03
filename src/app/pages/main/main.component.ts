@@ -21,7 +21,7 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
-    private model = TCModalService
+    private modal : TCModalService
   ) {
     super(store, httpSv);
 
