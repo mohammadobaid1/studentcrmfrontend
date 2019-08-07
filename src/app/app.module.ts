@@ -15,6 +15,7 @@ import { pageDataReducer } from './store/reducers/page-data.reducer';
 import { appSettingsReducer } from './store/reducers/app-settings.reducer';
 import { patientsReducer } from './store/reducers/patients.reducer';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { CookieService } from 'ngx-cookie-service';
     RoutingModule,
     LayoutModule,
     UIModule,
-    PagesModule
+    PagesModule,
+    NgxQRCodeModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

@@ -3,8 +3,34 @@
     <tc-table-col [columnTitle]="'Transaction ID'" [columnName]="'transactionid'"></tc-table-col>
     <tc-table-col [columnTitle]="'Time'" [columnName]="'transactiondate'"></tc-table-col>
     <tc-table-col [columnTitle]="'Status'" [columnName]="'confirmationstatus'"></tc-table-col>
+    <tc-table-col [columnTitle]="'Actions'" [columnName]="'actions'">
+      <ng-template #tableTDTemplate let-row="row">
+        <div class="actions">
+         
+
+          <button
+            tc-button
+            [afterIcon]="'icofont-ui-delete'"
+            [view]="'error'"
+            [square]="true"
+            [tcShape]="500"
+            [size]="'sm'"
+            (click)="generateqrcode(row,modalBody, 'Modal title', null, { width: 300 })"
+          ></button>
+        </div>
+      </ng-template>
+    </tc-table-col> 
   </tc-table>
 </tc-card>
+
+<ng-template #modalBody>
+    
+    <ngx-qrcode *ngIf="display" id="qrCodeImage" [qrc-element-type]="elementType" [qrc-value] = "value">
+  </ngx-qrcode><br>
+  <a [href]="href" *ngIf="display" (click)="downloadImage()" download>Download Image</a>
+    
+  </ng-template>
+
 
 <div class="fb-customerchat"
   attribution=setup_tool

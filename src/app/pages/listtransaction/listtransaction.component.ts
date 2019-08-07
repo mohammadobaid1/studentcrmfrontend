@@ -15,6 +15,12 @@ import { Content } from '../../ui/interfaces/modal';
 })
 export class ListtransactionComponent extends BasePageComponent implements OnInit, OnDestroy {
   tableData: any[];
+  qrcodename : string;
+ 
+  elementType: 'url' | 'canvas' | 'img' = 'url';
+  value: string;
+  display = false;
+  href : string;
 
  constructor(
     store: Store<IAppState>,
@@ -56,4 +62,25 @@ export class ListtransactionComponent extends BasePageComponent implements OnIni
   ngOnDestroy() {
     super.ngOnDestroy();
   }
+
+
+  generateqrcode<T>(tableRow:any,body: Content<T>, header: Content<T> = null, footer: Content<T> = null, options: any = null){
+    this.value = tableRow.transactionid;
+    
+    this.modal.open({
+        body: body,
+        header: header,
+        footer: footer,
+        options: options
+    })
+
+  }
+
+
+  downloadImage(){
+      this.href = document.getElementsByTagName('img')[0].src;
+
+
+  }
+
 }
