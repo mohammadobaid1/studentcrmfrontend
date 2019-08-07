@@ -19,7 +19,7 @@ export class ListtransactionComponent extends BasePageComponent implements OnIni
  
   elementType: 'url' | 'canvas' | 'img' = 'url';
   value: string;
-  display = false;
+ 
   href : string;
 
  constructor(

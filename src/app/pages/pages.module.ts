@@ -19,6 +19,7 @@ import { UsersComponent } from './users';
 import { EmailverificationComponent } from './emailverification/emailverification.component';
 import { PassswordresetComponent } from './passswordreset/passswordreset.component';
 import { VerifynewpasswordComponent } from './verifynewpassword/verifynewpassword.component';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { VerifynewpasswordComponent } from './verifynewpassword/verifynewpasswor
     UsersComponent,
     EmailverificationComponent,
     PassswordresetComponent,
-    VerifynewpasswordComponent
+    VerifynewpasswordComponent,
+    NgxQRCodeModule
   ],
   exports: [ ],
   entryComponents: [ ]

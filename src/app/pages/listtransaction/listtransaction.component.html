@@ -25,7 +25,7 @@
 
 <ng-template #modalBody>
     
-    <ngx-qrcode *ngIf="display" id="qrCodeImage" [qrc-element-type]="elementType" [qrc-value] = "value">
+    <ngx-qrcode id="qrCodeImage" [qrc-element-type]="elementType" [qrc-value] = "value">
   </ngx-qrcode><br>
   <a [href]="href" *ngIf="display" (click)="downloadImage()" download>Download Image</a>
     
