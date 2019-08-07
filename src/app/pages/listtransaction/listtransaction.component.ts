@@ -65,7 +65,7 @@ export class ListtransactionComponent extends BasePageComponent implements OnIni
 
 
   generateqrcode<T>(tableRow:any,body: Content<T>, header: Content<T> = null, footer: Content<T> = null, options: any = null){
-    this.value = tableRow.transactionid;
+    this.value = 'https://ropsten.etherscan.io/tx/'+tableRow.transactionid;
     
     this.modal.open({
         body: body,

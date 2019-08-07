@@ -15,7 +15,7 @@
             [square]="true"
             [tcShape]="500"
             [size]="'sm'"
-            (click)="generateqrcode(row,modalBody, 'Modal title', null, { width: 300 })"
+            (click)="generateqrcode(row,modalBody, 'QR Code', null, { width: 300 })"
           ></button>
         </div>
       </ng-template>
@@ -27,7 +27,8 @@
     
     <ngx-qrcode id="qrCodeImage" [qrc-element-type]="elementType" [qrc-value] = "value">
   </ngx-qrcode><br>
-  <a [href]="href" *ngIf="display" (click)="downloadImage()" download>Download Image</a>
+  <a [href]="href"  (click)="downloadImage()" download>Download Image</a>
+
     
   </ng-template>
 
