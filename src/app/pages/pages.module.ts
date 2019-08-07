@@ -29,7 +29,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     RouterModule,
 
     UIModule,
-    LayoutModule
+    LayoutModule,
+    NgxQRCodeModule
   ],
   declarations: [
     BasePageComponent,
@@ -44,8 +45,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     UsersComponent,
     EmailverificationComponent,
     PassswordresetComponent,
-    VerifynewpasswordComponent,
-    NgxQRCodeModule
+    VerifynewpasswordComponent
   ],
   exports: [ ],
   entryComponents: [ ]
