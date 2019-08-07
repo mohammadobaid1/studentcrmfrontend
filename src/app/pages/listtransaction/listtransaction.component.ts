@@ -78,7 +78,7 @@ export class ListtransactionComponent extends BasePageComponent implements OnIni
 
 
   downloadImage(){
-      this.href = document.getElementsByTagName('img')[0].src;
+      this.href = document.getElementsByTagName('img')[2].src;
 
 
   }
