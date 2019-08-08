@@ -10,12 +10,12 @@
 
           <button
             tc-button
-            [afterIcon]="'icofont-ui-delete'"
-            [view]="'error'"
+            [afterIcon]="'icofont-qr-code'"
+            [view]="'success'"
             [square]="true"
             [tcShape]="500"
             [size]="'sm'"
-            (click)="generateqrcode(row,modalBody, 'QR Code', null, { width: 'auto' })"
+            (click)="generateqrcode(row,modalBody, null, null, { width: 'auto' })"
           ></button>
         </div>
       </ng-template>
@@ -27,9 +27,14 @@
     
     <ngx-qrcode id="qrCodeImage" [qrc-element-type]="elementType" [qrc-value] = "value">
   </ngx-qrcode><br>
-  <a [href]="href"  (click)="downloadImage()" download>Download Image</a>
+ 
 
     
+  </ng-template>
+
+
+  <ng-template #modalfooter>
+  	      <button [href]="href" tc-button [view]="'success'" (click)="downloadImage()">Submit</button>
   </ng-template>
 
 
