@@ -36,25 +36,22 @@ export class HttpService {
     body.set('password', pass);
 
     let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
+          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'})
     };
     
   
 
 
-    return this.http.post('https://demo.edcerts.io/api/login',body.toString(), options);
+    return this.http.post('http://127.0.0.1:8000/api/login',body.toString(), options);
   }
 
 
 
-  signupcompany(username,email,companyname,password){
+  signupcompany(username,email,password){
 
     let body = new URLSearchParams();
     body.set('username', username);
     body.set('email', email);
-    body.set('companyname',companyname);
     body.set('password',password);
 
     let options = {
@@ -64,7 +61,7 @@ export class HttpService {
     };
 
 
-    return this.http.post('https://demo.edcerts.io/api/signup',body.toString(),options);
+    return this.http.post('http://127.0.0.1:8000/api/register',body.toString(),options);
 
   }
 
@@ -297,26 +294,33 @@ export class HttpService {
 
   }
 
+  getninthcomputerbatch(){
+        console.log("service");
+        return this.http.get('http://127.0.0.1:8000/api/listninthcomputerbatch');
+  }
 
-public eventEmitter(eventCategory: string,
-                   eventAction: string,
-                   eventLabel: string = null,
-                   eventValue: number = null) {
-
-
-
-
-    ga('send', 'event', {
-      eventCategory: eventCategory,
-      eventLabel: eventLabel,
-      eventAction: eventAction,
-      eventValue: eventValue
-    });
+  getallschools(){
+        return this.http.get('http://127.0.0.1:8000/api/getschools');
+  }
 
 
-
-
-}
+  addninthcomputerdata(data){
+        console.log(data.studentname);
+        let body = new URLSearchParams();
+      body.set('studentname',data.studentname);
+      body.set('studentfathername',data.studentfathername);
+      body.set('schoolid',data.schoolid);
+      body.set('computermarks',data.computermarks);
+      body.set('englishmarks',data.englishmarks);
+      body.set('islamiatmarks',data.islamiatmarks);
+      body.set('sindhimarks',data.sindhimarks);
+      body.set('urdumarks',data.urdumarks);
+      body.set('studentrollnumber',data.studentrollnumber);
+        let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+        return this.http.post('http://127.0.0.1:8000/api/addninthcomputerstudent',data,options);
+  }
 
 }
 

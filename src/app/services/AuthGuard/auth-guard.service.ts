@@ -17,17 +17,18 @@ export class AuthGuardService implements CanActivate {
 cookievalue = '';
   constructor(private httpsrv:HttpService,private router:Router,private cookieservice : CookieService) { }
 
- canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+ canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
   
-    return this.httpsrv.checkauthentication().pipe(map(res=>{
-    	if(!res){
-    		this.router.navigate(['/public/login']);
-    		return false
-    	}
-    	return true;
+  
+    if (localStorage.getItem('token')){
+      return true;
+    }
 
-    })
-    );
+    else {
+
+    this.router.navigate(['/public/login']);
+    return false;
+    }
 
    
    

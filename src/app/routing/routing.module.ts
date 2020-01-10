@@ -9,20 +9,34 @@ import { MainPageComponentnt } from '../pages/main';
 import { Page404Component } from '../pages/page-404';
 import { SigninComponent } from '../pages/signin/signin.component';
 import { SignupComponent } from '../pages/signup/signup.component';
-import { ListtransactionComponent } from '../pages/listtransaction';
-import { IssuecertificatesComponent } from '../pages/issuecertificates';
 import { EditaccountComponent } from '../pages/editaccount';
 import { PagesettingsComponent } from '../pages/pagesettings';
 import { UsersComponent } from '../pages/users';
 import { AuthGuardService } from '../services/AuthGuard/auth-guard.service';
-import { EmailverificationComponent } from '../pages/emailverification/emailverification.component';
 import { PassswordresetComponent } from '../pages/passswordreset/passswordreset.component';
 import { VerifynewpasswordComponent } from '../pages/verifynewpassword/verifynewpassword.component';
+import { NinthclassComponent } from '../pages/ninthclass/ninthclass.component';
+import { MatricclassComponent } from '../pages/matricclass/matricclass.component';
+import { FirstyearclassComponent } from '../pages/firstyearclass/firstyearclass.component';
+import { SecondyearclassComponent } from '../pages/secondyearclass/secondyearclass.component';
+import { SchoolComponent } from '../pages/school/school.component';
+import { NinthstudentdataComponent } from '../pages//ninthstudentdata/ninthstudentdata.component';
+import { MatricstudentdataComponent } from '../pages/matricstudentdata/matricstudentdata.component';
+import { FirstyearstudentdataComponent } from '../pages/firstyearstudentdata/firstyearstudentdata.component';
+import { SecondyearstudentdataComponent } from '../pages/secondyearstudentdata/secondyearstudentdata.component';
+
 
 const VERTICAL_ROUTES: Routes = [
-  { path: 'main', component:  MainPageComponentnt ,canActivate: [AuthGuardService]},
-  { path: 'transactions', component: ListtransactionComponent,canActivate: [AuthGuardService] },
-  { path: 'issuecertificates', component: IssuecertificatesComponent,canActivate: [AuthGuardService] },
+  { path: 'main', component:  MainPageComponentnt },
+  { path: 'ninthclass', component: NinthclassComponent},
+  { path: 'matricclass', component: MatricclassComponent},
+  { path: 'firstyearclass', component: FirstyearclassComponent},
+  { path: 'secondyearclass', component: SecondyearclassComponent},
+  { path: 'ninthstudentdata', component: NinthstudentdataComponent},
+  { path: 'matricstudentdata', component: MatricstudentdataComponent},
+  { path: 'firstyearstudentdata', component: FirstyearstudentdataComponent},
+  { path: 'secondyearstudentdata', component: SecondyearstudentdataComponent},
+  { path: 'schools', component: SchoolComponent},
   { path: 'editaccount', component: EditaccountComponent,canActivate: [AuthGuardService] },
   { path: 'settings', component: PagesettingsComponent,canActivate: [AuthGuardService] },
   { path: 'users', component: UsersComponent ,canActivate: [AuthGuardService]},
@@ -53,10 +67,7 @@ export const ROUTES: Routes = [
     redirectTo: '/public/login',
     pathMatch: 'full'
   },
-  {
-    path: 'verify/:verificationtoken',
-    component: EmailverificationComponent
-  },
+  
 
   {
     path: 'reset/:resettoken',

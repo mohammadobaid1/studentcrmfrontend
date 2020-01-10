@@ -14,7 +14,7 @@ export class LoginFormComponent implements OnInit {
 
   loginForm: FormGroup;
   viewalert:boolean=false;
-  
+  jwttokendata: any;
 
   constructor(private fb: FormBuilder,private httpservice:HttpService,private router:Router,private modal: TCModalService) { }
 
@@ -38,8 +38,10 @@ export class LoginFormComponent implements OnInit {
       console.log("loginusername",this.loginForm.value.emailaddress);
       this.httpservice.loginuser(this.loginForm.value.emailaddress,this.loginForm.value.pass)
               .subscribe(data=>{
+                console.log(data);
+                this.jwttokendata = data;
+                localStorage.setItem ('token', this.jwttokendata.token);
 
-                this.httpservice.eventEmitter("LoginPage", "login button", "User successfully logged in", 1);
                 this.router.navigateByUrl('/vertical/public');
 
               },

@@ -13,8 +13,7 @@
       <span></span><span></span><span></span>
     </button>
 
-    <search [data]="searchData" [layout]="'vertical'" class="d-none d-md-block"></search>
-
+  
     <actions [layout]="'vertical'"></actions>
 
     <navbar-skeleton [type]="'horizontal'" [loaded]="loaded"></navbar-skeleton>
@@ -38,12 +37,7 @@
     <app-menu [src]="'assets/data/menu.json'"></app-menu>
 
     <div class="add-patient">
-      <button
-        tc-button
-        [view]="'accent'"
-        [beforeIcon]="'icofont-plus'"
-        (click)="openModal(modalBody, 'Add new User', modalFooter)"
-      >Add Users</button>
+     
     </div>
 
     <menu class="assistant-menu">

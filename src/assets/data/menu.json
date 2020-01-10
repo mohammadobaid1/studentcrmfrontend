@@ -1,31 +1,65 @@
 [
   {
-    "title": "Main page",
+    "title": "Dashboard",
     "icon": {
       "class": "icofont-thermometer-alt"
     },
     "routing": "main"
   },
   {
-    "title": "Transactions",
+    "title": "Matriculation Education",
     "icon": {
       "class": "icofont-thermometer-alt"
     },
-    "routing": "transactions"
+    "sub": [
+      {
+        "title" : "Add Ninth Class Data",
+        "routing": "ninthclass"
+      },
+      {
+        "title": " Add Matric Class Data",
+        "routing": "matricclass"
+      },
+      {
+        "title": "Ninth student data",
+        "routing": "ninthstudentdata"
+      },
+      {
+        "title": "Matric student data",
+        "routing": "matricstudentdata"
+      }
+      
+      ]
   },
   {
-    "title": "Issue Certificates",
+    "title": "Higher Secondary Edcuation",
     "icon": {
       "class": "icofont-thermometer-alt"
     },
-    "routing": "issuecertificates"
+    "sub" : [
+      {
+        "title": "Add firstyear class data",
+        "routing": "firstyearclass"
+      },
+      {
+        "title": "Add secondyear class data",
+        "routing": "secondyearclass"
+      },
+      {
+        "title": "Firstyear student data",
+        "routing": "firstyearstudentdata"
+      },
+      {
+        "title": "Secondyear student data",
+        "routing": "secondyearstudentdata"
+      }
+    ] 
   },
-
   {
-    "title": "Users",
+    "title": "Schools",
     "icon": {
       "class": "icofont-thermometer-alt"
     },
-    "routing": "users"
-  }  
+    "routing": "schools"
+  }
 ]

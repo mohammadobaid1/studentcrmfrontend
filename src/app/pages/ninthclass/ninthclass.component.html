@@ -1,0 +1,90 @@
+
+
+
+
+<div class="row">
+   <div class="col-12">
+      <h5>Import Records</h5>
+   </div>
+
+   <div class="col-6 ">
+      <tc-input [type]="'file'" (change)="convertFile($event)" >Import Records</tc-input >
+   </div>
+
+   <div class="col-12">
+      <h4>OR </h4>
+   </div>
+</div>
+
+<div class="row">
+   <div class="col-6">
+<tc-card [title]="'Add Student Record'">
+  
+   <form [formGroup]="form" novalidate >
+   <tc-form-group>
+    <tc-form-label>Student Name</tc-form-label>
+    <tc-input formControlName="studentname"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+    <tc-form-label>Student Father Name</tc-form-label>
+    <tc-input formControlName="studentfathername" ></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+    <tc-form-label>Student Roll Number</tc-form-label>
+    <tc-input formControlName="studentrollnumber" ></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    <tc-form-label>English Marks</tc-form-label>
+    <tc-input  formControlName="englishmarks"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    <tc-form-label>Sindhi Marks</tc-form-label>
+    <tc-input formControlName="sindhimarks" ></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    <tc-form-label>Islamiat Marks</tc-form-label>
+    <tc-input formControlName="urdumarks"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    <tc-form-label>Computer Marks</tc-form-label>
+    <tc-input formControlName="computermarks"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+      <tc-form-label>Islamiat Marks</tc-form-label>
+      <tc-input formControlName="islamiatmarks"></tc-input>
+      
+     </tc-form-group>
+
+   <tc-form-group>
+      <tc-form-label>Select School</tc-form-label>
+      <tc-select  [options]="dropdowndata" formControlName="schoolid" ></tc-select>
+
+      <tc-form-label>OR Add School</tc-form-label>
+      <tc-input formControlName="schoolname"></tc-input>
+   </tc-form-group>
+
+   <button tc-button (click)="insertstudent()" tc-button [block]="true" [view]="'accent'" [disabled]="form.invalid" >Add Record</button>
+</form>
+</tc-card>
+</div>
+
+
+</div>

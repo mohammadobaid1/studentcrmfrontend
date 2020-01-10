@@ -32,7 +32,7 @@ export class RegisterFormComponent implements OnInit {
 
       else {  
 
-      this.httpservice.signupcompany(this.registerForm.value.name,this.registerForm.value.email,this.registerForm.value.companyname,this.registerForm.value.pass)
+      this.httpservice.signupcompany(this.registerForm.value.name,this.registerForm.value.email,this.registerForm.value.pass)
             .subscribe(data=>{
 
               this.modal.open({

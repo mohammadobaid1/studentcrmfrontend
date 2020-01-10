@@ -45,10 +45,10 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
         this.totaltokensleft=fetchdata.token[0].companytokens;
 
       },error=>{
-          this.modal.open({
-                        body: 'Error in fetching remaining tokens',
-                        header: 'Error'
-                      });  
+          // this.modal.open({
+          //               body: 'Error in fetching remaining tokens',
+          //               header: 'Error'
+          //             });  
 
       })
 
@@ -58,10 +58,10 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
         this.totalcertificates=fetchdata.totaltransaction[0].txcount;
 
       },error=>{
-            this.modal.open({
-                        body: 'Error in fetching total transactions',
-                        header: 'Error'
-                      });  
+            // this.modal.open({
+            //             body: 'Error in fetching total transactions',
+            //             header: 'Error'
+            //           });  
 
       })
 
