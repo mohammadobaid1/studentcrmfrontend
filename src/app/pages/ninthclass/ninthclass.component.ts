@@ -6,6 +6,7 @@ import { IAppState } from '../../interfaces/app-state';
 import { HttpService } from '../../services/http/http.service';
 import { TCModalService } from '../../ui/services/modal/modal.service';
 import { AllForm } from '../forms/allforms';
+import { Content } from '../../ui/interfaces/modal';
 import * as csv from 'csvtojson';
 
 
@@ -18,6 +19,7 @@ export class NinthclassComponent extends BasePageComponent implements OnInit {
   dropdowndata: any;
   form: FormGroup;
   file: File;
+  previewimportdata: any;
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
@@ -47,7 +49,7 @@ export class NinthclassComponent extends BasePageComponent implements OnInit {
         this.dropdowndata = data;
       })
 
-      this.form = this.forminstance.getNinthclassform();
+      this.form = this.forminstance.getNinthcomputerclassform();
 
   }
 
@@ -102,6 +104,39 @@ convertFile(event: any) {
 }
 
 
+previewdata<T>(body: Content<T>, header: Content<T> = null, footer: Content<T> = null, options: any = null) {
+  
+  this.modal.open({
+    body: body,
+    header: header,
+    footer: footer,
+    options: options
+
+  });
+}
+
+closeModal(){
+  this.modal.close();
+}
+
+bulkinsert(){
+  console.log("bulk insert data",this.previewimportdata);
+  this.httpSv.ninthziauddindata(this.previewimportdata)
+    .subscribe(data=>{
+      this.modal.close();
+      // this.modal.open({
+      //    header: 'Successful',
+      //    body: 'All records are inserted successfully'
+      // });
+
+    },err=>{
+
+      console.log("Error in bulk insert",err);
+    })
+
+}
+
+
 textToCsv(text) {
   // console.log(text);
   const hds = new Array();
@@ -125,6 +160,8 @@ textToCsv(text) {
         }
       });
       //const table = { headers: hds, rows: rows };
+
+      this.previewimportdata = rows;
       return rows;
     })
     .then(tab => {

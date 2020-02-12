@@ -1,0 +1,243 @@
+
+
+
+
+
+
+
+<!-- <div class="row">
+  <form [formGroup]="form" novalidate>
+  <div class="col-3">
+    <tc-input [placeholder]="'Search school'" [type]="'search'" formControlName="schoolname"></tc-input>
+  </div>
+
+  <div class="col-3">
+    <tc-input [placeholder]="'Search by enrollment number'" [type]="'search'" formControlName="schoolid"></tc-input>
+  </div>
+
+
+  <div class="col-3">
+    <button tc-button [block]="true" [view]="'accent'" > Search</button>
+  </div>
+
+</form>
+</div> -->
+
+<form [formGroup]="form" novalidate>
+<div class="row">
+  
+    <div class="col-3">
+      <tc-input [placeholder]="'Search school'" [type]="'search'" formControlName="schoolname" ></tc-input>
+
+    </div>
+
+    <div class="col-3">
+      <tc-input [placeholder]="'Search by Name'" [type]="'search'" formControlName="studentname" ></tc-input>
+    </div>
+
+    <div class="col-3">
+      <button tc-button [block]="true" [view]="'accent'" (click)="search()" > Search</button>
+    </div>
+  
+  </div>
+
+<div class="row">
+  <div style="margin-top:2px;">
+  </div>
+</div>
+
+
+  <div class="row">
+    <div class="col-3">
+      <tc-input [placeholder]="'Search by fathername'" [type]="'search'" formControlName="fathername" ></tc-input>
+    </div>
+
+    <div class="col-3">
+      <tc-input [placeholder]="'Search by roll number'" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
+    </div>
+
+    <div class="col-3">
+      <button tc-button [block]="true" [view]="'accent'" (click)="search()" > Print Marksheet</button>
+    </div>
+
+    </div> 
+
+    
+
+  </form>
+
+  
+
+<div class="row" >
+  <h3>Data</h3>
+  </div>
+
+<div class="row" *ngIf="!searchresult" >
+<tc-card class="mb-0">
+<tc-table [rows]="tableData" [hovered]="true">
+  <tc-table-col [columnTitle]="'Name'" [columnName]="'studentinfo'" > 
+
+  	<ng-template #tableTDTemplate let-value>
+       {{ value.studentname}}
+      </ng-template>
+
+  </tc-table-col>
+
+   <tc-table-col [columnTitle]="'F.Name'" [columnName]="'studentinfo'" > 
+
+    <ng-template #tableTDTemplate let-value>
+       {{ value.fathername}}
+      </ng-template>
+
+  </tc-table-col>
+
+  <tc-table-col [columnTitle]="'Roll Number'" [columnName]="'studentinfo'">
+    <ng-template #tableTDTemplate let-value>
+      {{value.enrollmentnumber}}
+    </ng-template>
+
+
+  </tc-table-col>
+  <tc-table-col [columnTitle]="'School'" [columnName]="'studentinfo'">
+  	
+<ng-template #tableTDTemplate let-value>
+       {{ value.schoolname.schoolname}}
+      </ng-template>
+
+  </tc-table-col>
+   <tc-table-col [columnTitle]="'English'" [columnName]="'englishmarks'"></tc-table-col> 
+   <tc-table-col [columnTitle]="'Sindhi'" [columnName]="'sindhimarks'"></tc-table-col>   
+  
+  <tc-table-col [columnTitle]="'PST'" [columnName]="'pakistanstudiesmark'"></tc-table-col>
+  <tc-table-col [columnTitle]="'Chemistry Theory'" [columnName]="'chemistrytheorymarks'"></tc-table-col>
+  <tc-table-col [columnTitle]="'Chemistry Practical'" [columnName]="'chemistrypracticalmarks'"></tc-table-col>
+
+  <tc-table-col [columnTitle]="'Computer Theory'" [columnName]="'computertheorymarks'"></tc-table-col>
+  <tc-table-col [columnTitle]="'Computer Practical'" [columnName]="'computerpracticalmarks'"></tc-table-col>
+
+  <tc-table-col [columnTitle]="'Cleared Papers'" [columnName]="'totalclearedpaper'"></tc-table-col>
+
+
+  <tc-table-col [columnTitle]="'Percentage'" [columnName]="'overallpercentage'" > </tc-table-col>
+   <tc-table-col [columnTitle]="'Exam Type'" [columnName]="'examtype'" >
+    <ng-template #tableTDTemplate  let-value>
+     <tc-badge [view]="'success'" > {{value}} </tc-badge>
+    </ng-template>
+</tc-table-col> 
+
+<tc-table-col [columnTitle]="'Operations'">
+  <ng-template #tableTDTemplate >
+  <button tc-button [block]="true" [view]="'accent'" (click)="generatePdf(tableData)"  > Print Marksheet</button>
+  <button tc-button [block]="true" [view]="'accent'" > Print Data</button>
+</ng-template>
+  </tc-table-col>
+    
+ </tc-table>
+
+ </tc-card>
+</div> 
+
+
+
+
+
+
+
+ <div class="row" *ngIf="searchresult" >
+
+ <table mat-table [dataSource]="searchresultdata" class="mat-elevation-z8">
+
+  
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="studentname">
+    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentname}} </td>
+  </ng-container>
+
+  
+  <ng-container matColumnDef="fathername">
+    <th mat-header-cell *matHeaderCellDef> Father </th>
+    <td mat-cell *matCellDef="let element"> {{element.fathername}} </td>
+  </ng-container>
+
+  
+   <ng-container matColumnDef="Schoolname">
+    <th mat-header-cell *matHeaderCellDef> School </th>
+    <td mat-cell *matCellDef="let element"> {{element.schoolname.schoolname}} </td>
+  </ng-container>
+
+
+   <ng-container matColumnDef="enrollmentnumber">
+    <th mat-header-cell *matHeaderCellDef> Roll No </th>
+    <td mat-cell *matCellDef="let element"> {{element.enrollmentnumber}} </td>
+  </ng-container>
+
+ 
+  <ng-container matColumnDef="englishmarks">
+    <th mat-header-cell *matHeaderCellDef> Eng </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.englishmarks:'-' }} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="sindhimarks">
+    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.sindhimarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="pakistanstudiesmark">
+    <th mat-header-cell *matHeaderCellDef> PST </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.pakistanstudiesmark: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemistryteory">
+    <th mat-header-cell *matHeaderCellDef> ChemTheory </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.chemistrytheorymarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemistrypractical">
+    <th mat-header-cell *matHeaderCellDef> ChemPractical </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.chemistrypracticalmarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="computertheory">
+    <th mat-header-cell *matHeaderCellDef> ComputerTh </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.computertheorymarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="computerpractical">
+    <th mat-header-cell *matHeaderCellDef> ComputerPrac </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.computerpracticalmarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="examtype">
+    <th mat-header-cell *matHeaderCellDef> Exam </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.examtype: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalclearedpaper">
+    <th mat-header-cell *matHeaderCellDef> Cleared </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.totalclearedpaper: '-'}} </td>
+  </ng-container> 
+ -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr> 
+</table>
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]" (page)="pageChanged($event)"></mat-paginator>
+</div> 
+
+

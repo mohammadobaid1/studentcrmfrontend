@@ -11,7 +11,7 @@ import { TCModalService } from '../../ui/services/modal/modal.service';
   styleUrls: ['./matricstudentdata.component.scss']
 })
 export class MatricstudentdataComponent extends BasePageComponent implements OnInit  {
-
+rows: any;
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
@@ -32,7 +32,17 @@ export class MatricstudentdataComponent extends BasePageComponent implements OnI
   }
 
   ngOnInit() {
-    super.ngOnInit();
+     super.ngOnInit();
+    // this.httpSv.getmatricbatch()
+    //   .subscribe(data=>{
+    //     this.rows = data;
+
+    //   },error=>{
+    //     console.log(error);
+    //   })
   }
+
+
+
 
 }

@@ -11,12 +11,7 @@ import { MainPageComponentnt } from './main';
 import { Page404Component } from './page-404';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
-import { EditaccountComponent } from './editaccount';
 import { PagesettingsComponent } from './pagesettings';
-import { UsersComponent } from './users';
-import { EmailverificationComponent } from './emailverification/emailverification.component';
-import { PassswordresetComponent } from './passswordreset/passswordreset.component';
-import { VerifynewpasswordComponent } from './verifynewpassword/verifynewpassword.component';
 import { NinthclassComponent } from './ninthclass/ninthclass.component';
 import { MatricclassComponent } from './matricclass/matricclass.component';
 import { FirstyearclassComponent } from './firstyearclass/firstyearclass.component';
@@ -27,6 +22,27 @@ import { MatricstudentdataComponent } from './matricstudentdata/matricstudentdat
 import { FirstyearstudentdataComponent } from './firstyearstudentdata/firstyearstudentdata.component';
 import { SecondyearstudentdataComponent } from './secondyearstudentdata/secondyearstudentdata.component';
 import { AllForm } from './forms/allforms';
+import { NinthcomputerclassComponent } from './ninthcomputerclass/ninthcomputerclass.component';
+import { NinthcomputerstudentsdataComponent } from './ninthcomputerstudentsdata/ninthcomputerstudentsdata.component';
+import { NinthbioclassComponent } from './ninthbioclass/ninthbioclass.component';
+import { NinthbiostudentsdataComponent } from './ninthbiostudentsdata/ninthbiostudentsdata.component';
+import { NinthregularclassComponent } from './ninthregularclass/ninthregularclass.component';
+import { NinthregularstudentsdataComponent } from './ninthregularstudentsdata/ninthregularstudentsdata.component';
+import { NinthprivateclassComponent } from './ninthprivateclass/ninthprivateclass.component';
+import { NinthprivatestudentsdataComponent } from './ninthprivatestudentsdata/ninthprivatestudentsdata.component';
+import { MatricscienceclassComponent } from './matricscienceclass/matricscienceclass.component';
+import { MatricsciencestudentsdataComponent } from './matricsciencestudentsdata/matricsciencestudentsdata.component';
+import { MatricregularclassComponent } from './matricregularclass/matricregularclass.component';
+import { MatricregularstudentsdataComponent } from './matricregularstudentsdata/matricregularstudentsdata.component';
+import { MatricprivateclassComponent } from './matricprivateclass/matricprivateclass.component';
+import { MatricprivatestudentsdataComponent } from './matricprivatestudentsdata/matricprivatestudentsdata.component';
+import { Ssc1sciencehomeComponent } from './ssc1sciencehome/ssc1sciencehome.component';
+import { Ssc1generalhomeComponent } from './ssc1generalhome/ssc1generalhome.component';
+import { Ssc2sciencehomeComponent } from './ssc2sciencehome/ssc2sciencehome.component';
+import { Ssc2generalhomeComponent } from './ssc2generalhome/ssc2generalhome.component';
+import { MatTableModule } from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   imports: [
     CommonModule,
@@ -34,7 +50,10 @@ import { AllForm } from './forms/allforms';
     ReactiveFormsModule,
     RouterModule,
     UIModule,
-    LayoutModule
+    LayoutModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatPaginatorModule
     ],
   declarations: [
     BasePageComponent,
@@ -42,12 +61,7 @@ import { AllForm } from './forms/allforms';
     Page404Component,
     SigninComponent,
     SignupComponent,
-    EditaccountComponent,
     PagesettingsComponent,
-    UsersComponent,
-    EmailverificationComponent,
-    PassswordresetComponent,
-    VerifynewpasswordComponent,
     NinthclassComponent,
     MatricclassComponent,
     FirstyearclassComponent,
@@ -57,6 +71,24 @@ import { AllForm } from './forms/allforms';
     MatricstudentdataComponent,
     FirstyearstudentdataComponent,
     SecondyearstudentdataComponent,
+    NinthcomputerclassComponent,
+    NinthcomputerstudentsdataComponent,
+    NinthbioclassComponent,
+    NinthbiostudentsdataComponent,
+    NinthregularclassComponent,
+    NinthregularstudentsdataComponent,
+    NinthprivateclassComponent,
+    NinthprivatestudentsdataComponent,
+    MatricscienceclassComponent,
+    MatricsciencestudentsdataComponent,
+    MatricregularclassComponent,
+    MatricregularstudentsdataComponent,
+    MatricprivateclassComponent,
+    MatricprivatestudentsdataComponent,
+    Ssc1sciencehomeComponent,
+    Ssc1generalhomeComponent,
+    Ssc2sciencehomeComponent,
+    Ssc2generalhomeComponent,
     
   ],
   providers: [AllForm],

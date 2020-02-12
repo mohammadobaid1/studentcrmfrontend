@@ -47,280 +47,245 @@ export class HttpService {
 
 
 
-  signupcompany(username,email,password){
-
-    let body = new URLSearchParams();
-    body.set('username', username);
-    body.set('email', email);
-    body.set('password',password);
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-
-    return this.http.post('http://127.0.0.1:8000/api/register',body.toString(),options);
-
-  }
-
-
-  useraccessrole(){
-    return this.http.get('https://demo.edcerts.io/api/getuseraccessrole');
-  }
-
-
-  addusertocompany(username,emailaddress,password,accessrole){
-
-    let body = new URLSearchParams();
-    body.set('username', username);
-    body.set('email', emailaddress);
-    body.set('password',password);
-    body.set('useraccessrole',accessrole);
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-
-      return this.http.post('https://demo.edcerts.io/api/adduser',body.toString(),options);
-
-
-
-
-  }
-
-
-
-  checkauthentication(){
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-    return this.http.get('https://demo.edcerts.io/api/authenticate',options);
-
-  }
-
-
-
-  postransaction(studentname,fathername,passingyear,revocationyear,discipline,batch,enrollmentnumber){
-
-        let body = new URLSearchParams();
-        body.set('studentname', studentname);
-        body.set('fathername', fathername);
-        body.set('passingyear',passingyear);
-        body.set('revocationyear',revocationyear);
-        body.set('discipline',discipline);
-        body.set('batch',batch);
-        body.set('enrollmentnumber',enrollmentnumber);        
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-
-      return this.http.post('https://demo.edcerts.io/api/posttransaction',body.toString(),options);    
-
-  }
-
-
-  listtransaction(){
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-    return this.http.get('https://demo.edcerts.io/api/listalltransactions',options);
-
-
-  }
-
-
-  listusers(){
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-    return this.http.get('https://demo.edcerts.io/api/listallusers',options);
-
-
-  }
-
-
-  logout(){
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-    return this.http.get('https://demo.edcerts.io/api/logout',options);
-  }
-
-
-  verifyemail(token){
-   console.log("service token",token);
-   
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache'})
-    };
-  
-   let body = new URLSearchParams();
-   body.set('token',token);
-   return this.http.post('https://demo.edcerts.io/api/verifyemail',body.toString(),options);
-
-  }
-
-
-  deleteuser(email){
-
-
-       let body = new URLSearchParams();
-       body.set('emailaddress',email)
-
-
-
-       let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-
-      return this.http.post('https://demo.edcerts.io/api/deleteuser',body.toString(),options);  
-
-
-  }
-
-
-  gettokenleft(){
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache'})
-    };
-
-
-   return this.http.get('https://demo.edcerts.io/api/companytoken',options);
  
-
-  }
-
-
-  gettotalcertficates(){
-
-      let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache'})
-    };
-
-
-   return this.http.get('https://demo.edcerts.io/api/totaltransactions',options);
-
-
-
-
-  }
-
-
-  changepassword(existingpassword,newpassword){
-
-       let body = new URLSearchParams();
-       body.set('existingpassword',existingpassword);
-       body.set('newpassword',newpassword);
-
-
-
-       let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-
-      return this.http.post('https://demo.edcerts.io/api/changepassword',body.toString(),options);  
-
-
-  }
-
-
-  passwordreset(email){
-    let body = new URLSearchParams();
-    body.set('email',email);
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-
-      return this.http.post('https://demo.edcerts.io/api/resetpasswordrequest',body.toString(),options);
-
-
-
-  }
-
-  resetpasswordbytoken(token,newpassword){
-
-    let body = new URLSearchParams();
-    body.set('token',token);
-    body.set('newpassword',newpassword);
-
-
-    let options = {
-          headers: new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded','Cache-Control': 'no-cache',
-    'Credentials': 'same-origin'}),
-          withCredentials: true
-    };
-
-
-      return this.http.post('https://demo.edcerts.io/api/changepasswordviatoken',body.toString(),options);
-
-
-
-
-  }
 
   getninthcomputerbatch(){
         console.log("service");
-        return this.http.get('http://127.0.0.1:8000/api/listninthcomputerbatch');
+        return this.http.get('http://127.0.0.1:8000/api/getninthtest');
   }
 
+
+getninthbiobatch(){
+        console.log("service");
+        return this.http.get('http://127.0.0.1:8000/api/getninthbio');
+  }
+
+
+getninthregularbatch(){
+        console.log("service");
+        return this.http.get('http://127.0.0.1:8000/api/getninthgeneral');
+  }
+
+  getmatricsciencebatch(){
+    return this.http.get('http://127.0.0.1:8000/api/getmatricscience');
+  }
+
+  getmatricregularbatch(){
+    return this.http.get('http://127.0.0.1:8000/api/getmatricgeneral');
+  }
+
+getfirstyearbatch(){
+  return this.http.get('http://zeb.blockshift.com.pk/api/listfirstpreengineeringbatch');
+
+}
+
+
+getseconyearbatch(){
+  return this.http.get('http://zeb.blockshift.com.pk/api/listsecondpreengineeringbatch')
+}
+
+
   getallschools(){
-        return this.http.get('http://127.0.0.1:8000/api/getschools');
+        return this.http.get('http://zeb.blockshift.com.pk/api/getschools');
   }
 
 
   addninthcomputerdata(data){
+
+    console.log(data);
+      let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+ 
+        return this.http.post('http://127.0.0.1:8000/api/inserttestdata',data,options);
+  }
+
+
+addninthbiodata(data){
+
+    console.log(data);
+      let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+ 
+        return this.http.post('http://127.0.0.1:8000/api/insertninthbio',data,options);
+  }
+
+
+addninthgeneraldata(data){
+
+    console.log(data);
+      let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+ 
+        return this.http.post('http://127.0.0.1:8000/api/insertninthgeneral',data,options);
+  }
+ 
+
+  addmatricdata(data){
         console.log(data.studentname);
-        let body = new URLSearchParams();
-      body.set('studentname',data.studentname);
-      body.set('studentfathername',data.studentfathername);
-      body.set('schoolid',data.schoolid);
-      body.set('computermarks',data.computermarks);
-      body.set('englishmarks',data.englishmarks);
-      body.set('islamiatmarks',data.islamiatmarks);
-      body.set('sindhimarks',data.sindhimarks);
-      body.set('urdumarks',data.urdumarks);
-      body.set('studentrollnumber',data.studentrollnumber);
         let options = {
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
-        return this.http.post('http://127.0.0.1:8000/api/addninthcomputerstudent',data,options);
+        return this.http.post('http://zeb.blockshift.com.pk/api/addmatricstudent',data,options);
   }
+
+
+    addfirstyeardata(data){
+ 
+        let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+        return this.http.post('http://zeb.blockshift.com.pk/api/addfirstyearpreengstudent',data,options);
+  }
+
+
+    addsecondyeardata(data){
+
+        let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+        return this.http.post('http://zeb.blockshift.com.pk/api/addsecondyearpreengstudent',data,options);
+  }
+
+
+
+
+  ninthcomputerbulkdata(data){
+        console.log(data);
+        let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/bulkninthcomputerbatch',data,options);   
+
+  }
+
+  matricbulkdata(data){
+        console.log(data);
+        let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://127.0.0.1:8000/api/bulkinsertziauddinmatricscience',data,options);   
+
+  }
+
+  
+
+
+  ninthziauddindata(data){
+    let options = {
+      headers: new HttpHeaders({'Content-Type':'application/json'})
+    };
+
+    return this.http.post('http://127.0.0.1:8000/api/bulkinsertziauddinninth',data,options);
+  }
+
+
+
+
+  ninthziauddindatabio(data){
+    let options = {
+      headers: new HttpHeaders({'Content-Type':'application/json'})
+    };
+
+    return this.http.post('http://zeb.blockshift.com.pk/api/bulkinsertziauddinninthbio',data,options);
+  }
+
+
+
+ninthziauddindatageneral(data){
+    let options = {
+      headers: new HttpHeaders({'Content-Type':'application/json'})
+    };
+
+    return this.http.post('http://zeb.blockshift.com.pk/api/bulkinsertziauddinninthgeneral',data,options);
+  }
+
+    firstyearbulkdata(data){
+        console.log(data);
+        let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/bulkfirstyearpreengbatch',data,options);   
+
+  }
+
+
+  secondyearbulkddata(data){
+        console.log(data);
+        let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/bulksecondyearpreengbatch',data,options);   
+
+  }
+
+logout(token) {
+
+  console.log("service token", token);
+   var header = {
+  headers: new HttpHeaders()
+    .set('Authorization',  'Bearer '+token)
+};
+
+   return this.http.post('http://zeb.blockshift.com.pk/api/logout',null,header);
+ }
+
+
+ getstudentdata(form){
+
+    var url =  'http://127.0.0.1:8000/api/getstudentbyrollnumber/'+ form.ninthrollnumber ; 
+    return this.http.get(url);
+ }
+
+  addmatricsciencedata(data){
+
+         console.log(data);
+        let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://127.0.0.1:8000/api/insertmatricscience',data,options);   
+
+
+  }
+
+
+  addmatricregulardata(data){
+
+         console.log(data);
+        let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://127.0.0.1:8000/api/insertmatricgeneral',data,options);   
+
+
+  }
+
+
+
+  getallschool(){
+    return this.http.get('http://127.0.0.1:8000/api/getallschool');
+  }
+
+
+  searchninthsciencedata(formdata){
+
+    let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://127.0.0.1:8000/api/searchninthsciencedata',formdata,options);
+
+  }
+
+
 
 }
 

@@ -26,30 +26,7 @@ export class RegisterFormComponent implements OnInit {
 
     signup(){
 
-      this.validationfail = false;
-      if(this.registerForm.controls['name'].invalid ||  this.registerForm.controls['email'].invalid || this.registerForm.controls['companyname'].invalid || this.registerForm.controls['pass'].invalid )
-          this.validationfail = true;
 
-      else {  
-
-      this.httpservice.signupcompany(this.registerForm.value.name,this.registerForm.value.email,this.registerForm.value.pass)
-            .subscribe(data=>{
-
-              this.modal.open({
-                        body: 'Account created successfully . Confirmation link has been send to your email .',
-                        header: 'Account Created'
-                      });
-            }
-            ,
-            error=>{
-              console.log(error);
-              this.modal.open({
-                        body: 'Account creation failed . Please contact us at info@blockshift.com.pk',
-                        header: 'Signup Error'
-                      });
-            })
-
-          }
 
     }
 

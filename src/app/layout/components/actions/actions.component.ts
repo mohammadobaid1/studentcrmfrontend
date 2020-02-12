@@ -13,6 +13,8 @@ export class ActionsComponent implements OnInit {
   messages: any[];
   files: any[];
   closeDropdown: EventEmitter<boolean>;
+  userroles: string;
+  admin: boolean= false;
   @Input() layout: string;
 
   constructor(
@@ -31,6 +33,13 @@ export class ActionsComponent implements OnInit {
     this.getData('assets/data/navbar-notifications.json', 'notifications');
     this.getData('assets/data/navbar-messages.json', 'messages');
     this.getData('assets/data/navbar-files.json', 'files');
+    this.userroles = localStorage.getItem ('userroles');
+
+    if (this.userroles == 'admin') {
+      this.admin = true;
+    }
+
+
   }
 
   getData(url: string, dataName: string) {
@@ -60,10 +69,14 @@ export class ActionsComponent implements OnInit {
 
 
   logout(){
-    
-    this.httpSv.logout()
+
+   var token = localStorage.getItem('token');
+   console.log(token);
+   localStorage.removeItem('token'); 
+    this.httpSv.logout(token)
     .subscribe(data=>{
       this.cookieservice.deleteAll();
+      
      this.router.navigate(['/public/login']);
     },
     error=>{
@@ -72,4 +85,7 @@ export class ActionsComponent implements OnInit {
     
 
   }
+
+
+
 }

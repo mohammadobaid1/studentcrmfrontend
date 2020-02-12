@@ -1,4 +1,54 @@
+
+
+
+<!-- <div class="row justify-content-center align-items-center">
+<div class="col-12">
+ <logo [src]="'assets/img/zuboard-logo.png'" [width]="250" [height]="250"></logo>
+</div>
+</div>
+ -->
+<div class="container h-100">
 <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
+<div class="row h-100 justify-content-center align-items-center">
+
+  <div class="col-6">
+    <tc-card [title]="'Login User'" [view]="'accent'" [outline]="true" style="margin-top: 36% !important;">
+
+      <div class="row">
+        <div class="col-12">
+          <tc-form-group>
+                <tc-input [placeholder]="'emailaddress'" formControlName="emailaddress"></tc-input>
+          </tc-form-group>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12">
+          <tc-form-group>
+                <tc-input [placeholder]="'Password'" [type]="'password'" formControlName="pass"></tc-input>
+          </tc-form-group>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12">
+          <button tc-button class="buttoncolor" [beforeIcon]="'icofont-login'">
+      Login
+    </button>
+        </div>
+      </div>
+
+
+
+      </tc-card>
+  </div>
+</div>
+</form>
+</div>
+
+<!-- <form (ngSubmit)="login()" [formGroup]="loginForm" novalidate>
   <div *ngIf="validationfail">
           Form validation failed
         </div>
@@ -15,9 +65,9 @@
   </tc-form-group>
 
   <div class="actions justify-content-between">
-    <button tc-button [view]="'accent'" [beforeIcon]="'icofont-login'">
+    <button tc-button class="buttoncolor" [beforeIcon]="'icofont-login'">
       Login
     </button>
   </div>
 </form>
-
+ -->

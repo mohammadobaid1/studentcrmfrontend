@@ -41,8 +41,8 @@ export class LoginFormComponent implements OnInit {
                 console.log(data);
                 this.jwttokendata = data;
                 localStorage.setItem ('token', this.jwttokendata.token);
-
-                this.router.navigateByUrl('/vertical/public');
+                localStorage.setItem('userroles',this.jwttokendata.userroles);
+                this.router.navigateByUrl('/vertical/main');
 
               },
               error=>{

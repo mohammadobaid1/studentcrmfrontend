@@ -8,7 +8,11 @@
    </div>
 
    <div class="col-6 ">
-      <tc-input [type]="'file'" (change)="convertFile($event)" >Import Records</tc-input >
+      <tc-input [type]="'file'" (change)="convertFile($event)" ></tc-input >
+   </div>
+
+   <div class="col-6">
+      <button tc-button (click)="previewdata(modalBody, 'Modal title', modalFooter, { width: '100%' })">Preview Data</button>
    </div>
 
    <div class="col-12">
@@ -18,7 +22,7 @@
 
 <div class="row">
    <div class="col-6">
-<tc-card [title]="'Add Student Record'">
+<tc-card [title]="'Add Student Record'" [view]="'accent'" [outline]="true">
   
    <form [formGroup]="form" novalidate >
    <tc-form-group>
@@ -88,3 +92,30 @@
 
 
 </div>
+
+
+<ng-template #modalBody>
+<tc-card class="mb-0">
+   <tc-table [rows]="previewimportdata"   [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" [search]="true">
+     <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentname'" [enableSorting]="true"> </tc-table-col>
+     <tc-table-col [columnTitle]="'Father Name'" [columnName]="'fathername'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Roll Number'" [columnName]="'enrollmentnumber'"></tc-table-col>
+     <tc-table-col [columnTitle]="'English Marks'" [columnName]="'englishmarks'"></tc-table-col>  
+     <tc-table-col [columnTitle]="'Sindhi Marks'" [columnName]="'sindhimarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Pakistan Studies Marks'" [columnName]="'pakistanstudiesmark'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Chemistry Marks'" [columnName]="'chemistrymarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Computer Theory Marks'" [columnName]="'computertheorymarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Computer Practical Marks'" [columnName]="'computerpracticalmarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'School Name'" [columnName]="'schoolname'"></tc-table-col>  
+    </tc-table>
+   
+    </tc-card>
+
+    </ng-template>
+
+    <ng-template #modalFooter>
+      <div class="actions justify-content-between">
+        <button tc-button [view]="'error'" (click)="closeModal()">Close</button>
+        <button tc-button [view]="'success'" (click)="bulkinsert()">Bulk Insert</button>
+      </div>
+    </ng-template>

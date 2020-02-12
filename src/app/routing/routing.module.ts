@@ -9,12 +9,9 @@ import { MainPageComponentnt } from '../pages/main';
 import { Page404Component } from '../pages/page-404';
 import { SigninComponent } from '../pages/signin/signin.component';
 import { SignupComponent } from '../pages/signup/signup.component';
-import { EditaccountComponent } from '../pages/editaccount';
+
 import { PagesettingsComponent } from '../pages/pagesettings';
-import { UsersComponent } from '../pages/users';
 import { AuthGuardService } from '../services/AuthGuard/auth-guard.service';
-import { PassswordresetComponent } from '../pages/passswordreset/passswordreset.component';
-import { VerifynewpasswordComponent } from '../pages/verifynewpassword/verifynewpassword.component';
 import { NinthclassComponent } from '../pages/ninthclass/ninthclass.component';
 import { MatricclassComponent } from '../pages/matricclass/matricclass.component';
 import { FirstyearclassComponent } from '../pages/firstyearclass/firstyearclass.component';
@@ -26,20 +23,78 @@ import { FirstyearstudentdataComponent } from '../pages/firstyearstudentdata/fir
 import { SecondyearstudentdataComponent } from '../pages/secondyearstudentdata/secondyearstudentdata.component';
 
 
+import { NinthcomputerclassComponent } from '../pages/ninthcomputerclass/ninthcomputerclass.component';
+import { NinthcomputerstudentsdataComponent } from '../pages/ninthcomputerstudentsdata/ninthcomputerstudentsdata.component';
+
+import { NinthbioclassComponent } from '../pages/ninthbioclass/ninthbioclass.component';
+import { NinthbiostudentsdataComponent } from '../pages/ninthbiostudentsdata/ninthbiostudentsdata.component';
+
+import { NinthprivateclassComponent } from '../pages/ninthprivateclass/ninthprivateclass.component';
+import { NinthprivatestudentsdataComponent } from '../pages/ninthprivatestudentsdata/ninthprivatestudentsdata.component';
+
+
+import { NinthregularclassComponent } from '../pages/ninthregularclass/ninthregularclass.component';
+import { NinthregularstudentsdataComponent } from '../pages/ninthregularstudentsdata/ninthregularstudentsdata.component';
+
+import { MatricscienceclassComponent } from '../pages/matricscienceclass/matricscienceclass.component';
+import { MatricsciencestudentsdataComponent } from '../pages/matricsciencestudentsdata/matricsciencestudentsdata.component';
+
+
+import { MatricregularclassComponent } from '../pages/matricregularclass/matricregularclass.component';
+import { MatricregularstudentsdataComponent } from '../pages/matricregularstudentsdata/matricregularstudentsdata.component';
+
+
+import { MatricprivateclassComponent } from '../pages/matricprivateclass/matricprivateclass.component';
+import { MatricprivatestudentsdataComponent } from '../pages/matricprivatestudentsdata/matricprivatestudentsdata.component';
+
+import { Ssc1sciencehomeComponent } from '../pages/ssc1sciencehome/ssc1sciencehome.component';
+import { Ssc1generalhomeComponent } from '../pages/ssc1generalhome/ssc1generalhome.component';
+
+
+import { Ssc2sciencehomeComponent } from '../pages/ssc2sciencehome/ssc2sciencehome.component';
+import { Ssc2generalhomeComponent } from '../pages/ssc2generalhome/ssc2generalhome.component';
+
+
 const VERTICAL_ROUTES: Routes = [
-  { path: 'main', component:  MainPageComponentnt },
-  { path: 'ninthclass', component: NinthclassComponent},
-  { path: 'matricclass', component: MatricclassComponent},
-  { path: 'firstyearclass', component: FirstyearclassComponent},
-  { path: 'secondyearclass', component: SecondyearclassComponent},
-  { path: 'ninthstudentdata', component: NinthstudentdataComponent},
-  { path: 'matricstudentdata', component: MatricstudentdataComponent},
-  { path: 'firstyearstudentdata', component: FirstyearstudentdataComponent},
-  { path: 'secondyearstudentdata', component: SecondyearstudentdataComponent},
-  { path: 'schools', component: SchoolComponent},
-  { path: 'editaccount', component: EditaccountComponent,canActivate: [AuthGuardService] },
-  { path: 'settings', component: PagesettingsComponent,canActivate: [AuthGuardService] },
-  { path: 'users', component: UsersComponent ,canActivate: [AuthGuardService]},
+  { path: 'main', component:  MainPageComponentnt , canActivate: [AuthGuardService]},
+   { path: 'sscscience', component: Ssc1sciencehomeComponent,canActivate: [AuthGuardService]},
+   { path: 'sscgeneral', component: Ssc1generalhomeComponent,canActivate: [AuthGuardService]},
+
+   { path: 'matriccience', component: Ssc2sciencehomeComponent,canActivate: [AuthGuardService]},
+   { path: 'matricgeneral', component: Ssc2generalhomeComponent,canActivate: [AuthGuardService]},
+
+  { path: 'ninthcomputerclass', component: NinthcomputerclassComponent,canActivate: [AuthGuardService]},
+  { path: 'ninthcomputerdata', component: NinthcomputerstudentsdataComponent,canActivate: [AuthGuardService]},
+
+  { path: 'ninthbioclass', component: NinthbioclassComponent,canActivate: [AuthGuardService]},
+  { path: 'ninthbiodata', component: NinthbiostudentsdataComponent,canActivate: [AuthGuardService]},
+
+  { path: 'ninthprivateclass', component: NinthprivateclassComponent,canActivate: [AuthGuardService]},
+  { path: 'ninthprivatedata', component: NinthprivatestudentsdataComponent,canActivate: [AuthGuardService]},
+
+  { path: 'ninthregularclass', component: NinthregularclassComponent,canActivate: [AuthGuardService]},
+  { path: 'ninthregulardata', component: NinthregularstudentsdataComponent,canActivate: [AuthGuardService]},
+
+
+  { path: 'matricscienceclass', component: MatricscienceclassComponent,canActivate: [AuthGuardService]},
+  { path: 'matricsciencedata', component: MatricsciencestudentsdataComponent,canActivate: [AuthGuardService]},
+
+
+  { path: 'matricregularclass', component: MatricregularclassComponent,canActivate: [AuthGuardService]},
+  { path: 'matricregulardata', component: MatricregularstudentsdataComponent,canActivate: [AuthGuardService]},
+
+  { path: 'matricprivateclass', component: MatricprivateclassComponent,canActivate: [AuthGuardService]},
+  { path: 'matricprivatedata', component: MatricprivatestudentsdataComponent,canActivate: [AuthGuardService]},
+
+
+
+  { path: 'firstyearclass', component: FirstyearclassComponent,canActivate: [AuthGuardService]},
+  { path: 'secondyearclass', component: SecondyearclassComponent,canActivate: [AuthGuardService]},
+  { path: 'ninthstudentdata', component: NinthstudentdataComponent,canActivate: [AuthGuardService]},
+  { path: 'matricstudentdata', component: MatricstudentdataComponent,canActivate: [AuthGuardService]},
+  { path: 'firstyearstudentdata', component: FirstyearstudentdataComponent,canActivate: [AuthGuardService]},
+  { path: 'secondyearstudentdata', component: SecondyearstudentdataComponent,canActivate: [AuthGuardService]},
+  { path: 'school/:id', component: SchoolComponent,canActivate: [AuthGuardService]},
   { path: '**', component: Page404Component,canActivate: [AuthGuardService] }
 
 
@@ -49,33 +104,18 @@ const PUBLIC_ROUTES: Routes = [
 {
     path: 'login',
     component: SigninComponent
-  },
-
-  {
-    path: 'signup',
-    component: SignupComponent
-  },
-   {
-    path: 'reset',
-    component: PassswordresetComponent
   }
+
+
 ];
 
 export const ROUTES: Routes = [
   {
     path: '',
-    redirectTo: '/public/login',
+    redirectTo: '/vertical/main',
     pathMatch: 'full'
   },
   
-
-  {
-    path: 'reset/:resettoken',
-    component: VerifynewpasswordComponent 
-
-  },
-  
- 
  {
     path: 'vertical',
     component: VerticalLayoutComponent,

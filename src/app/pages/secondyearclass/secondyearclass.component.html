@@ -3,82 +3,124 @@
 
 
 <div class="row">
-  <div class="col-12">
-     <h5>Import Records</h5>
-  </div>
+   <div class="col-12">
+      <h5>Import Records</h5>
+   </div>
 
-  <div class="col-12 ">
-     <button tc-button>Import Records</button >
-  </div>
+   <div class="col-6 ">
+      <tc-input [type]="'file'" (change)="convertFile($event)" ></tc-input >
+   </div>
 
-  <div class="col-12">
-     <h4>OR </h4>
-  </div>
+   <div class="col-6">
+      <button tc-button (click)="previewdata(modalBody, 'Modal title', modalFooter, { width: '100%' })">Preview Data</button>
+   </div>
+
+   <div class="col-12">
+      <h4>OR </h4>
+   </div>
 </div>
 
 <div class="row">
   <div class="col-6">
 <tc-card [title]="'Add Student Record'">
- 
+ <form [formGroup]="form" novalidate >
 
   <tc-form-group>
-   <tc-form-label>Student Name</tc-form-label>
-   <tc-input ></tc-input>
+   <tc-form-label >Student Name</tc-form-label>
+   <tc-input formControlName="studentname"></tc-input>
    
   </tc-form-group>
 
   <tc-form-group>
-   <tc-form-label>Student Father Name</tc-form-label>
-   <tc-input ></tc-input>
+   <tc-form-label >Student Father Name</tc-form-label>
+   <tc-input formControlName="studentfathername"></tc-input>
    
   </tc-form-group>
 
   <tc-form-group>
-   <tc-form-label>Student Roll Number</tc-form-label>
-   <tc-input ></tc-input>
-   
-  </tc-form-group>
-
-
-  <tc-form-group>
-   <tc-form-label>English Marks</tc-form-label>
-   <tc-input ></tc-input>
+   <tc-form-label >Student Roll Number</tc-form-label>
+   <tc-input formControlName="studentrollnumber"></tc-input>
    
   </tc-form-group>
 
 
   <tc-form-group>
-   <tc-form-label>Sindhi Marks</tc-form-label>
-   <tc-input ></tc-input>
+   <tc-form-label >English Marks</tc-form-label>
+   <tc-input formControlName="englishmarks"></tc-input>
    
   </tc-form-group>
 
 
   <tc-form-group>
-   <tc-form-label>Islamiat Marks</tc-form-label>
-   <tc-input ></tc-input>
+   <tc-form-label >Urdu Marks</tc-form-label>
+   <tc-input formControlName="urdumarks"></tc-input>
    
   </tc-form-group>
 
 
   <tc-form-group>
-   <tc-form-label>Computer Marks</tc-form-label>
-   <tc-input ></tc-input>
+   <tc-form-label >Pakistan Studies Marks</tc-form-label>
+   <tc-input formControlName="pakistanstudiesmarks"></tc-input>
+   
+  </tc-form-group>
+
+
+  <tc-form-group>
+   <tc-form-label >Physics Marks</tc-form-label>
+   <tc-input formControlName="physicsmarks"></tc-input>
+   
+  </tc-form-group>
+   
+   <tc-form-group>
+   <tc-form-label >Chemistry Marks</tc-form-label>
+   <tc-input formControlName="chemistrymarks"></tc-input>
+   
+  </tc-form-group>
+   <tc-form-group>
+   <tc-form-label >Math Marks</tc-form-label>
+   <tc-input formControlName="mathsmarks"></tc-input>
    
   </tc-form-group>
 
   <tc-form-group>
      <tc-form-label>Select School</tc-form-label>
-     <tc-select  [options]="dropdowndata" ></tc-select>
+     <tc-select  [options]="dropdowndata"  formControlName="schoolid"></tc-select>
 
      <tc-form-label>OR Add School</tc-form-label>
-     <tc-input></tc-input>
+     <tc-input formControlName="schoolname"></tc-input>
   </tc-form-group>
 
-  <button tc-button>Add Record</button>
-
+  <button tc-button tc-button tc-button (click)="insertstudent()" tc-button [block]="true" [view]="'accent'" [disabled]="form.invalid">Add Record</button>
+</form>
 </tc-card>
 </div>
 
 
 </div>
+
+
+<ng-template #modalBody>
+<tc-card class="mb-0">
+   <tc-table [rows]="previewimportdata"   [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" [search]="true">
+     <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentname'" [enableSorting]="true"> </tc-table-col>
+     <tc-table-col [columnTitle]="'Father Name'" [columnName]="'fathername'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Roll Number'" [columnName]="'rollnumber'"></tc-table-col>
+     <tc-table-col [columnTitle]="'English Marks'" [columnName]="'englishmarks'"></tc-table-col>  
+     <tc-table-col [columnTitle]="'Urdu Marks'" [columnName]="'urdumarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Pakistan Studies Marks'" [columnName]="'pakistanstudiesmarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Math Marks'" [columnName]="'mathsmarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Physics Marks'" [columnName]="'physicsmarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Chemistry Marks'" [columnName]="'chemistrymarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'School Name'" [columnName]="'schoolname'"></tc-table-col>  
+    </tc-table>
+   
+    </tc-card>
+
+    </ng-template>
+
+    <ng-template #modalFooter>
+      <div class="actions justify-content-between">
+        <button tc-button [view]="'error'" (click)="closeModal()">Close</button>
+        <button tc-button [view]="'success'" (click)="bulkinsert()">Bulk Insert</button>
+      </div>
+    </ng-template>

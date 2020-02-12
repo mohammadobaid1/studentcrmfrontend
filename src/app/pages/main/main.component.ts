@@ -5,7 +5,7 @@ import { IAppState } from '../../interfaces/app-state';
 import { HttpService } from '../../services/http/http.service';
 import { TCModalService } from '../../ui/services/modal/modal.service';
 import { Content } from '../../ui/interfaces/modal';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-main',
@@ -15,12 +15,12 @@ import { Content } from '../../ui/interfaces/modal';
 export class MainPageComponentnt extends BasePageComponent implements OnInit, OnDestroy {
 
 
- totalcertificates:any;
- totaltokensleft:any;
+ rows: any;
 
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
+    private router : Router,
     private modal : TCModalService
   ) {
     super(store, httpSv);
@@ -38,37 +38,26 @@ export class MainPageComponentnt extends BasePageComponent implements OnInit, On
 
   ngOnInit() {
     super.ngOnInit();
-    this.httpSv.gettokenleft()
-      .subscribe(data=>{
 
-        var fetchdata = JSON.parse(JSON.stringify(data));
-        this.totaltokensleft=fetchdata.token[0].companytokens;
 
-      },error=>{
-          // this.modal.open({
-          //               body: 'Error in fetching remaining tokens',
-          //               header: 'Error'
-          //             });  
+   this.httpSv.getallschool()
+     .subscribe(data=>{
+       this.rows = data;
+     },
+     error=>{
+       console.log('Could not fetch any schools');
+     })
 
-      })
-
-    this.httpSv.gettotalcertficates()
-        .subscribe(data=>{
-         var fetchdata  = JSON.parse(JSON.stringify(data)); 
-        this.totalcertificates=fetchdata.totaltransaction[0].txcount;
-
-      },error=>{
-            // this.modal.open({
-            //             body: 'Error in fetching total transactions',
-            //             header: 'Error'
-            //           });  
-
-      })
 
 
   }
 
   ngOnDestroy() {
     super.ngOnDestroy();
+  }
+
+
+  schooldetail(rowdata) {
+    this.router.navigateByUrl('vertical/school/'+rowdata.value);
   }
 }

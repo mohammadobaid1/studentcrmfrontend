@@ -9,17 +9,21 @@ export class AllForm extends BaseForm {
         super(fb);
     }
 
-    getNinthclassform() {
+    getNinthcomputerclassform() {
         this.markAsSubmitted(false);
         return this.fb.group({
             studentname: ['', Validators.required],
-            studentfathername: ['', Validators.required],
-            studentrollnumber: ['', Validators.required],
-            sindhimarks: ['', Validators.required],
+            fathername: ['', Validators.required],
+            enrollmentnumber: ['', Validators.required],
+            dateofbirth: [''],
+            yearofappearing: [''],
             englishmarks: ['', Validators.required],
-            islamiatmarks: ['', Validators.required],
-            urdumarks: ['', Validators.required],
-            computermarks: ['', Validators.required],
+            sindhimarks: ['', Validators.required],
+            pakistanstudiesmark: ['', Validators.required],
+            chemistrytheorymarks: ['', Validators.required],
+            chemistrypracticalmarks: ['', Validators.required],
+            computertheorymarks: ['', Validators.required],
+            computerpracticalmarks: ['', Validators.required],
             schoolid: [''],
             schoolname: ['']
             
@@ -27,4 +31,184 @@ export class AllForm extends BaseForm {
         });
 
     }
+
+
+        getNinthbioclassform() {
+        this.markAsSubmitted(false);
+        return this.fb.group({
+            studentname: ['', Validators.required],
+            fathername: ['', Validators.required],
+            enrollmentnumber: ['', Validators.required],
+            dateofbirth: [''],
+            yearofappearing: [''],
+            englishmarks: ['', Validators.required],
+            sindhimarks: ['', Validators.required],
+            pakistanstudiesmark: ['', Validators.required],
+            chemistrytheorymarks: ['', Validators.required],
+            chemistrypracticalmarks: ['', Validators.required],
+            biotheorymarks: ['', Validators.required],
+            biopracticalmarks: ['', Validators.required],
+            schoolid: [''],
+            schoolname: ['']
+            
+
+        });
+
+    }
+
+
+        getNinthgeneralclassform() {
+        this.markAsSubmitted(false);
+        return this.fb.group({
+            studentname: ['', Validators.required],
+            fathername: ['', Validators.required],
+            enrollmentnumber: ['', Validators.required],
+            dateofbirth: [''],
+            yearofappearing: [''],
+            englishmarks: ['', Validators.required],
+            sindhimarks: ['', Validators.required],
+            pakistanstudiesmark: ['', Validators.required],
+            generalsciencemarks: ['', Validators.required],
+            mathsmarks: ['', Validators.required],
+            group: ['', Validators.required],
+            
+
+        });
+
+    }
+
+
+    getstudentdemographicdata(){
+        return this.fb.group({
+            studentrollnumber: ['', Validators.required]
+        })
+    }
+
+
+        getMatricscienceclassform() {
+        this.markAsSubmitted(false);
+        return this.fb.group({
+            studentname: [''],
+            fathername: [''],
+            matricenrollmentnumber: [''],
+            dateofbirth: [''],
+            yearofappearing: [''],
+            englishmarks: ['', Validators.required],
+            urdumarks: ['', Validators.required],
+            mathsmark: ['', Validators.required],
+            islamiatmarks: [''],
+            ethicsmarks: [''],
+            physicstheorymarks: [''],
+            physicspracticalmarks : [''],
+            examtype: ['', Validators.required],
+            schoolid: [''],
+            schoolname: [''],
+            id: [''],
+            ninthrollnumber: ['']
+            
+
+        });
+
+    }
+
+
+    getMatricgeneralclassform(){
+        this.markAsSubmitted(false);
+        return this.fb.group({
+            studentname: [''],
+            fathername: [''],
+            matricenrollmentnumber:[''],
+            dateofbirth: [''],
+            yearofappearing: [''],
+            englishmarks: [''],
+            urdumarks: [''],
+            islamiatmarks: [''],
+            ethicsmarks: [''],
+            islamicstudiesmarks: [''],
+            commercialgeographymarks: [''],
+            civicsmarks: [''],
+            economicsmarks: [''],
+            id: [''],
+            ninthrollnumber: [''],
+            schoolid: [''],
+            schoolname: [''],
+            examtype: ['', Validators.required],
+            group: ['', Validators.required]
+        })
+
+
+    }
+
+
+    getmatricclassform(){
+        this.markAsSubmitted(false);
+        return this.fb.group({
+
+            studentname: ['', Validators.required],
+            studentfathername: ['', Validators.required],
+            studentrollnumber: ['', Validators.required],
+            englishmarks: ['', Validators.required],
+            urdumarks: ['', Validators.required],
+            pakistanstudiesmarks: ['', Validators.required],
+            mathmarks: ['', Validators.required],
+            physicsmarks: ['', Validators.required],
+            schoolid: [''],
+            schoolname: ['']
+
+        })
+    }
+
+
+    getfirstyearclassform(){
+        this.markAsSubmitted(false);
+        return this.fb.group({
+
+            studentname: ['', Validators.required],
+            studentfathername: ['', Validators.required],
+            studentrollnumber: ['', Validators.required],
+            englishmarks: ['', Validators.required],
+            urdumarks: ['', Validators.required],
+            islamiatmarks: ['', Validators.required],
+            physicsmarks: ['', Validators.required],
+            chemistrymarks: ['', Validators.required],
+            mathsmarks: ['', Validators.required],
+            schoolid: [''],
+            schoolname: ['']
+
+        })
+    }
+
+
+        getsecondyearclassform(){
+        this.markAsSubmitted(false);
+        return this.fb.group({
+
+            studentname: ['', Validators.required],
+            studentfathername: ['', Validators.required],
+            studentrollnumber: ['', Validators.required],
+            englishmarks: ['', Validators.required],
+            urdumarks: ['', Validators.required],
+            pakistanstudiesmarks: ['', Validators.required],
+            physicsmarks: ['', Validators.required],
+            chemistrymarks: ['', Validators.required],
+            mathsmarks: ['', Validators.required],
+            schoolid: [''],
+            schoolname: ['']
+
+        })
+    }
+
+
+        getninthform(){
+            return this.fb.group({
+                schoolname: [''],
+                enrollmentnumber: [''],
+                studentname: [''],
+                fathername: ['']
+            });
+        }
+
+
+
+
 }

@@ -1,11 +1,51 @@
+
+<div class="row">
+  <div class="col-6">
 <tc-form-group *ngIf="search">
 	<tc-input
-		[placeholder]="'Seach in table'"
+		[placeholder]="'Seach by Name'"
 		[tcFilterTable]="config.filtering"
 		(tableChanged)="onChangeTable(config)"
 		[suffixIcon]="'icofont-search-document'"
 	></tc-input>
 </tc-form-group>
+</div>
+
+<div class="col-6">
+<tc-form-group *ngIf="search">
+  <tc-input
+    [placeholder]="'Seach By Father'"
+    [tcFilterTable]="config.filtering"
+    (tableChanged)="onChangeTable(config)"
+    [suffixIcon]="'icofont-search-document'"
+  ></tc-input>
+</tc-form-group>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+<tc-form-group *ngIf="search">
+  <tc-input
+    [placeholder]="'Seach by School'"
+    [tcFilterTable]="config.filtering"
+    (tableChanged)="onChangeTable(config)"
+    [suffixIcon]="'icofont-search-document'"
+  ></tc-input>
+</tc-form-group>
+</div>
+
+<div class="col-6">
+<tc-form-group *ngIf="search">
+  <tc-input
+    [placeholder]="'Seach By Enrollment Number'"
+    [tcFilterTable]="config.filtering"
+    (tableChanged)="onChangeTable(config)"
+    [suffixIcon]="'icofont-search-document'"
+  ></tc-input>
+</tc-form-group>
+</div>
+</div>
 
 <div class="table-wrap" *ngIf="rows.length">
 	<table class="table-box">

@@ -36,15 +36,8 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
     private modal: TCModalService
   ) {
     super(store, fb, httpSv, router, elRef);
-    this.httpSv.useraccessrole()
-    .subscribe(data=>{
-      console.log(data);
-      this.useraccessrole=data;
-    },
-    error=>{
-      console.log(error);
-    }
-    )
+    
+    
 
     this.defaultAvatar = 'assets/content/anonymous-400.jpg';
     this.currentAvatar = this.defaultAvatar;
@@ -101,21 +94,6 @@ export class VerticalLayoutComponent extends BaseLayoutComponent implements OnIn
 
   // add new patient
   addPatient(form: FormGroup) {
-    if (form.valid) {
-      console.log(form.value);
-      var username= form.value.name;
-      var email= form.value.email;
-      var password= form.value.pass;
-      var useraccessrole= form.value.useraccessrole;
-      this.httpSv.addusertocompany(username,email,password,useraccessrole)
-        .subscribe(data=>{
-            this.closeModal();
-            this.patientForm.reset();
-        
-        },error=>{
-            console.log(error);    
-        })
-
-    }
+    
   }
 }

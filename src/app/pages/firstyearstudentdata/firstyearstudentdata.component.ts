@@ -11,7 +11,7 @@ import { TCModalService } from '../../ui/services/modal/modal.service';
   styleUrls: ['./firstyearstudentdata.component.scss']
 })
 export class FirstyearstudentdataComponent extends BasePageComponent implements OnInit {
-
+  rows:any;
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
@@ -25,7 +25,7 @@ export class FirstyearstudentdataComponent extends BasePageComponent implements 
       loaded: true,
       breadcrumbs: [
         {
-          title: 'Schools '
+          title: 'First Year Batch'
         }
       ]
     };
@@ -33,6 +33,12 @@ export class FirstyearstudentdataComponent extends BasePageComponent implements 
 
   ngOnInit() {
     super.ngOnInit();
+    this.httpSv.getfirstyearbatch()
+      .subscribe(data=>{
+        this.rows = data;
+      },error=>{
+        console.log("Error",error);
+      })
   }
 
 }

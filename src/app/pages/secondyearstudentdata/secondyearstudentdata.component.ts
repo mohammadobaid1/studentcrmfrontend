@@ -12,6 +12,7 @@ import { TCModalService } from '../../ui/services/modal/modal.service';
 })
 export class SecondyearstudentdataComponent  extends BasePageComponent implements OnInit {
 
+  rows : any;
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
@@ -32,6 +33,13 @@ export class SecondyearstudentdataComponent  extends BasePageComponent implement
 
   ngOnInit() {
     super.ngOnInit();
+    this.httpSv.getseconyearbatch()
+      .subscribe(data=>{
+        this.rows = data;
+
+      },error=>{
+        console.log(error);
+      })
   }
 
 }

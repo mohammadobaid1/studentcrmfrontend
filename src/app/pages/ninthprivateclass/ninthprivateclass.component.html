@@ -1,0 +1,293 @@
+
+
+
+
+<div class="row">
+   <div class="col-12">
+      <h5>Import Records</h5>
+   </div>
+
+   <div class="col-6 ">
+      <tc-input [type]="'file'" (change)="convertFile($event)" ></tc-input >
+   </div>
+
+   <div class="col-6">
+      <button tc-button (click)="previewdata(modalBody, 'Modal title', modalFooter, { width: '100%' })">Preview Data</button>
+   </div>
+
+   <div class="col-12">
+      <h4>OR </h4>
+   </div>
+</div>
+
+
+
+<!--  <form [formGroup]="form" novalidate >
+
+
+
+<div class="row">
+	<div class="col-12">
+	<tc-card [title]="'Biographic Details'" [view]="'accent'" [outline]="true">
+		<div class="row">
+			<div class="col-6">
+					<tc-form-group>
+						    <tc-input [placeholder]="'Name'" formControlName="studentname"></tc-input>
+			       	</tc-form-group>
+   			</div>
+
+   			<div class="col-6">
+
+   				<tc-form-group>
+
+			    			<tc-input [placeholder]="'Father Name'" formControlName="fathername" ></tc-input>
+    
+   				</tc-form-group>
+   			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-6">
+					<tc-form-group>
+						    <tc-input [placeholder]="'Date of Birth'" formControlName="dateofbirth"></tc-input>
+			       	</tc-form-group>
+   			</div>
+
+   			<div class="col-6">
+
+   				<tc-form-group>
+
+			    			<tc-input [placeholder]="'Year Appearing'" formControlName="yearofappearing" ></tc-input>
+    
+   				</tc-form-group>
+   			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-6">
+		   		<tc-form-group>
+		    		
+		    		<tc-input [placeholder]="'Enrollment Number'" formControlName="enrollmentnumber" ></tc-input>
+		      	</tc-form-group>
+
+   			</div>
+
+   			
+		</div>
+	
+	  </tc-card>
+	</div>
+
+</div>
+
+
+<div class="row">
+	<div class="col-12">
+	<tc-card [title]="'Student Marks'" [view]="'accent'" [outline]="true">
+		<div class="row">
+			<h5 class="mt-0"> Exam Type</h5>
+		</div>
+
+		<div class="row">
+			<div class="col-6">
+				<tc-form-group>      
+			      <tc-select [placeholder]="'Select Exam Type'"  [options]="examtypedropdown" formControlName="examtype" ></tc-select>
+			  </tc-form-group>
+			</div>
+		</div>
+
+		<div class="row">
+			<h5 class="mt-0"> Group</h5>
+
+		</div>
+
+		<div class="row">
+			<div class="col-6">
+				<tc-form-group>      
+			      <tc-select [placeholder]="'Select Group Type'"  [options]="groupdropdown" formControlName="group" ></tc-select>
+			  </tc-form-group>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<h5 class="mt-0">Compulsory Subjects</h5>
+		</div>
+		<div class="row">
+			<div class="col-6">
+					<tc-form-group>
+						    
+						    <tc-input [placeholder]="'English Marks'" formControlName="englishmarks"></tc-input>
+			       	</tc-form-group>
+   			</div>
+
+   			<div class="col-6">
+
+   				<tc-form-group>
+			    			<tc-input [placeholder]="'Sindhi Marks'" formControlName="sindhimarks" ></tc-input>
+    
+   				</tc-form-group>
+   			</div>
+		</div>
+
+
+
+		<div class="row">
+			
+
+   			<div class="col-6">
+
+		   		<tc-form-group>
+		    			<tc-input [placeholder]="'General Science Marks'"  formControlName="generalsciencemarks"></tc-input>
+		   		</tc-form-group>
+   			</div>
+
+        <div class="col-6">
+
+          <tc-form-group>
+              <tc-input [placeholder]="'Maths Marks'"  formControlName="mathsmarks"></tc-input>
+          </tc-form-group>
+        </div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-6">
+				<tc-form-group>
+					<tc-input [placeholder]="'Pakistan Studies Marks'"  formControlName="pakistanstudiesmark"></tc-input>
+				</tc-form-group>
+			</div>
+		</div>
+
+    
+
+	
+	  </tc-card>
+	</div>
+
+</div>
+
+
+
+	
+
+
+	<div class="row">
+		<div class="col-6">
+			 <button tc-button (click)="insertstudent()" tc-button [block]="true" [view]="'accent'" [disabled]="form.invalid" >Add Record</button>
+		</div>
+	</div>
+
+</form>
+ -->
+
+
+<div class="row">
+   <div class="col-6">
+<tc-card [title]="'Add Student Record'" [view]="'accent'" [outline]="true">
+  
+   <form [formGroup]="form" novalidate >
+
+    <tc-form-group>      
+         <tc-select [placeholder]="'Select Group Type'"  [options]="groupdropdown" formControlName="group" ></tc-select>
+        </tc-form-group>
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'Name'" formControlName="studentname"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'Father Name'" formControlName="fathername" ></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+                <tc-input [placeholder]="'Date of Birth'" formControlName="dateofbirth"></tc-input>
+  </tc-form-group>
+
+
+  <tc-form-group>
+
+    <tc-input [placeholder]="'Year Appearing'" formControlName="yearofappearing" ></tc-input>
+    
+  </tc-form-group>
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'Enrollment Number'" formControlName="enrollmentnumber" ></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'English Marks'"  formControlName="englishmarks"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'Sindhi Marks'" formControlName="sindhimarks" ></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'General Science Marks'" formControlName="generalsciencemarks"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+  <tc-input [placeholder]="'Math Marks'" formControlName="mathsmarks" ></tc-input>
+  </tc-form-group>
+
+   <tc-form-group>
+              <tc-input [placeholder]="'Pakistan Studies Marks'"  formControlName="pakistanstudiesmark"></tc-input>
+  </tc-form-group>
+
+
+
+
+   <button tc-button (click)="insertstudent()" tc-button [block]="true" [view]="'accent'" [disabled]="form.invalid" >Add Record</button>
+</form>
+</tc-card>
+</div>
+
+
+</div>
+
+
+<ng-template #modalBody>
+<tc-card class="mb-0">
+   <tc-table [rows]="previewimportdata"   [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" [search]="true">
+     <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentname'" [enableSorting]="true"> </tc-table-col>
+     <tc-table-col [columnTitle]="'Father Name'" [columnName]="'fathername'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Roll Number'" [columnName]="'enrollmentnumber'"></tc-table-col>
+     <tc-table-col [columnTitle]="'English Marks'" [columnName]="'englishmarks'"></tc-table-col>  
+     <tc-table-col [columnTitle]="'Sindhi Marks'" [columnName]="'sindhimarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Pakistan Studies Marks'" [columnName]="'pakistanstudiesmark'"></tc-table-col>
+     <tc-table-col [columnTitle]="'General Science Marks'" [columnName]="'generalsciencemarks'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Maths  Marks'" [columnName]="'mathsmarks'"></tc-table-col>
+     
+
+     <tc-table-col [columnTitle]="'Exam Type'" [columnName]="'examtype'"></tc-table-col>
+     <tc-table-col [columnTitle]="'Group'" [columnName]="'group'"></tc-table-col>
+     <tc-table-col [columnTitle]="'School Name'" [columnName]="'schoolname'"></tc-table-col>  
+    </tc-table>
+   
+    </tc-card>
+
+    </ng-template>
+
+    <ng-template #modalFooter>
+      <div class="actions justify-content-between">
+        <button tc-button [view]="'error'" (click)="closeModal()">Close</button>
+        <button tc-button [view]="'success'" (click)="bulkinsert()">Bulk Insert</button>
+      </div>
+    </ng-template>

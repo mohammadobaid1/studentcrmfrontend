@@ -36,11 +36,18 @@ export class NinthstudentdataComponent extends BasePageComponent implements OnIn
 
   ngOnInit() {
     super.ngOnInit();
-    this.httpSv.getninthcomputerbatch()
+    this.httpSv.getninthbiobatch()
       .subscribe(data=>{
         console.log("ninth data",data);
         this.rows = data;
       })
+
+
+
   }
+
+   decidecolor(rows){
+        console.log("Function calls",rows);
+      }
 
 }

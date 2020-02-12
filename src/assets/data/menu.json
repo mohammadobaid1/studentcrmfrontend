@@ -1,65 +1,69 @@
 [
   {
     "title": "Dashboard",
-    "icon": {
-      "class": "icofont-thermometer-alt"
-    },
     "routing": "main"
   },
+
   {
-    "title": "Matriculation Education",
-    "icon": {
-      "class": "icofont-thermometer-alt"
-    },
+    "title": "SSC I",
     "sub": [
       {
-        "title" : "Add Ninth Class Data",
-        "routing": "ninthclass"
+        "title": "Science Group",
+        "routing": "sscscience"
       },
       {
-        "title": " Add Matric Class Data",
-        "routing": "matricclass"
-      },
-      {
-        "title": "Ninth student data",
-        "routing": "ninthstudentdata"
-      },
-      {
-        "title": "Matric student data",
-        "routing": "matricstudentdata"
+        "title": "General Group",
+        "routing": "sscgeneral"
       }
-      
-      ]
+
+    ]
   },
-  {
-    "title": "Higher Secondary Edcuation",
-    "icon": {
-      "class": "icofont-thermometer-alt"
-    },
-    "sub" : [
+
+{
+    "title": "SSC II",
+    "sub": [
       {
-        "title": "Add firstyear class data",
-        "routing": "firstyearclass"
+        "title": "Science Group",
+        "routing": "matriccience"
       },
       {
-        "title": "Add secondyear class data",
-        "routing": "secondyearclass"
-      },
-      {
-        "title": "Firstyear student data",
-        "routing": "firstyearstudentdata"
-      },
-      {
-        "title": "Secondyear student data",
-        "routing": "secondyearstudentdata"
+        "title": "General Group",
+        "routing": "matricgeneral"
       }
-    ] 
+
+    ]
   },
+
+{
+    "title": "HSC I",
+    "sub": [
+      {
+        "title": "Science Group",
+        "routing": "matriccience"
+      },
+      {
+        "title": "General Group",
+        "routing": "matricgeneral"
+      }
+
+    ]
+  },
+
+
   {
-    "title": "Schools",
-    "icon": {
-      "class": "icofont-thermometer-alt"
-    },
-    "routing": "schools"
+    "title": "HSC II",
+    "sub": [
+      {
+        "title": "Science Group",
+        "routing": "matriccience"
+      },
+      {
+        "title": "General Group",
+        "routing": "matricgeneral"
+      }
+
+    ]
   }
+ 
+
 ]

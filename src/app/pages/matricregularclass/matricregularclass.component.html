@@ -1,0 +1,131 @@
+
+<div class="row">
+   <div class="col-12">
+      <h5>Import Records</h5>
+   </div>
+
+   <div class="col-6 ">
+      <tc-input [type]="'file'" (change)="convertFile($event)" ></tc-input >
+   </div>
+
+   <div class="col-6">
+      <button tc-button (click)="previewdata(modalBody, 'Modal title', modalFooter, { width: '100%' })">Preview Data</button>
+   </div>
+
+   <div class="col-12">
+      <h4>OR </h4>
+   </div>
+</div>
+
+<div class="row">
+   <div class="col-6">
+<tc-card [title]="'Add Student Record'" [view]="'accent'" [outline]="true">
+  
+   <form [formGroup]="form" novalidate >
+   	<div class="row">
+			<div class="col-6">
+				<tc-form-group>
+					<tc-input [placeholder]="' Ninth Enrollment Number'" formControlName="ninthrollnumber"></tc-input>
+				</tc-form-group>
+
+			</div>
+
+
+			<div class="col-6">
+				<button tc-button (click)="getstudentdata()"  tc-button [block]="true" [view]="'accent'">Load student data</button>
+			</div>
+		</div>
+
+    
+
+    <tc-form-group>      
+			      <tc-select [placeholder]="'Select Exam Type'"  [options]="examtypedropdown" formControlName="examtype" ></tc-select>
+    </tc-form-group>
+
+    <tc-form-group>      
+         <tc-select [placeholder]="'Select Group Type'"  [options]="groupdropdown" formControlName="group" ></tc-select>
+        </tc-form-group>
+
+
+	<tc-form-group>
+    
+    <tc-input [placeholder]="'Name'" formControlName="studentname"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'Father Name'" formControlName="fathername" ></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+                <tc-input [placeholder]="'Date of Birth'" formControlName="dateofbirth"></tc-input>
+  </tc-form-group>
+
+
+  <tc-form-group>
+
+    <tc-input [placeholder]="'Year Appearing'" formControlName="yearofappearing" ></tc-input>
+    
+  </tc-form-group>
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'Enrollment Number'" formControlName="matricenrollmentnumber" ></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'English Marks'"  formControlName="englishmarks"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'Urdu Marks'" formControlName="urdumarks" ></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    
+    <tc-input [placeholder]="'Islamic Studies Marks'" formControlName="islamicstudiesmarks"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+  <tc-input [placeholder]="'Commercial Geographics Marks'" formControlName="commercialgeographymarks" ></tc-input>
+  </tc-form-group>
+
+   <tc-form-group>
+              <tc-input [placeholder]="'Civics Marks'"  formControlName="civicsmarks"></tc-input>
+  </tc-form-group>
+
+<tc-form-group>
+            <tc-input [placeholder]="'Economics Marks'" formControlName="economicsmarks" ></tc-input>
+ </tc-form-group>
+
+ <tc-form-group>
+            <tc-input [placeholder]="'Islamiat Marks'" formControlName="islamiatmarks" ></tc-input>
+ </tc-form-group>
+
+ OR
+<tc-form-group>
+  <tc-input [placeholder]="'Ethics Marks'"  formControlName="ethicsmarks"></tc-input>
+</tc-form-group>
+
+
+   <button tc-button (click)="insertstudent()" tc-button [block]="true" [view]="'accent'" [disabled]="form.invalid" >Add Record</button>
+</form>
+</tc-card>
+</div>
+
+
+</div>
+
+
+            

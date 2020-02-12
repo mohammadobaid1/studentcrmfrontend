@@ -1,0 +1,110 @@
+
+
+<!-- <form [formGroup]="form" novalidate>
+<div class="row">
+  
+    <div class="col-3">
+      <tc-input [placeholder]="'Search school'" [type]="'search'" formControlName="schoolname" ></tc-input>
+
+    </div>
+
+    <div class="col-3">
+      <tc-input [placeholder]="'Search by Name'" [type]="'search'" formControlName="studentname" ></tc-input>
+    </div>
+
+    <div class="col-3">
+      <button tc-button [block]="true" [view]="'accent'" (click)="search()" > Search</button>
+    </div>
+  
+  </div>
+
+<div class="row">
+  <div style="margin-top:2px;">
+  </div>
+</div>
+
+
+  <div class="row">
+    <div class="col-3">
+      <tc-input [placeholder]="'Search by fathername'" [type]="'search'" formControlName="fathername" ></tc-input>
+    </div>
+
+    <div class="col-3">
+      <tc-input [placeholder]="'Search by roll number'" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
+    </div>
+
+    <div class="col-3">
+      <button tc-button [block]="true" [view]="'accent'" (click)="search()" > Print Marksheet</button>
+    </div>
+
+    </div> 
+
+    
+
+  </form> -->
+
+<div class="row">
+  <h3>Data</h3>
+  </div>
+
+
+
+<tc-card class="mb-0">
+<tc-table [rows]="rows" [search]="true"  [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
+  <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentinfo'" [enableSorting]="true"> 
+
+  	<ng-template #tableTDTemplate let-value>
+       {{ value.studentname}}
+      </ng-template>
+
+  </tc-table-col>
+
+  <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentinfo'" [enableSorting]="true"> 
+
+    <ng-template #tableTDTemplate let-value>
+       {{ value.fathername}}
+      </ng-template>
+
+  </tc-table-col>
+
+
+  <tc-table-col [columnTitle]="'Enrollment Number'" [columnName]="'studentinfo'">
+    <ng-template #tableTDTemplate let-value>
+      {{value.enrollmentnumber}}
+    </ng-template>
+  </tc-table-col>
+  <tc-table-col [columnTitle]="'School'" [columnName]="'studentinfo'">
+  	
+<ng-template #tableTDTemplate let-value>
+       {{ value.schoolname.schoolname}}
+      </ng-template>
+
+  </tc-table-col>
+  <tc-table-col [columnTitle]="'English Marks'" [columnName]="'EnglishMarks'"></tc-table-col>
+  <tc-table-col [columnTitle]="'Sindhi Marks'" [columnName]="'SindhiMarks'"></tc-table-col>
+  <tc-table-col [columnTitle]="'Pakistan Studies Marks'" [columnName]="'PakistanStudiesMark'"></tc-table-col>
+  <tc-table-col [columnTitle]="'General Science Marks'" [columnName]="'GeneralScienceMarks'"></tc-table-col>
+  <tc-table-col [columnTitle]="'Maths Marks'" [columnName]="'MathsMarks'"></tc-table-col>
+   
+
+  <tc-table-col [columnTitle]="'Total Marks'" [columnName]="'TotalMarks'"></tc-table-col>
+  <tc-table-col [columnTitle]="'Cleared Papers'" [columnName]="'Totalclearedpaper'"></tc-table-col>
+
+
+  <tc-table-col [columnTitle]="'Percentage'" [columnName]="'OverallPercentage'" > </tc-table-col>
+<tc-table-col [columnTitle]="'Grade'" [columnName]="'grade'"></tc-table-col> 
+<tc-table-col [columnTitle]="'Group'" [columnName]="'group'"></tc-table-col> 
+  <tc-table-col [columnTitle]="'Exam Type'" [columnName]="'examtype'" >
+   
+</tc-table-col>
+
+<tc-table-col [columnTitle]="'Operations'">
+  <ng-template #tableTDTemplate >
+  <button tc-button [block]="true" [view]="'accent'" (click)="generatePdf(rows)"   > Print Marksheet</button>
+  <button tc-button [block]="true" [view]="'accent'" > Print Data</button>
+</ng-template>
+  </tc-table-col>
+    
+ </tc-table>
+
+ </tc-card>
