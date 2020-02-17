@@ -12,6 +12,8 @@ import { SignupComponent } from '../pages/signup/signup.component';
 
 import { PagesettingsComponent } from '../pages/pagesettings';
 import { AuthGuardService } from '../services/AuthGuard/auth-guard.service';
+import { AdminGuardService } from '../services/AuthGuard/auth-guard.service';
+
 import { NinthclassComponent } from '../pages/ninthclass/ninthclass.component';
 import { MatricclassComponent } from '../pages/matricclass/matricclass.component';
 import { FirstyearclassComponent } from '../pages/firstyearclass/firstyearclass.component';
@@ -55,6 +57,11 @@ import { Ssc2sciencehomeComponent } from '../pages/ssc2sciencehome/ssc2scienceho
 import { Ssc2generalhomeComponent } from '../pages/ssc2generalhome/ssc2generalhome.component';
 
 
+import { AdduserComponent } from '../pages/adduser/adduser.component';
+import { UsermanagmentComponent } from '../pages/usermanagment/usermanagment.component';
+import { UpdateuserComponent } from '../pages/updateuser/updateuser.component';
+
+
 const VERTICAL_ROUTES: Routes = [
   { path: 'main', component:  MainPageComponentnt , canActivate: [AuthGuardService]},
    { path: 'sscscience', component: Ssc1sciencehomeComponent,canActivate: [AuthGuardService]},
@@ -86,7 +93,9 @@ const VERTICAL_ROUTES: Routes = [
   { path: 'matricprivateclass', component: MatricprivateclassComponent,canActivate: [AuthGuardService]},
   { path: 'matricprivatedata', component: MatricprivatestudentsdataComponent,canActivate: [AuthGuardService]},
 
-
+  { path: 'usermanage', component: UsermanagmentComponent,canActivate: [AdminGuardService]},
+  { path: 'adduser', component: AdduserComponent,canActivate: [AdminGuardService]},
+  { path: 'updateuser/:id', component: UpdateuserComponent,canActivate: [AdminGuardService]},  
 
   { path: 'firstyearclass', component: FirstyearclassComponent,canActivate: [AuthGuardService]},
   { path: 'secondyearclass', component: SecondyearclassComponent,canActivate: [AuthGuardService]},

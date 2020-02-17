@@ -36,3 +36,40 @@ cookievalue = '';
 
 
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AdminGuardService implements CanActivate {
+
+cookievalue = '';
+  constructor(private httpsrv:HttpService,private router:Router,private cookieservice : CookieService) { }
+
+ canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  
+  
+    if (localStorage.getItem('token')){
+    	var userrole = localStorage.getItem ('userroles');
+
+         if (userrole == 'admin') {
+                return true;
+    }
+
+    	else {
+    		this.router.navigate(['/vertical/main']);
+    	}
+      
+    }
+
+    else {
+
+    this.router.navigate(['/public/login']);
+    return false;
+    }
+
+   
+   
+}
+
+
+}

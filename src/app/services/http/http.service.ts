@@ -29,6 +29,8 @@ export class HttpService {
   }
 
 
+
+
   loginuser(email,pass){
 
     let body = new URLSearchParams();
@@ -42,36 +44,41 @@ export class HttpService {
   
 
 
-    return this.http.post('http://127.0.0.1:8000/api/login',body.toString(), options);
+    return this.http.post('http://zeb.blockshift.com.pk/api/login',body.toString(), options);
   }
 
 
 
- 
+  getusers(){
+    return this.http.get('http://zeb.blockshift.com.pk/api/listuser');
+
+  } 
 
   getninthcomputerbatch(){
         console.log("service");
-        return this.http.get('http://127.0.0.1:8000/api/getninthtest');
+        return this.http.get('http://zeb.blockshift.com.pk/api/getninthtest');
   }
+
+
 
 
 getninthbiobatch(){
         console.log("service");
-        return this.http.get('http://127.0.0.1:8000/api/getninthbio');
+        return this.http.get('http://zeb.blockshift.com.pk/api/getninthbio');
   }
 
 
 getninthregularbatch(){
         console.log("service");
-        return this.http.get('http://127.0.0.1:8000/api/getninthgeneral');
+        return this.http.get('http://zeb.blockshift.com.pk/api/getninthgeneral');
   }
 
   getmatricsciencebatch(){
-    return this.http.get('http://127.0.0.1:8000/api/getmatricscience');
+    return this.http.get('http://zeb.blockshift.com.pk/api/getmatricscience');
   }
 
   getmatricregularbatch(){
-    return this.http.get('http://127.0.0.1:8000/api/getmatricgeneral');
+    return this.http.get('http://zeb.blockshift.com.pk/api/getmatricgeneral');
   }
 
 getfirstyearbatch(){
@@ -97,7 +104,42 @@ getseconyearbatch(){
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
  
-        return this.http.post('http://127.0.0.1:8000/api/inserttestdata',data,options);
+        return this.http.post('http://zeb.blockshift.com.pk/api/inserttestdata',data,options);
+  }
+
+  adduser(data){
+
+    let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+ 
+        return this.http.post('http://zeb.blockshift.com.pk/api/register',data,options);
+
+  }
+
+
+  deleteuser(data){
+    console.log(data);
+    let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+ 
+        return this.http.post('http://zeb.blockshift.com.pk/api/deleteuser',data,options);
+
+  }
+
+  getuserone(id){
+    return this.http.get('http://zeb.blockshift.com.pk/api/getuser/'+id);
+  }
+
+
+  updateuserdetails(data){
+    let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+ 
+        return this.http.post('http://zeb.blockshift.com.pk/api/updateuser',data,options);
+
   }
 
 
@@ -108,7 +150,7 @@ addninthbiodata(data){
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
  
-        return this.http.post('http://127.0.0.1:8000/api/insertninthbio',data,options);
+        return this.http.post('http://zeb.blockshift.com.pk/api/insertninthbio',data,options);
   }
 
 
@@ -119,7 +161,7 @@ addninthgeneraldata(data){
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
  
-        return this.http.post('http://127.0.0.1:8000/api/insertninthgeneral',data,options);
+        return this.http.post('http://zeb.blockshift.com.pk/api/insertninthgeneral',data,options);
   }
  
 
@@ -168,7 +210,7 @@ addninthgeneraldata(data){
             headers: new HttpHeaders({'Content-Type':'application/json'})
             };
 
-         return this.http.post('http://127.0.0.1:8000/api/bulkinsertziauddinmatricscience',data,options);   
+         return this.http.post('http://zeb.blockshift.com.pk/api/bulkinsertziauddinmatricscience',data,options);   
 
   }
 
@@ -180,7 +222,7 @@ addninthgeneraldata(data){
       headers: new HttpHeaders({'Content-Type':'application/json'})
     };
 
-    return this.http.post('http://127.0.0.1:8000/api/bulkinsertziauddinninth',data,options);
+    return this.http.post('http://zeb.blockshift.com.pk/api/bulkinsertziauddinninth',data,options);
   }
 
 
@@ -239,7 +281,7 @@ logout(token) {
 
  getstudentdata(form){
 
-    var url =  'http://127.0.0.1:8000/api/getstudentbyrollnumber/'+ form.ninthrollnumber ; 
+    var url =  'http://zeb.blockshift.com.pk/api/getstudentbyrollnumber/'+ form.ninthrollnumber ; 
     return this.http.get(url);
  }
 
@@ -250,7 +292,7 @@ logout(token) {
             headers: new HttpHeaders({'Content-Type':'application/json'})
             };
 
-         return this.http.post('http://127.0.0.1:8000/api/insertmatricscience',data,options);   
+         return this.http.post('http://zeb.blockshift.com.pk/api/insertmatricscience',data,options);   
 
 
   }
@@ -263,7 +305,7 @@ logout(token) {
             headers: new HttpHeaders({'Content-Type':'application/json'})
             };
 
-         return this.http.post('http://127.0.0.1:8000/api/insertmatricgeneral',data,options);   
+         return this.http.post('http://zeb.blockshift.com.pk/api/insertmatricgeneral',data,options);   
 
 
   }
@@ -271,7 +313,7 @@ logout(token) {
 
 
   getallschool(){
-    return this.http.get('http://127.0.0.1:8000/api/getallschool');
+    return this.http.get('http://zeb.blockshift.com.pk/api/getallschool');
   }
 
 
@@ -281,9 +323,37 @@ logout(token) {
             headers: new HttpHeaders({'Content-Type':'application/json'})
             };
 
-         return this.http.post('http://127.0.0.1:8000/api/searchninthsciencedata',formdata,options);
+         return this.http.post('http://zeb.blockshift.com.pk/api/searchninthsciencedata',formdata,options);
 
   }
+
+
+   searchninthbiodata(formdata){
+
+    let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/searchninthbiodata',formdata,options);
+
+  }
+
+
+  searchninthgeneraldata(formdata){
+
+    let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/searchninthgeneraldata',formdata,options);
+
+  }
+
+
+
+
+
+
 
 
 

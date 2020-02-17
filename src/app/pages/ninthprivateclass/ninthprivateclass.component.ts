@@ -23,6 +23,7 @@ export class NinthprivateclassComponent extends BasePageComponent implements OnI
   form: FormGroup;
   file: File;
   previewimportdata: any;
+
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
@@ -31,6 +32,8 @@ export class NinthprivateclassComponent extends BasePageComponent implements OnI
   ) { 
 
     super(store, httpSv);
+
+    
 
     this.pageData = {
       title: '',
@@ -49,7 +52,9 @@ export class NinthprivateclassComponent extends BasePageComponent implements OnI
 
     this.httpSv.getallschools()
       .subscribe(data=>{
+        console.log(data);
         this.dropdowndata = data;
+        console.log(this.dropdowndata);
       })
 
       this.examtypedropdown = [

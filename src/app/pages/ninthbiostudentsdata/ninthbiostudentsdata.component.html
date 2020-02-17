@@ -1,5 +1,5 @@
 
-<!-- <form [formGroup]="form" novalidate>
+<form [formGroup]="form" novalidate>
 <div class="row">
   
     <div class="col-3">
@@ -33,80 +33,308 @@
     </div>
 
     <div class="col-3">
-      <button tc-button [block]="true" [view]="'accent'" (click)="search()" > Print Marksheet</button>
+      <button tc-button [block]="true" [view]="'accent'"  > Print Marksheet</button>
+    </div>
+
+    <div class="col-3">
+      <button tc-button [block]="true" [view]="'accent'" (click)="downloaduserdata()" > Print Data</button>
     </div>
 
     </div> 
 
     
 
-  </form> -->
+  </form>
 
 <div class="row">
   <h3>Data</h3>
   </div>
 
-<tc-card class="mb-0">
-<tc-table [rows]="rows"   [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" [search]="true" >
-  <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentinfo'" [enableSorting]="true"> 
-
-  	<ng-template #tableTDTemplate let-value>
-       {{ value.studentname}}
-      </ng-template>
-
-  </tc-table-col>
-  <tc-table-col [columnTitle]="'Enrollment Number'" [columnName]="'studentinfo'">
-    <ng-template #tableTDTemplate let-value>
-      {{value.enrollmentnumber}}
-    </ng-template>
-  </tc-table-col>
-  <tc-table-col [columnTitle]="'School'" [columnName]="'studentinfo'">
-  	
-<ng-template #tableTDTemplate let-value>
-       {{ value.schoolname.schoolname}}
-      </ng-template>
-
-  </tc-table-col>
-  <tc-table-col [columnTitle]="'Total Marks'" [columnName]="'TotalMarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Cleared Papers'" [columnName]="'Totalclearedpaper'"></tc-table-col>
 
 
-  <tc-table-col [columnTitle]="'Percentage'" [columnName]="'OverallPercentage'" > </tc-table-col>
-<tc-table-col [columnTitle]="'Grade'" [columnName]="'grade'"></tc-table-col> 
-  <tc-table-col [columnTitle]="'Exam Type'" [columnName]="'examtype'" >
-    <!-- <ng-template #tableTDTemplate  let-value>
-     <tc-badge [view]="'success'" > {{value}} </tc-badge>
-    </ng-template> -->
-</tc-table-col>
+ <div class="row" *ngIf="!searchresult"  >
 
 
-<tc-table-col [columnTitle]="'English'" [columnName]="'EnglishMarks'"></tc-table-col> 
-   <tc-table-col [columnTitle]="'Sindhi'" [columnName]="'SindhiMarks'"></tc-table-col>   
+
+<table mat-table [dataSource]="tableData" *ngIf="!searchresult" >
+
+   <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+
+   <ng-container matColumnDef="studentname">
+    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.studentname}} </td>
+  </ng-container>
+
   
-  <tc-table-col [columnTitle]="'PST'" [columnName]="'PakistanStudiesMark'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Chemistry Theory'" [columnName]="'ChemistryTheoryMarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Chemistry Practical'" [columnName]="'ChemistryPracticalMarks'"></tc-table-col>
+  <ng-container matColumnDef="fathername">
+    <th mat-header-cell *matHeaderCellDef> Father </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.fathername}} </td>
+  </ng-container>
 
-  <tc-table-col [columnTitle]="'Bio Theory'" [columnName]="'BioTheoryMarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Bio Practical'" [columnName]="'BioPracticalMarks'"></tc-table-col>
+  
+   <ng-container matColumnDef="Schoolname">
+    <th mat-header-cell *matHeaderCellDef> School </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.schoolname.schoolname}} </td>
+  </ng-container>
 
-  <tc-table-col [columnTitle]="'Cleared Papers'" [columnName]="'Totalclearedpaper'"></tc-table-col>
+
+   <ng-container matColumnDef="enrollmentnumber">
+    <th mat-header-cell *matHeaderCellDef> Roll No </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.enrollmentnumber}} </td>
+  </ng-container>
+
+ 
+  <ng-container matColumnDef="englishmarks">
+    <th mat-header-cell *matHeaderCellDef> Eng </th>
+    <td mat-cell *matCellDef="let element"> {{element.englishmarks}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="sindhimarks">
+    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
+    <td mat-cell *matCellDef="let element"> {{element.sindhimarks}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="pakistanstudiesmark">
+    <th mat-header-cell *matHeaderCellDef> PST </th>
+    <td mat-cell *matCellDef="let element"> {{element.pakistanstudiesmark}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemistryteory">
+    <th mat-header-cell *matHeaderCellDef> ChemTheory </th>
+    <td mat-cell *matCellDef="let element"> {{element.chemistrytheorymarks}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemistrypractical">
+    <th mat-header-cell *matHeaderCellDef> ChemPractical </th>
+    <td mat-cell *matCellDef="let element"> {{element.chemistrypracticalmarks}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="biotheory">
+    <th mat-header-cell *matHeaderCellDef> BioTh </th>
+    <td mat-cell *matCellDef="let element"> {{element.biotheorymarks}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="biopractical">
+    <th mat-header-cell *matHeaderCellDef> BioPrac </th>
+    <td mat-cell *matCellDef="let element"> {{element.biopracticalmarks}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="examtype">
+    <th mat-header-cell *matHeaderCellDef> Exam </th>
+    <td mat-cell *matCellDef="let element"> {{element.examtype}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalclearedpaper">
+    <th mat-header-cell *matHeaderCellDef> Cleared </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalclearedpaper}} </td>
+  </ng-container> 
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "rowClicked(row)"></tr>
 
 
-  <tc-table-col [columnTitle]="'Percentage'" [columnName]="'OverallPercentage'" > </tc-table-col>
-   <tc-table-col [columnTitle]="'Exam Type'" [columnName]="'examtype'" >
-    <ng-template #tableTDTemplate  let-value>
-     <tc-badge [view]="'success'" > {{value}} </tc-badge>
-    </ng-template>
-</tc-table-col> 
+</table>
 
-<tc-table-col [columnTitle]="'Operations'">
-  <ng-template #tableTDTemplate >
-  <button tc-button [block]="true" [view]="'accent'" (click)="generatePdf(rows)"   > Print Marksheet</button>
-  <button tc-button [block]="true" [view]="'accent'" > Print Data</button>
-</ng-template>
-  </tc-table-col>
-    
- </tc-table>
 
- </tc-card>
+</div> 
+
+
+<div class="row" *ngIf="searchresult" >
+
+ <table mat-table [dataSource]="searchresultdata" class="mat-elevation-z8">
+
+  
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="studentname">
+    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentname}} </td>
+  </ng-container>
+
+  
+  <ng-container matColumnDef="fathername">
+    <th mat-header-cell *matHeaderCellDef> Father </th>
+    <td mat-cell *matCellDef="let element"> {{element.fathername}} </td>
+  </ng-container>
+
+  
+   <ng-container matColumnDef="Schoolname">
+    <th mat-header-cell *matHeaderCellDef> School </th>
+    <td mat-cell *matCellDef="let element"> {{element.schoolname.schoolname}} </td>
+  </ng-container>
+
+
+   <ng-container matColumnDef="enrollmentnumber">
+    <th mat-header-cell *matHeaderCellDef> Roll No </th>
+    <td mat-cell *matCellDef="let element"> {{element.enrollmentnumber}} </td>
+  </ng-container>
+
+ 
+  <ng-container matColumnDef="englishmarks">
+    <th mat-header-cell *matHeaderCellDef> Eng </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata? element.ninthbiodata.englishmarks:'-' }} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="sindhimarks">
+    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata?element.ninthbiodata.sindhimarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="pakistanstudiesmark">
+    <th mat-header-cell *matHeaderCellDef> PST </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata?element.ninthbiodata.pakistanstudiesmark: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemistryteory">
+    <th mat-header-cell *matHeaderCellDef> ChemTheory </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata?element.ninthbiodata.chemistrytheorymarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemistrypractical">
+    <th mat-header-cell *matHeaderCellDef> ChemPractical </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata?element.ninthbiodata.chemistrypracticalmarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="biotheory">
+    <th mat-header-cell *matHeaderCellDef> BioTh </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata?element.ninthbiodata.biotheorymarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="biopractical">
+    <th mat-header-cell *matHeaderCellDef> BioPrac </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata?element.ninthbiodata.biopracticalmarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="examtype">
+    <th mat-header-cell *matHeaderCellDef> Exam </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata?element.ninthbiodata.examtype: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalclearedpaper">
+    <th mat-header-cell *matHeaderCellDef> Cleared </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata?element.ninthbiodata.totalclearedpaper: '-'}} </td>
+  </ng-container> 
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "rowClicked(row)"></tr> 
+</table>
+
+ </div> 
+
+ 
+<div id="contentToConvert" *ngIf="displayselecteddata">
+  <div class="row">
+    <h3>Printed Data</h3>
+  </div>
+
+ <div class="row" >
+
+ <table mat-table [dataSource]="selecteddataarray"   class="mat-elevation-z8" >
+
+  
+ 
+  <ng-container matColumnDef="studentname">
+    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <td mat-cell *matCellDef="let element"> {{element? element.fathername || element.studentinfo.fathername: '-'}} </td>
+  </ng-container>
+
+  
+  <ng-container matColumnDef="fathername">
+    <th mat-header-cell *matHeaderCellDef> Father </th>
+    <td mat-cell *matCellDef="let element"> {{element? element.fathername || element.studentinfo.fathername: '-'}} </td>
+  </ng-container>
+
+  
+   <ng-container matColumnDef="Schoolname">
+    <th mat-header-cell *matHeaderCellDef> School </th>
+    <td mat-cell *matCellDef="let element"> {{element.schoolname? element.schoolname.schoolname : element.studentinfo? element.studentinfo.schoolname.schoolname : '-' }} </td>
+  </ng-container>
+
+
+   <ng-container matColumnDef="enrollmentnumber">
+    <th mat-header-cell *matHeaderCellDef> Roll No </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo? element.studentinfo.enrollmentnumber: element.enrollmentnumber? element.enrollmentnumber: '-' }} </td>
+  </ng-container>
+
+ 
+  <ng-container matColumnDef="englishmarks">
+    <th mat-header-cell *matHeaderCellDef> Eng </th>
+    <td mat-cell *matCellDef="let element"> {{ element.ninthbiodata? element.ninthbiodata.englishmarks: element? element.englishmarks: '-'  }} </td>
+  </ng-container>s
+
+   <ng-container matColumnDef="sindhimarks">
+    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata? element.ninthbiodata.sindhimarks: element? element.sindhimarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="pakistanstudiesmark">
+    <th mat-header-cell *matHeaderCellDef> PST </th>
+    <td mat-cell *matCellDef="let element"> {{ element.ninthbiodata? element.ninthbiodata.pakistanstudiesmark: element? element.pakistanstudiesmark: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemistryteory">
+    <th mat-header-cell *matHeaderCellDef> ChemTheory </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata? element.ninthbiodata.chemistrytheorymarks: element? element.chemistrytheorymarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="chemistrypractical">
+    <th mat-header-cell *matHeaderCellDef> ChemPractical </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata? element.ninthbiodata.chemistrypracticalmarks: element? element.chemistrypracticalmarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="biotheory">
+    <th mat-header-cell *matHeaderCellDef> BioTh </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata? element.ninthbiodata.biotheorymarks: element? element.biotheorymarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="biopractical">
+    <th mat-header-cell *matHeaderCellDef> BioPrac </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata? element.ninthbiodata.biopracticalmarks: element? element.biopracticalmarks: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="examtype">
+    <th mat-header-cell *matHeaderCellDef> Exam </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata? element.ninthbiodata.examtype: element? element.examtype: '-'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="totalclearedpaper">
+    <th mat-header-cell *matHeaderCellDef> Cleared </th>
+    <td mat-cell *matCellDef="let element"> {{element.ninthbiodata? element.ninthbiodata.totalclearedpaper: element? element.totalclearedpaper: '-'}} </td>
+  </ng-container> 
+ -->
+  <tr mat-header-row *matHeaderRowDef="pdftableColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: pdftableColumns;"  ></tr> 
+</table>
+</div>
+</div>

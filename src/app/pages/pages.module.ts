@@ -43,6 +43,10 @@ import { Ssc2generalhomeComponent } from './ssc2generalhome/ssc2generalhome.comp
 import { MatTableModule } from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
+import { UsermanagmentComponent } from './usermanagment/usermanagment.component';
+import { AdduserComponent } from './adduser/adduser.component';
+import { UpdateuserComponent } from './updateuser/updateuser.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -53,7 +57,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     LayoutModule,
     MatTableModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSelectModule
     ],
   declarations: [
     BasePageComponent,
@@ -89,6 +94,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     Ssc1generalhomeComponent,
     Ssc2sciencehomeComponent,
     Ssc2generalhomeComponent,
+    UsermanagmentComponent,
+    AdduserComponent,
+    UpdateuserComponent,
     
   ],
   providers: [AllForm],

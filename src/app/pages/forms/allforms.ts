@@ -71,6 +71,8 @@ export class AllForm extends BaseForm {
             generalsciencemarks: ['', Validators.required],
             mathsmarks: ['', Validators.required],
             group: ['', Validators.required],
+            schoolid: [''],
+            schoolname: ['']
             
 
         });
@@ -208,6 +210,24 @@ export class AllForm extends BaseForm {
             });
         }
 
+        adduserform(){
+            return this.fb.group({
+                name: ['', Validators.required],
+                email: ['', Validators.required],
+                password: ['', Validators.required],
+                role: ['', Validators.required]
+            })
+        }
+
+    updateuserform(){
+            return this.fb.group({
+                id: ['',Validators.required],
+                name: ['', Validators.required],
+                email: ['', Validators.required],
+                password: ['', Validators.required],
+                role: ['', Validators.required]
+            })
+        }
 
 
 

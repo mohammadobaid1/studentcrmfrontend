@@ -13,6 +13,9 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import html2canvas from 'html2canvas';
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -33,13 +36,23 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
    searchshowtrue: false;
    searchshow : true;
    searchresult: boolean = false;
+   pdfdownloadtable: boolean = false;
+   selecteddataarray: any;  
+   displayselecteddata: boolean = false; 
 
 
-displayedColumns: string[] = ['studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
-   searchresultdata : any;
-   dataSource = new MatTableDataSource(this.searchresultdata);
-   selection = new SelectionModel(true, []);
-   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    displayedColumns: string[] = ['select','studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
+    pdftableColumns: string[] = ['studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
+    
+
+
+    searchresultdata : any;
+    pdftable: any;
+   
+     selection = new SelectionModel(true, []);
+     dataSource : any;
+     @ViewChild(MatPaginator) paginator: MatPaginator;
 
    constructor(
     store: Store<IAppState>,
@@ -67,35 +80,69 @@ displayedColumns: string[] = ['studentname', 'fathername','Schoolname','enrollme
 
   ngOnInit() {
     super.ngOnInit();
-    //this.dataSource.paginator = this.paginator;
- 
+  
+    // document.getElementById("contentToConvert").style.visibility = "none";
     this.httpSv.getninthcomputerbatch()
       .subscribe(data=>{
         console.log("ninth data",data);
         this.tableData = data;
+        this.dataSource = new MatTableDataSource(this.searchresultdata);
         console.log("Default data",this.tableData);
       })
 
       this.form = this.formclass.getninthform();
+    
   }
 
 
-  ngAfterViewInit(): void {
-    // this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+
+  downloaduserdata(){
+
+
+    this.displayselecteddata = true; 
+    var data = document.getElementById('contentToConvert');
+    
+
+
+    html2canvas(data).then(canvas => {  
+   
+
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+  
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jsPDF('p', 'mm', 'a4'); 
+      var position = 0;  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      pdf.save('MYPdf.pdf'); 
+
+      this.displayselecteddata = false;
+    });  
   }
-
-
+ 
+ generatePdf(data){
+    console.log(data);
+    var jsonstringfy = JSON.stringify(data);
+  const documentDefinition = { content: jsonstringfy };
+  pdfMake.createPdf(documentDefinition).download();
+ }
   search(){
 
     console.log(this.form.value);
-    this.searchresultdata = [];
+    this.selecteddataarray = [];
+    this.selection.clear() ;
     this.httpSv.searchninthsciencedata(this.form.value)
       .subscribe(data=>{
         console.log(data);
         this.searchresult = true;
         this.searchresultdata = data;
-      // this.dataSource = data;
+        this.dataSource = [];
+        this.dataSource = new MatTableDataSource(this.searchresultdata);
+        console.log(this.dataSource);
+        this.dataSource.paginator = this.paginator;
+      
         
       },
       error=>{
@@ -105,34 +152,38 @@ displayedColumns: string[] = ['studentname', 'fathername','Schoolname','enrollme
   }
 
 
-  generatePdf(data){
-    console.log(data);
-    var jsonstringfy = JSON.stringify(data);
-  const documentDefinition = { content: jsonstringfy };
-  pdfMake.createPdf(documentDefinition).download();
- }
+
 
 
  isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
+    this.selecteddataarray = this.selection.selected;
+    console.log(this.selection);
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  /** The label for the checkbox on the passed row */
+ 
   checkboxLabel(row): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
+
+
+  rowClicked(rows){
+    console.log(rows);
+  }
+
+
 
 
 }
