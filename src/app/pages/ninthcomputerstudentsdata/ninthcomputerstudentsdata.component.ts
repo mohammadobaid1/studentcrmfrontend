@@ -42,7 +42,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
 
 
-    displayedColumns: string[] = ['select','studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
+    displayedColumns: string[] = ['select','studentinfo.studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
     pdftableColumns: string[] = ['studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
     
 
@@ -86,7 +86,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
       .subscribe(data=>{
         console.log("ninth data",data);
         this.tableData = data;
-        this.dataSource = new MatTableDataSource(this.searchresultdata);
+        this.dataSource = new MatTableDataSource(this.tableData);
         console.log("Default data",this.tableData);
       })
 
@@ -158,14 +158,42 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
 
  isAllSelected() {
+   if(this.dataSource){
     const numSelected = this.selection.selected.length;
+    
     const numRows = this.dataSource.data.length;
-    this.selecteddataarray = this.selection.selected;
-    console.log(this.selection);
+    this.selecteddataarray = this.selection.selected;    
     return numSelected === numRows;
+   }
+   
   }
 
-  
+  applyFilter(event: Event) {
+    // const filterValue = (event.target as HTMLInputElement).value;
+    // const data = this.dataSource.data;
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const transformedFilter = filter.trim().toLowerCase();
+    
+      const listAsFlatString = (obj): string => {
+        let returnVal = '';
+    
+        Object.values(obj).forEach((val) => {
+          if (typeof val !== 'object') {
+            returnVal = returnVal + ' ' + val;
+          } else if (val !== null) {
+            returnVal = returnVal + ' ' + listAsFlatString(val);
+          }
+        });
+    
+        return returnVal.trim().toLowerCase();
+      };
+    
+      return listAsFlatString(data).includes(transformedFilter);
+    };
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue;
+  }
+
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
