@@ -12,12 +12,11 @@ import { Page404Component } from './page-404';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { PagesettingsComponent } from './pagesettings';
-import { NinthclassComponent } from './ninthclass/ninthclass.component';
 import { MatricclassComponent } from './matricclass/matricclass.component';
 import { FirstyearclassComponent } from './firstyearclass/firstyearclass.component';
 import { SecondyearclassComponent } from './secondyearclass/secondyearclass.component';
 import { SchoolComponent } from './school/school.component';
-import { NinthstudentdataComponent } from './ninthstudentdata/ninthstudentdata.component';
+// import { NinthstudentdataComponent } from './ninthstudentdata/ninthstudentdata.component';
 import { MatricstudentdataComponent } from './matricstudentdata/matricstudentdata.component';
 import { FirstyearstudentdataComponent } from './firstyearstudentdata/firstyearstudentdata.component';
 import { SecondyearstudentdataComponent } from './secondyearstudentdata/secondyearstudentdata.component';
@@ -26,16 +25,14 @@ import { NinthcomputerclassComponent } from './ninthcomputerclass/ninthcomputerc
 import { NinthcomputerstudentsdataComponent } from './ninthcomputerstudentsdata/ninthcomputerstudentsdata.component';
 import { NinthbioclassComponent } from './ninthbioclass/ninthbioclass.component';
 import { NinthbiostudentsdataComponent } from './ninthbiostudentsdata/ninthbiostudentsdata.component';
-import { NinthregularclassComponent } from './ninthregularclass/ninthregularclass.component';
-import { NinthregularstudentsdataComponent } from './ninthregularstudentsdata/ninthregularstudentsdata.component';
 import { NinthprivateclassComponent } from './ninthprivateclass/ninthprivateclass.component';
 import { NinthprivatestudentsdataComponent } from './ninthprivatestudentsdata/ninthprivatestudentsdata.component';
 import { MatricscienceclassComponent } from './matricscienceclass/matricscienceclass.component';
 import { MatricsciencestudentsdataComponent } from './matricsciencestudentsdata/matricsciencestudentsdata.component';
 import { MatricregularclassComponent } from './matricregularclass/matricregularclass.component';
 import { MatricregularstudentsdataComponent } from './matricregularstudentsdata/matricregularstudentsdata.component';
-import { MatricprivateclassComponent } from './matricprivateclass/matricprivateclass.component';
-import { MatricprivatestudentsdataComponent } from './matricprivatestudentsdata/matricprivatestudentsdata.component';
+// import { MatricprivateclassComponent } from './matricprivateclass/matricprivateclass.component';
+// import { MatricprivatestudentsdataComponent } from './matricprivatestudentsdata/matricprivatestudentsdata.component';
 import { Ssc1sciencehomeComponent } from './ssc1sciencehome/ssc1sciencehome.component';
 import { Ssc1generalhomeComponent } from './ssc1generalhome/ssc1generalhome.component';
 import { Ssc2sciencehomeComponent } from './ssc2sciencehome/ssc2sciencehome.component';
@@ -67,12 +64,11 @@ import { UpdateuserComponent } from './updateuser/updateuser.component';
     SigninComponent,
     SignupComponent,
     PagesettingsComponent,
-    NinthclassComponent,
     MatricclassComponent,
     FirstyearclassComponent,
     SecondyearclassComponent,
     SchoolComponent,
-    NinthstudentdataComponent,
+    // NinthstudentdataComponent,
     MatricstudentdataComponent,
     FirstyearstudentdataComponent,
     SecondyearstudentdataComponent,
@@ -80,16 +76,14 @@ import { UpdateuserComponent } from './updateuser/updateuser.component';
     NinthcomputerstudentsdataComponent,
     NinthbioclassComponent,
     NinthbiostudentsdataComponent,
-    NinthregularclassComponent,
-    NinthregularstudentsdataComponent,
     NinthprivateclassComponent,
     NinthprivatestudentsdataComponent,
     MatricscienceclassComponent,
     MatricsciencestudentsdataComponent,
     MatricregularclassComponent,
     MatricregularstudentsdataComponent,
-    MatricprivateclassComponent,
-    MatricprivatestudentsdataComponent,
+    // MatricprivateclassComponent,
+    // MatricprivatestudentsdataComponent,
     Ssc1sciencehomeComponent,
     Ssc1generalhomeComponent,
     Ssc2sciencehomeComponent,
