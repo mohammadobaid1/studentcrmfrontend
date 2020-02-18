@@ -140,8 +140,8 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
 
 
     this.displayselecteddata = true; 
-    
-    var data = document.getElementById('contentToConvert');
+    setTimeout(() => {
+      var data = document.getElementById('contentToConvert');
     html2canvas(data).then(canvas => {  
    
 
@@ -157,7 +157,9 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
       pdf.save('MYPdf.pdf'); 
 
       this.displayselecteddata = false;
-    });  
+    });   
+    }, 0);
+   
 
 
 }

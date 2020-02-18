@@ -100,6 +100,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
 
     this.displayselecteddata = true; 
+    setTimeout(() => {
     var data = document.getElementById('contentToConvert');
     
 
@@ -120,6 +121,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
       this.displayselecteddata = false;
     });  
+  },0);
   }
  
  generatePdf(data){
