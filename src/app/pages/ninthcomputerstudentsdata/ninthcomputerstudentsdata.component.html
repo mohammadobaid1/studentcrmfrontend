@@ -12,12 +12,12 @@
     </div>
 
     <div class="col-3">
-      <tc-input [placeholder]="'Search by Name'" [type]="'search'" formControlName="studentname" ></tc-input>
+      <tc-input [placeholder]="'Search by Name'" [type]="'search'" (keyup)="applyFilter($event)" formControlName="studentname" ></tc-input>
     </div>
 
-    <div class="col-3">
-      <button tc-button [block]="true" [view]="'accent'" (click)="search()" > Search</button>
-    </div>
+    <!--  <div class="col-3">
+      <button tc-button [block]="true" [view]="'accent'" (click)="resetselection()" > Reset selected data</button>
+    </div>  -->
   
   </div>
 
@@ -29,16 +29,16 @@
 
   <div class="row">
     <div class="col-3">
-      <tc-input [placeholder]="'Search by fathername'" [type]="'search'"  formControlName="fathername" ></tc-input>
+      <tc-input [placeholder]="'Search by fathername'" (keyup)="applyFilter($event)" [type]="'search'"  formControlName="fathername" ></tc-input>
     </div>
 
     <div class="col-3">
-      <tc-input [placeholder]="'Search by roll number'" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
+      <tc-input [placeholder]="'Search by roll number'" (keyup)="applyFilter($event)" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
     </div>
 
-    <div class="col-3">
+   <!--  <div class="col-3">
       <button tc-button [block]="true" [view]="'accent'"  > Print Marksheet</button>
-    </div>
+    </div> -->
 
     <div class="col-3">
       <button tc-button [block]="true" [view]="'accent'" (click)="downloaduserdata()" > Print Data</button>
@@ -265,82 +265,6 @@
 
 
 
-<!-- <table mat-table [dataSource]="selecteddataarray" id="contentToConvert" *ngIf="displayselecteddata"  class="mat-elevation-z8" >
-
-  
- 
-  <ng-container matColumnDef="studentname">
-    <th mat-header-cell *matHeaderCellDef> Name. </th>
-    <td mat-cell *matCellDef="let element"> {{element? element.studentname: '-'}} </td>
-  </ng-container>
-
-  
-  <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> Father </th>
-    <td mat-cell *matCellDef="let element"> {{element? element.fathername: '-'}} </td>
-  </ng-container>
-
-  
-   <ng-container matColumnDef="Schoolname">
-    <th mat-header-cell *matHeaderCellDef> School </th>
-    <td mat-cell *matCellDef="let element"> {{element? element.schoolname.schoolname: '-'}} </td>
-  </ng-container>
-
-
-   <ng-container matColumnDef="enrollmentnumber">
-    <th mat-header-cell *matHeaderCellDef> Roll No </th>
-    <td mat-cell *matCellDef="let element"> {{element? element.enrollmentnumber: '-'}} </td>
-  </ng-container>
-
- 
-  <ng-container matColumnDef="englishmarks">
-    <th mat-header-cell *matHeaderCellDef> Eng </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.englishmarks:'-' }} </td>
-  </ng-container>
-
-   <ng-container matColumnDef="sindhimarks">
-    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.sindhimarks: '-'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="pakistanstudiesmark">
-    <th mat-header-cell *matHeaderCellDef> PST </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.pakistanstudiesmark: '-'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="chemistryteory">
-    <th mat-header-cell *matHeaderCellDef> ChemTheory </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.chemistrytheorymarks: '-'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="chemistrypractical">
-    <th mat-header-cell *matHeaderCellDef> ChemPractical </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.chemistrypracticalmarks: '-'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="computertheory">
-    <th mat-header-cell *matHeaderCellDef> ComputerTh </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.computertheorymarks: '-'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="computerpractical">
-    <th mat-header-cell *matHeaderCellDef> ComputerPrac </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.computerpracticalmarks: '-'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="examtype">
-    <th mat-header-cell *matHeaderCellDef> Exam </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.examtype: '-'}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="totalclearedpaper">
-    <th mat-header-cell *matHeaderCellDef> Cleared </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.totalclearedpaper: '-'}} </td>
-  </ng-container> 
- 
-  <tr mat-header-row *matHeaderRowDef="pdftableColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: pdftableColumns;"  ></tr> 
-</table> -->
 
 
 <div id="contentToConvert" *ngIf="displayselecteddata">
@@ -356,7 +280,7 @@
  
   <ng-container matColumnDef="studentname">
     <th mat-header-cell *matHeaderCellDef> Name. </th>
-    <td mat-cell *matCellDef="let element"> {{element? element.fathername || element.studentinfo.fathername: '-'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element? element.studentname || element.studentinfo.studentname: '-'}} </td>
   </ng-container>
 
   

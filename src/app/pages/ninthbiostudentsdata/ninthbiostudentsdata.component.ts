@@ -73,7 +73,7 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
       .subscribe(data=>{
         console.log("ninth data",data);
         this.tableData = data;
-        this.dataSource = new MatTableDataSource(this.searchresultdata);
+         this.dataSource = new MatTableDataSource(this.tableData);
       })
 
       this.form = this.formclass.getninthform();
@@ -103,6 +103,34 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
       })
 
   }
+
+
+    applyFilter(event: Event) {
+    // const filterValue = (event.target as HTMLInputElement).value;
+    // const data = this.dataSource.data;
+    this.dataSource.filterPredicate = (data: any, filter: string) => {
+      const transformedFilter = filter.trim().toLowerCase();
+    
+      const listAsFlatString = (obj): string => {
+        let returnVal = '';
+    
+        Object.values(obj).forEach((val) => {
+          if (typeof val !== 'object') {
+            returnVal = returnVal + ' ' + val;
+          } else if (val !== null) {
+            returnVal = returnVal + ' ' + listAsFlatString(val);
+          }
+        });
+    
+        return returnVal.trim().toLowerCase();
+      };
+    
+      return listAsFlatString(data).includes(transformedFilter);
+    };
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue;
+  }
+
 
   generatePdf(data){
     console.log(data);
@@ -154,7 +182,7 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
       let pdf = new jsPDF('p', 'mm', 'a4'); 
       var position = 0;  
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-      pdf.save('MYPdf.pdf'); 
+      pdf.save('students.pdf'); 
 
       this.displayselecteddata = false;
     });   

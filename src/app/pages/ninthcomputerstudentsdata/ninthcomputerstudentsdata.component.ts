@@ -81,7 +81,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
   ngOnInit() {
     super.ngOnInit();
   
-    // document.getElementById("contentToConvert").style.visibility = "none";
+  
     this.httpSv.getninthcomputerbatch()
       .subscribe(data=>{
         console.log("ninth data",data);
@@ -91,6 +91,8 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
       })
 
       this.form = this.formclass.getninthform();
+
+    
     
   }
 
@@ -100,6 +102,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
 
     this.displayselecteddata = true; 
+    console.log(this.selecteddataarray);
     setTimeout(() => {
     var data = document.getElementById('contentToConvert');
     
@@ -117,7 +120,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
       let pdf = new jsPDF('p', 'mm', 'a4'); 
       var position = 0;  
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-      pdf.save('MYPdf.pdf'); 
+      pdf.save('students.pdf'); 
 
       this.displayselecteddata = false;
     });  
@@ -130,6 +133,9 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
   const documentDefinition = { content: jsonstringfy };
   pdfMake.createPdf(documentDefinition).download();
  }
+
+
+
   search(){
 
     console.log(this.form.value);
@@ -169,9 +175,8 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
   }
 
   applyFilter(event: Event) {
-    // const filterValue = (event.target as HTMLInputElement).value;
-    // const data = this.dataSource.data;
-    this.dataSource.filterPredicate = (data: any, filter: string) => {
+
+    this.dataSource.filterPredicate = (data: any, filter: 'Schoolname') => {
       const transformedFilter = filter.trim().toLowerCase();
     
       const listAsFlatString = (obj): string => {
@@ -194,11 +199,18 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
     this.dataSource.filter = filterValue;
   }
 
+
+
+
+
+
+
+
+
   masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+    this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
   }
+
 
  
   checkboxLabel(row): string {

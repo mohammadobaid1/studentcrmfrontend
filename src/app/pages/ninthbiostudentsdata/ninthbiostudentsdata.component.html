@@ -3,17 +3,17 @@
 <div class="row">
   
     <div class="col-3">
-      <tc-input [placeholder]="'Search school'" [type]="'search'" formControlName="schoolname" ></tc-input>
+      <tc-input [placeholder]="'Search school'" [type]="'search'" (keyup)="applyFilter($event)" formControlName="schoolname" ></tc-input>
 
     </div>
 
     <div class="col-3">
-      <tc-input [placeholder]="'Search by Name'" [type]="'search'" formControlName="studentname" ></tc-input>
+      <tc-input [placeholder]="'Search by Name'" [type]="'search'" (keyup)="applyFilter($event)" formControlName="studentname" ></tc-input>
     </div>
 
-    <div class="col-3">
+   <!--  <div class="col-3">
       <button tc-button [block]="true" [view]="'accent'" (click)="search()" > Search</button>
-    </div>
+    </div> -->
   
   </div>
 
@@ -25,16 +25,16 @@
 
   <div class="row">
     <div class="col-3">
-      <tc-input [placeholder]="'Search by fathername'" [type]="'search'" formControlName="fathername" ></tc-input>
+      <tc-input [placeholder]="'Search by fathername'" (keyup)="applyFilter($event)" [type]="'search'" formControlName="fathername" ></tc-input>
     </div>
 
     <div class="col-3">
-      <tc-input [placeholder]="'Search by roll number'" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
+      <tc-input [placeholder]="'Search by roll number'" (keyup)="applyFilter($event)" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
     </div>
 
-    <div class="col-3">
+   <!--  <div class="col-3">
       <button tc-button [block]="true" [view]="'accent'"  > Print Marksheet</button>
-    </div>
+    </div> -->
 
     <div class="col-3">
       <button tc-button [block]="true" [view]="'accent'" (click)="downloaduserdata()" > Print Data</button>
@@ -56,7 +56,7 @@
 
 
 
-<table mat-table [dataSource]="tableData" *ngIf="!searchresult" >
+<table mat-table [dataSource]="dataSource" *ngIf="!searchresult" >
 
    <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
@@ -266,7 +266,7 @@
  
   <ng-container matColumnDef="studentname">
     <th mat-header-cell *matHeaderCellDef> Name. </th>
-    <td mat-cell *matCellDef="let element"> {{element? element.fathername || element.studentinfo.fathername: '-'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element? element.studentname || element.studentinfo.studentname: '-'}} </td>
   </ng-container>
 
   
