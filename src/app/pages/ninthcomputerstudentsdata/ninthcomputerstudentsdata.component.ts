@@ -167,48 +167,40 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
    if(this.dataSource){
     const numSelected = this.selection.selected.length;
     
-    const numRows = this.dataSource.data.length;
+    const numRows = this.dataSource.filteredData.length;
     this.selecteddataarray = this.selection.selected;    
     return numSelected === numRows;
    }
    
   }
 
-  applyFilter(event: Event) {
-
-    this.dataSource.filterPredicate = (data: any, filter: 'Schoolname') => {
-      const transformedFilter = filter.trim().toLowerCase();
-    
-      const listAsFlatString = (obj): string => {
-        let returnVal = '';
-    
-        Object.values(obj).forEach((val) => {
-          if (typeof val !== 'object') {
-            returnVal = returnVal + ' ' + val;
-          } else if (val !== null) {
-            returnVal = returnVal + ' ' + listAsFlatString(val);
-          }
-        });
-    
-        return returnVal.trim().toLowerCase();
-      };
-    
-      return listAsFlatString(data).includes(transformedFilter);
-    };
+  applyFilter(event: Event,filter : String) {
+    var columnName = filter;
+    this.dataSource.filterPredicate = (data: any, filter: String) => {      
+        if(columnName == 'Schoolname')
+        return data.studentinfo.schoolname.schoolname.indexOf(filter) !== -1;
+        else if (columnName == 'studentname'){
+          return data.studentinfo.studentname.indexOf(filter) !== -1;;
+        }
+        else if (columnName == 'fathername'){
+          return data.studentinfo.fathername.indexOf(filter) !== -1;;
+        }
+        else if (columnName == 'enrollmentnumber'){
+          return data.studentinfo.enrollmentnumber ? data.studentinfo.enrollmentnumber.indexOf(filter) !== -1 : false;
+        }
+        return null;
+       };                 
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue;
   }
 
 
-
-
-
-
-
-
-
   masterToggle() {
-    this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+    if(this.isAllSelected())
+    {
+      this.selection.clear();
+      this.selecteddataarray=[];
+    } else this.dataSource.filteredData.forEach(row => this.selection.select(row));
   }
 
 

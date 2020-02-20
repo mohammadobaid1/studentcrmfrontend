@@ -7,12 +7,12 @@
 <div class="row">
   
     <div class="col-3">
-      <tc-input [placeholder]="'Search school'" (keyup)="applyFilter($event)" [type]="'search'" formControlName="schoolname" ></tc-input>
+      <tc-input [placeholder]="'Search school'" (keyup)="applyFilter($event,'Schoolname')" [type]="'search'" formControlName="schoolname" ></tc-input>
 
     </div>
 
     <div class="col-3">
-      <tc-input [placeholder]="'Search by Name'" [type]="'search'" (keyup)="applyFilter($event)" formControlName="studentname" ></tc-input>
+      <tc-input [placeholder]="'Search by Name'" [type]="'search'" (keyup)="applyFilter($event,'studentname')" formControlName="studentname" ></tc-input>
     </div>
 
     <!--  <div class="col-3">
@@ -29,11 +29,11 @@
 
   <div class="row">
     <div class="col-3">
-      <tc-input [placeholder]="'Search by fathername'" (keyup)="applyFilter($event)" [type]="'search'"  formControlName="fathername" ></tc-input>
+      <tc-input [placeholder]="'Search by fathername'" (keyup)="applyFilter($event,'fathername')" [type]="'search'"  formControlName="fathername" ></tc-input>
     </div>
 
     <div class="col-3">
-      <tc-input [placeholder]="'Search by roll number'" (keyup)="applyFilter($event)" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
+      <tc-input [placeholder]="'Search by roll number'" (keyup)="applyFilter($event,'enrollmentnumber')" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
     </div>
 
    <!--  <div class="col-3">
