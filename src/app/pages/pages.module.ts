@@ -44,6 +44,18 @@ import {MatSelectModule} from '@angular/material/select';
 import { UsermanagmentComponent } from './usermanagment/usermanagment.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
+import { Hsc1sciencehomeComponent } from './hsc1sciencehome/hsc1sciencehome.component';
+import { Hsc1generalhomeComponent } from './hsc1generalhome/hsc1generalhome.component';
+import { HscPart1PreEngineeringclassComponent } from './hsc-part1-pre-engineeringclass/hsc-part1-pre-engineeringclass.component';
+import { HscPart1PreMedicalclassComponent } from './hsc-part1-pre-medicalclass/hsc-part1-pre-medicalclass.component';
+import { HscPart1GeneralscienceclassComponent } from './hsc-part1-generalscienceclass/hsc-part1-generalscienceclass.component';
+import { HscPart1MedicaltechnologyclassComponent } from './hsc-part1-medicaltechnologyclass/hsc-part1-medicaltechnologyclass.component';
+import { HscPart1RegularPrivateclassComponent } from './hsc-part1-regular-privateclass/hsc-part1-regular-privateclass.component';
+import { HscPart1GeneralsciencestudentsdataComponent } from './hsc-part1-generalsciencestudentsdata/hsc-part1-generalsciencestudentsdata.component';
+import { HscPart1MedicaltechnologystudentsdataComponent } from './hsc-part1-medicaltechnologystudentsdata/hsc-part1-medicaltechnologystudentsdata.component';
+import { HscPart1PreEngineeringstudentsdataComponent } from './hsc-part1-pre-engineeringstudentsdata/hsc-part1-pre-engineeringstudentsdata.component';
+import { HscPart1PreMedicalstudentsdataComponent } from './hsc-part1-pre-medicalstudentsdata/hsc-part1-pre-medicalstudentsdata.component';
+import { HscPart1RegularPrivatestudentsdataComponent } from './hsc-part1-regular-privatestudentsdata/hsc-part1-regular-privatestudentsdata.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -91,6 +103,18 @@ import { UpdateuserComponent } from './updateuser/updateuser.component';
     UsermanagmentComponent,
     AdduserComponent,
     UpdateuserComponent,
+    Hsc1sciencehomeComponent,
+    Hsc1generalhomeComponent,
+    HscPart1PreEngineeringclassComponent,
+    HscPart1PreMedicalclassComponent,
+    HscPart1GeneralscienceclassComponent,
+    HscPart1MedicaltechnologyclassComponent,
+    HscPart1RegularPrivateclassComponent,
+    HscPart1GeneralsciencestudentsdataComponent,
+    HscPart1MedicaltechnologystudentsdataComponent,
+    HscPart1PreEngineeringstudentsdataComponent,
+    HscPart1PreMedicalstudentsdataComponent,
+    HscPart1RegularPrivatestudentsdataComponent,
     
   ],
   providers: [AllForm],

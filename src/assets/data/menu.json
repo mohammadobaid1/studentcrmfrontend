@@ -39,11 +39,11 @@
     "sub": [
       {
         "title": "Science Group",
-        "routing": "matriccience"
+        "routing": "hscs1science"
       },
       {
         "title": "General Group",
-        "routing": "matricgeneral"
+        "routing": "hsc1humanity"
       }
 
     ]

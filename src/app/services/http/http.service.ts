@@ -419,7 +419,21 @@ logout(token) {
   }
 
 
+  /// HSC PART 1 PRE MEDICAL CLASS
 
+  getPremedicalbatch(){
+    return this.http.get('http://zeb.blockshift.com.pk/api/hsconepremed');
+  }
+  addPremedicaldata(data){
+    
+   let options = {
+       headers: new HttpHeaders({'Content-Type':'application/json'})
+       };
+
+    return this.http.post('http://zeb.blockshift.com.pk/api/hsconepremed',data,options);   
+
+
+}
 
 
 
