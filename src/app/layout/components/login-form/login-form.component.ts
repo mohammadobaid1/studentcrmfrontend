@@ -20,7 +20,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      emailaddress: ['', [Validators.required,Validators.email]],
+      username: ['', Validators.required],
       pass: ['', Validators.required]
     });
   }
@@ -30,13 +30,13 @@ export class LoginFormComponent implements OnInit {
 
     login(){
     this.validationfail = false;
-     if(this.loginForm.controls['emailaddress'].invalid || this.loginForm.controls['pass'].invalid){
+     if(this.loginForm.controls['username'].invalid || this.loginForm.controls['pass'].invalid){
        this.validationfail = true;
      }
 
     else {
-      console.log("loginusername",this.loginForm.value.emailaddress);
-      this.httpservice.loginuser(this.loginForm.value.emailaddress,this.loginForm.value.pass)
+      console.log("loginusername",this.loginForm.value.username);
+      this.httpservice.loginuser(this.loginForm.value.username,this.loginForm.value.pass)
               .subscribe(data=>{
                 console.log(data);
                 this.jwttokendata = data;
@@ -46,7 +46,7 @@ export class LoginFormComponent implements OnInit {
 
               },
               error=>{
-
+                console.log(error);
                 //this.viewalert=true;
                 this.modal.open({
                         body: 'username or passwaord is incorrect',

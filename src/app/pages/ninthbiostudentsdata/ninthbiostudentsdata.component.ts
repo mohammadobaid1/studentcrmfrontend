@@ -28,14 +28,19 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
 
    tableData:any;
    form: FormGroup;
+   updateform: FormGroup;
    searchresult: boolean = false;
    dataSource : any;
    searchresultdata : any;
    selecteddataarray: any;
    selection = new SelectionModel(true, []);
-   displayedColumns: string[] = ['select','studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','biotheory','biopractical','examtype','totalclearedpaper'];
+   displayedColumns: string[] = ['select','studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','biotheory','biopractical','examtype','totalclearedpaper','operations'];
+   operatorColumns: string[] = ['select','studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','biotheory','biopractical','examtype','totalclearedpaper','operations'];
    pdftableColumns: string[] = ['studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','biotheory','biopractical','examtype','totalclearedpaper'];
-   displayselecteddata: boolean = false; 
+   displayselecteddata: boolean = false;
+
+   operator: boolean = true;
+   userroles: string; 
 
    constructor(
     store: Store<IAppState>,
@@ -63,22 +68,93 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
 
   ngOnInit() {
     super.ngOnInit();
-    // this.httpSv.getallschools()
-    //   .subscribe(data=>{
-    //     this.dropdowndata = data;
-    //   })
-    // this.form = this.formclass.getmatricclassform();
+      this.loaddata();
+      this.form = this.formclass.getninthform();
+      this.updateform = this.formclass.updateninthbioform();
+      this.userroles = localStorage.getItem ('userroles');
+      if (this.userroles == 'admin') {
+      this.operator = false;
+    }
+  }
 
-    this.httpSv.getninthbiobatch()
+
+ loaddata(){
+
+this.httpSv.getninthbiobatch()
       .subscribe(data=>{
         console.log("ninth data",data);
         this.tableData = data;
          this.dataSource = new MatTableDataSource(this.tableData);
       })
+ }
 
-      this.form = this.formclass.getninthform();
+
+
+  deleteuser(value){
+   // console.log("DELETE user value",value);
+   this.httpSv.deleteninthbiodata(value)
+     .subscribe(data=>{
+      
+      this.loaddata();
+     },
+     error=>{
+       console.log(error);
+       this.modal.open({
+          "header":"Error",
+          "body": "Error occurred "
+        });
+
+
+
+     });
+
+     
   }
 
+
+  updateuser<T>(value,body: Content<T>, header: Content<T> = null, footer: Content<T> = null, options: any = null){
+  //  this.updateform.controls['id'].setValue(rowdata);
+    console.log(value);
+
+    this.updateform.controls['studentid'].setValue(value.studentinfo.id);
+    this.updateform.controls['name'].setValue(value.studentinfo.studentname);
+    this.updateform.controls['fathername'].setValue(value.studentinfo.fathername);
+    this.updateform.controls['ninthrollnumber'].setValue(value.studentinfo.enrollmentnumber);
+    this.updateform.controls['englishmarks'].setValue(value.englishmarks);
+    this.updateform.controls['sindhimarks'].setValue(value.sindhimarks);
+    this.updateform.controls['pakistanstudiesmarks'].setValue(value.pakistanstudiesmark);
+    this.updateform.controls['chemistrytheory'].setValue(value.chemistrytheorymarks);
+    this.updateform.controls['chemistrypractical'].setValue(value.chemistrypracticalmarks);
+    this.updateform.controls['biotheory'].setValue(value.biotheorymarks);
+    this.updateform.controls['biopractical'].setValue(value.biopracticalmarks);
+    this.updateform.controls['recordid'].setValue(value.id);
+
+
+    this.modal.open({
+            body: body,
+            header: header,
+            footer: footer,
+            options: options
+    })
+  }
+
+
+  updateuserdetails(){
+    console.log("update user form", this.updateform.value);
+    this.httpSv.updateninthbiodata(this.updateform.value)
+        .subscribe(data=>{
+          console.log(data);
+          this.modal.close();
+           this.loaddata();
+
+        },error=>{
+          console.log(error);
+          this.modal.open({
+            body: 'Error in updating record',
+            header: 'Error'
+          })
+        })
+  }
 
  search(){
 
@@ -105,28 +181,22 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
   }
 
 
-    applyFilter(event: Event) {
-    // const filterValue = (event.target as HTMLInputElement).value;
-    // const data = this.dataSource.data;
-    this.dataSource.filterPredicate = (data: any, filter: string) => {
-      const transformedFilter = filter.trim().toLowerCase();
-    
-      const listAsFlatString = (obj): string => {
-        let returnVal = '';
-    
-        Object.values(obj).forEach((val) => {
-          if (typeof val !== 'object') {
-            returnVal = returnVal + ' ' + val;
-          } else if (val !== null) {
-            returnVal = returnVal + ' ' + listAsFlatString(val);
-          }
-        });
-    
-        return returnVal.trim().toLowerCase();
-      };
-    
-      return listAsFlatString(data).includes(transformedFilter);
-    };
+ applyFilter(event: Event,filter : String) {
+    var columnName = filter;
+    this.dataSource.filterPredicate = (data: any, filter: String) => {      
+        if(columnName == 'Schoolname')
+        return data.studentinfo.schoolname.schoolname.indexOf(filter) !== -1;
+        else if (columnName == 'studentname'){
+          return data.studentinfo.studentname.indexOf(filter) !== -1;;
+        }
+        else if (columnName == 'fathername'){
+          return data.studentinfo.fathername.indexOf(filter) !== -1;;
+        }
+        else if (columnName == 'enrollmentnumber'){
+          return data.studentinfo.enrollmentnumber ? data.studentinfo.enrollmentnumber.indexOf(filter) !== -1 : false;
+        }
+        return null;
+       };                 
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue;
   }
@@ -149,11 +219,14 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
   }
 
   
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+   masterToggle() {
+    if(this.isAllSelected())
+    {
+      this.selection.clear();
+      this.selecteddataarray=[];
+    } else this.dataSource.filteredData.forEach(row => this.selection.select(row));
   }
+
 
  
   checkboxLabel(row): string {

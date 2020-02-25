@@ -6,12 +6,12 @@
 <form [formGroup]="form" novalidate>
 <div class="row">
   
-    <div class="col-3">
+    <div class="col-6">
       <tc-input [placeholder]="'Search school'" (keyup)="applyFilter($event,'Schoolname')" [type]="'search'" formControlName="schoolname" ></tc-input>
 
     </div>
 
-    <div class="col-3">
+    <div class="col-6">
       <tc-input [placeholder]="'Search by Name'" [type]="'search'" (keyup)="applyFilter($event,'studentname')" formControlName="studentname" ></tc-input>
     </div>
 
@@ -28,11 +28,11 @@
 
 
   <div class="row">
-    <div class="col-3">
+    <div class="col-6">
       <tc-input [placeholder]="'Search by fathername'" (keyup)="applyFilter($event,'fathername')" [type]="'search'"  formControlName="fathername" ></tc-input>
     </div>
 
-    <div class="col-3">
+    <div class="col-6">
       <tc-input [placeholder]="'Search by roll number'" (keyup)="applyFilter($event,'enrollmentnumber')" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
     </div>
 
@@ -40,10 +40,10 @@
       <button tc-button [block]="true" [view]="'accent'"  > Print Marksheet</button>
     </div> -->
 
-    <div class="col-3">
+   <!--  <div class="col-3">
       <button tc-button [block]="true" [view]="'accent'" (click)="downloaduserdata()" > Print Data</button>
     </div>
-
+ -->
     </div> 
 
     
@@ -53,14 +53,20 @@
   
 
 <div class="row" >
-  <h3>Data</h3>
+  <div class="col-6">
+  <h3>Student Data</h3>
+</div>
+
+  <div class="col-6 " style="margin-top:23px;" >
+      <button tc-button [block]="true"   (click)="downloaduserdata()" > Print Data</button>
+    </div>
   </div>
 
-<div class="row" *ngIf="!searchresult"  >
+<div class="row" *ngIf="!operator"  >
 
 
 
-<table mat-table [dataSource]="dataSource" *ngIf="!searchresult" >
+<table mat-table [dataSource]="dataSource"  >
 
    <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
@@ -81,36 +87,36 @@
 
 
    <ng-container matColumnDef="studentinfo.studentname">
-    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <th mat-header-cell *matHeaderCellDef> NAME </th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.studentname}} </td>
   </ng-container>
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> Father </th>
+    <th mat-header-cell *matHeaderCellDef> FATHER </th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.fathername}} </td>
   </ng-container>
 
   
    <ng-container matColumnDef="Schoolname">
-    <th mat-header-cell *matHeaderCellDef> School </th>
+    <th mat-header-cell *matHeaderCellDef> SCHOOL </th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.schoolname.schoolname}} </td>
   </ng-container>
 
 
    <ng-container matColumnDef="enrollmentnumber">
-    <th mat-header-cell *matHeaderCellDef> Roll No </th>
+    <th mat-header-cell *matHeaderCellDef> ROLL</th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.enrollmentnumber}} </td>
   </ng-container>
 
  
   <ng-container matColumnDef="englishmarks">
-    <th mat-header-cell *matHeaderCellDef> Eng </th>
+    <th mat-header-cell *matHeaderCellDef> ENG </th>
     <td mat-cell *matCellDef="let element"> {{element.englishmarks}} </td>
   </ng-container>
 
    <ng-container matColumnDef="sindhimarks">
-    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
+    <th mat-header-cell *matHeaderCellDef> SIN </th>
     <td mat-cell *matCellDef="let element"> {{element.sindhimarks}} </td>
   </ng-container>
 
@@ -120,37 +126,74 @@
   </ng-container>
 
   <ng-container matColumnDef="chemistryteory">
-    <th mat-header-cell *matHeaderCellDef> ChemTheory </th>
+    <th mat-header-cell *matHeaderCellDef> CHEM(T) </th>
     <td mat-cell *matCellDef="let element"> {{element.chemistrytheorymarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="chemistrypractical">
-    <th mat-header-cell *matHeaderCellDef> ChemPractical </th>
+    <th mat-header-cell *matHeaderCellDef> CHEM(P) </th>
     <td mat-cell *matCellDef="let element"> {{element.chemistrypracticalmarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="computertheory">
-    <th mat-header-cell *matHeaderCellDef> ComputerTh </th>
+    <th mat-header-cell *matHeaderCellDef> COM(T) </th>
     <td mat-cell *matCellDef="let element"> {{element.computertheorymarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="computerpractical">
-    <th mat-header-cell *matHeaderCellDef> ComputerPrac </th>
+    <th mat-header-cell *matHeaderCellDef> COM(P) </th>
     <td mat-cell *matCellDef="let element"> {{element.computerpracticalmarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="examtype">
-    <th mat-header-cell *matHeaderCellDef> Exam </th>
+    <th mat-header-cell *matHeaderCellDef> EXAM </th>
     <td mat-cell *matCellDef="let element"> {{element.examtype}} </td>
   </ng-container>
 
   <ng-container matColumnDef="totalclearedpaper">
-    <th mat-header-cell *matHeaderCellDef> Cleared </th>
+    <th mat-header-cell *matHeaderCellDef> CLEARED </th>
     <td mat-cell *matCellDef="let element"> {{element.totalclearedpaper}} </td>
   </ng-container> 
 
+
+  <ng-container matColumnDef="operations">
+    <th mat-header-cell *matHeaderCellDef> OPERATIONS </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div class="actions">
+          <button
+            tc-button
+            [afterIcon]="'icofont-ui-edit'"
+            [view]="'info'"
+            [square]="true"
+            [tcShape]="500"
+            (click)="updateuser(element,updateBody, '', null, { width: '100vh' })"
+            [size]="'sm'"
+            style="background-color:#ffffff;"
+            
+          ></button>
+
+          <button
+            tc-button
+            [afterIcon]="'icofont-ui-close'"
+            [view]="'info'"
+            [square]="true"
+            [tcShape]="500"
+            [size]="'sm'"
+            (click)="deleteuser(element)"
+            style="background-color:#ffffff;"
+           
+          ></button>
+        </div>
+
+
+
+     </td>
+  </ng-container> 
+
+
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "rowClicked(row)"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
 
 
 </table>
@@ -163,13 +206,13 @@
 
 
 
+<div class="row" *ngIf="operator"   >
 
- <div class="row" *ngIf="searchresult" >
 
- <table mat-table [dataSource]="searchresultdata" class="mat-elevation-z8">
 
-  
-  <ng-container matColumnDef="select">
+<table mat-table [dataSource]="dataSource"  >
+
+   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="$event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
@@ -186,80 +229,111 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="studentname">
-    <th mat-header-cell *matHeaderCellDef> Name. </th>
-    <td mat-cell *matCellDef="let element"> {{element.studentname}} </td>
+
+   <ng-container matColumnDef="studentinfo.studentname">
+    <th mat-header-cell *matHeaderCellDef> NAME </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.studentname}} </td>
   </ng-container>
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> Father </th>
-    <td mat-cell *matCellDef="let element"> {{element.fathername}} </td>
+    <th mat-header-cell *matHeaderCellDef> FATHER </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.fathername}} </td>
   </ng-container>
 
   
    <ng-container matColumnDef="Schoolname">
-    <th mat-header-cell *matHeaderCellDef> School </th>
-    <td mat-cell *matCellDef="let element"> {{element.schoolname.schoolname}} </td>
+    <th mat-header-cell *matHeaderCellDef> SCHOOL </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.schoolname.schoolname}} </td>
   </ng-container>
 
 
    <ng-container matColumnDef="enrollmentnumber">
-    <th mat-header-cell *matHeaderCellDef> Roll No </th>
-    <td mat-cell *matCellDef="let element"> {{element.enrollmentnumber}} </td>
+    <th mat-header-cell *matHeaderCellDef> ROLL</th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.enrollmentnumber}} </td>
   </ng-container>
 
  
   <ng-container matColumnDef="englishmarks">
-    <th mat-header-cell *matHeaderCellDef> Eng </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.englishmarks:'-' }} </td>
+    <th mat-header-cell *matHeaderCellDef> ENG </th>
+    <td mat-cell *matCellDef="let element"> {{element.englishmarks}} </td>
   </ng-container>
 
    <ng-container matColumnDef="sindhimarks">
-    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.sindhimarks: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> SIN </th>
+    <td mat-cell *matCellDef="let element"> {{element.sindhimarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="pakistanstudiesmark">
     <th mat-header-cell *matHeaderCellDef> PST </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.pakistanstudiesmark: '-'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.pakistanstudiesmark}} </td>
   </ng-container>
 
   <ng-container matColumnDef="chemistryteory">
-    <th mat-header-cell *matHeaderCellDef> ChemTheory </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.chemistrytheorymarks: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> CHEM(T) </th>
+    <td mat-cell *matCellDef="let element"> {{element.chemistrytheorymarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="chemistrypractical">
-    <th mat-header-cell *matHeaderCellDef> ChemPractical </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.chemistrypracticalmarks: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> CHEM(P) </th>
+    <td mat-cell *matCellDef="let element"> {{element.chemistrypracticalmarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="computertheory">
-    <th mat-header-cell *matHeaderCellDef> ComputerTh </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.computertheorymarks: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> COM(TH) </th>
+    <td mat-cell *matCellDef="let element"> {{element.computertheorymarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="computerpractical">
-    <th mat-header-cell *matHeaderCellDef> ComputerPrac </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.computerpracticalmarks: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> COM(PR) </th>
+    <td mat-cell *matCellDef="let element"> {{element.computerpracticalmarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="examtype">
-    <th mat-header-cell *matHeaderCellDef> Exam </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.examtype: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> EXAM </th>
+    <td mat-cell *matCellDef="let element"> {{element.examtype}} </td>
   </ng-container>
 
   <ng-container matColumnDef="totalclearedpaper">
-    <th mat-header-cell *matHeaderCellDef> Cleared </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata?element.ninthcomputerdata.totalclearedpaper: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> CLEARED </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalclearedpaper}} </td>
   </ng-container> 
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "rowClicked(row)"></tr> 
+
+  <ng-container matColumnDef="operations">
+    <th mat-header-cell *matHeaderCellDef> OPERATIONS </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div class="actions">
+          <button
+            tc-button
+            [afterIcon]="'icofont-ui-edit'"
+            [view]="'info'"
+            [square]="true"
+            [tcShape]="500"
+            (click)="updateuser(element,updateBody, '', null, { width: '100vh' })"
+            [size]="'sm'"
+            style="background-color:#ffffff;"
+            
+          ></button>
+
+         
+        </div>
+
+
+
+     </td>
+  </ng-container> 
+ 
+
+
+  <tr mat-header-row *matHeaderRowDef="operatordisplayedColumns" class="header"></tr>
+  <tr mat-row *matRowDef="let row; columns: operatordisplayedColumns;" ></tr>
+
+
 </table>
 
- </div> 
+
+</div> 
 
 
 
@@ -267,7 +341,12 @@
 
 
 
-<div id="contentToConvert" *ngIf="displayselecteddata">
+
+
+
+
+
+<div #content *ngIf="displayselecteddata">
   <div class="row">
     <h3>Printed Data</h3>
   </div>
@@ -279,36 +358,36 @@
   
  
   <ng-container matColumnDef="studentname">
-    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <th mat-header-cell *matHeaderCellDef> NAME. </th>
     <td mat-cell *matCellDef="let element"> {{element? element.studentname || element.studentinfo.studentname: '-'}} </td>
   </ng-container>
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> Father </th>
+    <th mat-header-cell *matHeaderCellDef> FATHER </th>
     <td mat-cell *matCellDef="let element"> {{element? element.fathername || element.studentinfo.fathername: '-'}} </td>
   </ng-container>
 
   
    <ng-container matColumnDef="Schoolname">
-    <th mat-header-cell *matHeaderCellDef> School </th>
+    <th mat-header-cell *matHeaderCellDef> SCHOOL </th>
     <td mat-cell *matCellDef="let element"> {{element.schoolname? element.schoolname.schoolname : element.studentinfo? element.studentinfo.schoolname.schoolname : '-' }} </td>
   </ng-container>
 
 
    <ng-container matColumnDef="enrollmentnumber">
-    <th mat-header-cell *matHeaderCellDef> Roll No </th>
+    <th mat-header-cell *matHeaderCellDef> ROLL</th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo? element.studentinfo.enrollmentnumber: element.enrollmentnumber? element.enrollmentnumber: '-' }} </td>
   </ng-container>
 
  
   <ng-container matColumnDef="englishmarks">
-    <th mat-header-cell *matHeaderCellDef> Eng </th>
+    <th mat-header-cell *matHeaderCellDef> ENG </th>
     <td mat-cell *matCellDef="let element"> {{ element.ninthcomputerdata? element.ninthcomputerdata.englishmarks: element? element.englishmarks: '-'  }} </td>
   </ng-container>s
 
    <ng-container matColumnDef="sindhimarks">
-    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
+    <th mat-header-cell *matHeaderCellDef> SIN </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.sindhimarks: element? element.sindhimarks: '-'}} </td>
   </ng-container>
 
@@ -318,32 +397,32 @@
   </ng-container>
 
   <ng-container matColumnDef="chemistryteory">
-    <th mat-header-cell *matHeaderCellDef> ChemTheory </th>
+    <th mat-header-cell *matHeaderCellDef> CHEM(TH) </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.chemistrytheorymarks: element? element.chemistrytheorymarks: '-'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="chemistrypractical">
-    <th mat-header-cell *matHeaderCellDef> ChemPractical </th>
+    <th mat-header-cell *matHeaderCellDef> CHEM(PR) </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.chemistrypracticalmarks: element? element.chemistrypracticalmarks: '-'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="computertheory">
-    <th mat-header-cell *matHeaderCellDef> ComputerTh </th>
+    <th mat-header-cell *matHeaderCellDef> COM(TH) </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.computertheorymarks: element? element.computertheorymarks: '-'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="computerpractical">
-    <th mat-header-cell *matHeaderCellDef> ComputerPrac </th>
+    <th mat-header-cell *matHeaderCellDef> COM(PR) </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.computerpracticalmarks: element? element.computerpracticalmarks: '-'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="examtype">
-    <th mat-header-cell *matHeaderCellDef> Exam </th>
+    <th mat-header-cell *matHeaderCellDef> EXAM </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.examtype: element? element.examtype: '-'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="totalclearedpaper">
-    <th mat-header-cell *matHeaderCellDef> Cleared </th>
+    <th mat-header-cell *matHeaderCellDef> CLEARED </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.totalclearedpaper: element? element.totalclearedpaper: '-'}} </td>
   </ng-container> 
  -->
@@ -357,3 +436,78 @@
 
 
 
+<ng-template #updateBody>
+   
+<div class="row">
+   <div class="col-12">
+<tc-card [title]="'Update User'" [view]="'accent'" [outline]="true">
+  
+   <form [formGroup]="updateform" novalidate >
+    
+   <tc-form-group>
+    <tc-form-label>Name</tc-form-label>
+    <tc-input [placeholder]="'Name'" formControlName="name"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+    <tc-form-label>Father</tc-form-label>
+    <tc-input [placeholder]="'Father'" formControlName="fathername"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+    <tc-form-label>Eng</tc-form-label>
+    <tc-input [placeholder]="'English'" formControlName="englishmarks"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+    <tc-form-label>Sin</tc-form-label>
+    <tc-input [placeholder]="'Sindhi'" formControlName="sindhimarks"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+    <tc-form-label>PST</tc-form-label>
+    <tc-input [placeholder]="'Pakist Studies'" formControlName="pakistanstudiesmarks"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    <tc-form-label>Chem(T)</tc-form-label>
+    <tc-input [placeholder]="'Chemistry(Theory)'" formControlName="chemistrytheory"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    <tc-form-label>Chem(P)</tc-form-label>
+    <tc-input [placeholder]="'Chemistry(Practical)'" formControlName="chemistrypractical"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    <tc-form-label>Comp(T)</tc-form-label>
+    <tc-input [placeholder]="'Computer (Theory)'" formControlName="computertheory"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+    <tc-form-label>Comp(P)</tc-form-label>
+    <tc-input [placeholder]="'Computer (Practical)'" formControlName="computerpractical"></tc-input>
+    
+   </tc-form-group>
+
+
+   
+
+   <button tc-button (click)="updateuserdetails()" tc-button [block]="true" [view]="'accent'" [disabled]="updateform.invalid" >Update User</button>
+</form>
+</tc-card>
+</div>
+</div>
+</ng-template>

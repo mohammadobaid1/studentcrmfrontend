@@ -44,14 +44,14 @@ export class UsermanagmentComponent extends BasePageComponent implements OnInit 
 
   ngOnInit() {
     super.ngOnInit();
-    this.httpSv.getusers()
-    	.subscribe(data=>{
-    		console.log("data");
-    		this.userslist = data;
-    	},error=>{
-    		console.log(error);
-    	});
-
+    // this.httpSv.getusers()
+    // 	.subscribe(data=>{
+    // 		console.log("data");
+    // 		this.userslist = data;
+    // 	},error=>{
+    // 		console.log(error);
+    // 	});
+    this.loaddata();
    this.form = this.forminstance.adduserform();
    this.updateform = this.forminstance.updateuserform();                         
    this.usertype = [
@@ -69,11 +69,24 @@ export class UsermanagmentComponent extends BasePageComponent implements OnInit 
 
   }
 
+
+  loaddata(){
+  	this.httpSv.getusers()
+    	.subscribe(data=>{
+    		console.log("data");
+    		this.userslist = data;
+    	},error=>{
+    		console.log(error);
+    	});
+
+
+  }
+
   adduser(){
   	this.httpSv.adduser(this.form.value)
   			.subscribe(data=>{
   				this.modal.close();
-  				this.router.navigate(['/vertical/usermanage']);
+  				this.loaddata();
 
   			},error=>{
   				console.log('error');
@@ -101,6 +114,8 @@ deleteuser(rowdata){
 				body: 'User deleted',
 				header: 'Successful'
 			})
+
+			this.loaddata();
 
 		},error=>{
 			console.log(error);

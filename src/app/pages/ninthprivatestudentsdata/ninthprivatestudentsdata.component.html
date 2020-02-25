@@ -3,18 +3,16 @@
 <form [formGroup]="form" novalidate>
 <div class="row">
   
-    <div class="col-3">
-      <tc-input [placeholder]="'Search school'" [type]="'search'" (keyup)="applyFilter($event)" formControlName="schoolname" ></tc-input>
+    <div class="col-6">
+      <tc-input [placeholder]="'Search school'" [type]="'search'"(keyup)="applyFilter($event,'Schoolname')" formControlName="schoolname" ></tc-input>
 
     </div>
 
-    <div class="col-3">
-      <tc-input [placeholder]="'Search by Name'" [type]="'search'" (keyup)="applyFilter($event)" formControlName="studentname" ></tc-input>
+    <div class="col-6">
+      <tc-input [placeholder]="'Search by Name'" [type]="'search'" (keyup)="applyFilter($event,'studentname')" formControlName="studentname" ></tc-input>
     </div>
 
-    <!-- <div class="col-3">
-      <button tc-button [block]="true" [view]="'accent'" (click)="search()" > Search</button>
-    </div> -->
+    
   
   </div>
 
@@ -25,106 +23,41 @@
 
 
   <div class="row">
-    <div class="col-3">
-      <tc-input [placeholder]="'Search by fathername'" (keyup)="applyFilter($event)" [type]="'search'" formControlName="fathername" ></tc-input>
+    <div class="col-6">
+      <tc-input [placeholder]="'Search by fathername'" (keyup)="applyFilter($event,'fathername')" [type]="'search'" formControlName="fathername" ></tc-input>
     </div>
 
-    <div class="col-3">
-      <tc-input [placeholder]="'Search by roll number'" (keyup)="applyFilter($event)" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
+    <div class="col-6">
+      <tc-input [placeholder]="'Search by roll number'" (keyup)="applyFilter($event,'enrollmentnumber')" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
     </div>
 
-  <!--   <div class="col-3">
-      <button tc-button [block]="true" [view]="'accent'"  > Print Marksheet</button>
-    </div> -->
+ 
 
-    <div class="col-3">
-      <button tc-button [block]="true" [view]="'accent'" (click)="downloaduserdata()" > Print Data</button>
-    </div>
-
+    
     </div> 
 
     
 
   </form>
 
-<!-- <div class="row">
-  <h3>Data</h3>
+
+
+ <div class="row" >
+  <div class="col-6">
+  <h3>Student Data</h3>
+</div>
+
+  <div class="col-6 " style="margin-top:23px;" >
+      <button tc-button [block]="true"  [view]="'accent'" (click)="downloaduserdata()" > Print Data</button>
+    </div>
   </div>
 
 
-
-<tc-card class="mb-0">
-<tc-table [rows]="rows"  [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
-  <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentinfo'" [enableSorting]="true"> 
-
-  	<ng-template #tableTDTemplate let-value>
-       {{ value.studentname}}
-      </ng-template>
-
-  </tc-table-col>
-
-  <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentinfo'" [enableSorting]="true"> 
-
-    <ng-template #tableTDTemplate let-value>
-       {{ value.fathername}}
-      </ng-template>
-
-  </tc-table-col>
-
-
-  <tc-table-col [columnTitle]="'Enrollment Number'" [columnName]="'studentinfo'">
-    <ng-template #tableTDTemplate let-value>
-      {{value.enrollmentnumber}}
-    </ng-template>
-  </tc-table-col>
-  <tc-table-col [columnTitle]="'School'" [columnName]="'studentinfo'">
-  	
-<ng-template #tableTDTemplate let-value>
-       {{ value.schoolname.schoolname}}
-      </ng-template>
-
-  </tc-table-col>
-  <tc-table-col [columnTitle]="'English Marks'" [columnName]="'EnglishMarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Sindhi Marks'" [columnName]="'SindhiMarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Pakistan Studies Marks'" [columnName]="'PakistanStudiesMark'"></tc-table-col>
-  <tc-table-col [columnTitle]="'General Science Marks'" [columnName]="'GeneralScienceMarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Maths Marks'" [columnName]="'MathsMarks'"></tc-table-col>
-   
-
-  <tc-table-col [columnTitle]="'Total Marks'" [columnName]="'TotalMarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Cleared Papers'" [columnName]="'Totalclearedpaper'"></tc-table-col>
-
-
-  <tc-table-col [columnTitle]="'Percentage'" [columnName]="'OverallPercentage'" > </tc-table-col>
-<tc-table-col [columnTitle]="'Grade'" [columnName]="'grade'"></tc-table-col> 
-<tc-table-col [columnTitle]="'Group'" [columnName]="'group'"></tc-table-col> 
-  <tc-table-col [columnTitle]="'Exam Type'" [columnName]="'examtype'" >
-   
-</tc-table-col>
-
-<tc-table-col [columnTitle]="'Operations'">
-  <ng-template #tableTDTemplate >
-  <button tc-button [block]="true" [view]="'accent'" (click)="generatePdf(rows)"   > Print Marksheet</button>
-  <button tc-button [block]="true" [view]="'accent'" > Print Data</button>
-</ng-template>
-  </tc-table-col>
-    
- </tc-table>
-
- </tc-card> -->
-
-
- <div class="row">
-  <h3>Data</h3>
-  </div>
+ <div class="row" *ngIf="!operator"  >
 
 
 
- <div class="row" *ngIf="!searchresult"  >
-
-
-
-<table mat-table [dataSource]="dataSource" *ngIf="!searchresult" >
+<table mat-table [dataSource]="dataSource"  >
 
    <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
@@ -145,36 +78,36 @@
 
 
    <ng-container matColumnDef="studentname">
-    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <th mat-header-cell *matHeaderCellDef> NAME. </th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.studentname}} </td>
   </ng-container>
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> Father </th>
+    <th mat-header-cell *matHeaderCellDef> FATHER </th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.fathername}} </td>
   </ng-container>
 
   
    <ng-container matColumnDef="Schoolname">
-    <th mat-header-cell *matHeaderCellDef> School </th>
+    <th mat-header-cell *matHeaderCellDef> SCHOOL </th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.schoolname.schoolname}} </td>
   </ng-container>
 
 
    <ng-container matColumnDef="enrollmentnumber">
-    <th mat-header-cell *matHeaderCellDef> Roll No </th>
+    <th mat-header-cell *matHeaderCellDef> ROLL</th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.enrollmentnumber}} </td>
   </ng-container>
 
  
   <ng-container matColumnDef="englishmarks">
-    <th mat-header-cell *matHeaderCellDef> Eng </th>
+    <th mat-header-cell *matHeaderCellDef> ENG </th>
     <td mat-cell *matCellDef="let element"> {{element.englishmarks}} </td>
   </ng-container>
 
    <ng-container matColumnDef="sindhimarks">
-    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
+    <th mat-header-cell *matHeaderCellDef> SIN </th>
     <td mat-cell *matCellDef="let element"> {{element.sindhimarks}} </td>
   </ng-container>
 
@@ -189,20 +122,55 @@
   </ng-container>
 
   <ng-container matColumnDef="mathmarks">
-    <th mat-header-cell *matHeaderCellDef> Math </th>
+    <th mat-header-cell *matHeaderCellDef> MATH </th>
     <td mat-cell *matCellDef="let element"> {{element.mathsmarks}} </td>
   </ng-container>
 
  
 
   <ng-container matColumnDef="group">
-    <th mat-header-cell *matHeaderCellDef> Group </th>
+    <th mat-header-cell *matHeaderCellDef> GROUP </th>
     <td mat-cell *matCellDef="let element"> {{element.group}} </td>
   </ng-container>
 
   <ng-container matColumnDef="totalclearedpaper">
-    <th mat-header-cell *matHeaderCellDef> Cleared </th>
+    <th mat-header-cell *matHeaderCellDef> CLEARED </th>
     <td mat-cell *matCellDef="let element"> {{element.totalclearedpaper}} </td>
+  </ng-container> 
+
+
+  <ng-container matColumnDef="operations">
+    <th mat-header-cell *matHeaderCellDef> OPERATIONS </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div class="actions">
+          <button
+            tc-button
+            [afterIcon]="'icofont-ui-edit'"
+            [view]="'info'"
+            [square]="true"
+            [tcShape]="500"
+            (click)="updateuser(element,updateBody, '', null, { width: '100vh' })"
+            [size]="'sm'"
+            style="background-color:#ffffff;"
+            
+          ></button>
+
+          <button
+            tc-button
+            [afterIcon]="'icofont-ui-close'"
+            [view]="'info'"
+            [square]="true"
+            [tcShape]="500"
+            [size]="'sm'"
+            (click)="deleteuser(element)"
+            style="background-color:#ffffff;"
+           
+          ></button>
+        </div>
+
+
+
+     </td>
   </ng-container> 
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header"></tr>
@@ -215,17 +183,18 @@
 </div> 
 
 
-<div class="row" *ngIf="searchresult" >
+<div class="row" *ngIf="operator"  >
 
- <table mat-table [dataSource]="searchresultdata" class="mat-elevation-z8">
 
-  
-  <ng-container matColumnDef="select">
+
+<table mat-table [dataSource]="dataSource"  >
+
+   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="$event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()"
-                   >
+                    >
       </mat-checkbox>
     </th>
     <td mat-cell *matCellDef="let row">
@@ -237,73 +206,104 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="studentname">
-    <th mat-header-cell *matHeaderCellDef> Name. </th>
-    <td mat-cell *matCellDef="let element"> {{element.studentname}} </td>
+
+   <ng-container matColumnDef="studentname">
+    <th mat-header-cell *matHeaderCellDef> NAME. </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.studentname}} </td>
   </ng-container>
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> Father </th>
-    <td mat-cell *matCellDef="let element"> {{element.fathername}} </td>
+    <th mat-header-cell *matHeaderCellDef> FATHER </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.fathername}} </td>
   </ng-container>
 
   
    <ng-container matColumnDef="Schoolname">
-    <th mat-header-cell *matHeaderCellDef> School </th>
-    <td mat-cell *matCellDef="let element"> {{element.schoolname.schoolname}} </td>
+    <th mat-header-cell *matHeaderCellDef> SCHOOL </th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.schoolname.schoolname}} </td>
   </ng-container>
 
 
    <ng-container matColumnDef="enrollmentnumber">
-    <th mat-header-cell *matHeaderCellDef> Roll No </th>
-    <td mat-cell *matCellDef="let element"> {{element.enrollmentnumber}} </td>
+    <th mat-header-cell *matHeaderCellDef> ROLL</th>
+    <td mat-cell *matCellDef="let element"> {{element.studentinfo.enrollmentnumber}} </td>
   </ng-container>
 
  
   <ng-container matColumnDef="englishmarks">
-    <th mat-header-cell *matHeaderCellDef> Eng </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata? element.ninthgeneraldata.englishmarks:'-' }} </td>
+    <th mat-header-cell *matHeaderCellDef> ENG </th>
+    <td mat-cell *matCellDef="let element"> {{element.englishmarks}} </td>
   </ng-container>
 
    <ng-container matColumnDef="sindhimarks">
-    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata?element.ninthgeneraldata.sindhimarks: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> SIN </th>
+    <td mat-cell *matCellDef="let element"> {{element.sindhimarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="pakistanstudiesmark">
     <th mat-header-cell *matHeaderCellDef> PST </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata?element.ninthgeneraldata.pakistanstudiesmark: '-'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.pakistanstudiesmark}} </td>
   </ng-container>
 
   <ng-container matColumnDef="generalsciencemarks">
     <th mat-header-cell *matHeaderCellDef> GS </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata?element.ninthgeneraldata.generalsciencemarks: '-'}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.generalsciencemarks}} </td>
   </ng-container>
 
   <ng-container matColumnDef="mathmarks">
-    <th mat-header-cell *matHeaderCellDef> Maths </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata?element.ninthgeneraldata.mathsmarks: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> MATH </th>
+    <td mat-cell *matCellDef="let element"> {{element.mathsmarks}} </td>
   </ng-container>
 
-  
+ 
+
   <ng-container matColumnDef="group">
-    <th mat-header-cell *matHeaderCellDef> Group </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata?element.ninthgeneraldata.group: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> GROUP </th>
+    <td mat-cell *matCellDef="let element"> {{element.group}} </td>
   </ng-container>
 
   <ng-container matColumnDef="totalclearedpaper">
-    <th mat-header-cell *matHeaderCellDef> Cleared </th>
-    <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata?element.ninthgeneraldata.totalclearedpaper: '-'}} </td>
+    <th mat-header-cell *matHeaderCellDef> CLEARED </th>
+    <td mat-cell *matCellDef="let element"> {{element.totalclearedpaper}} </td>
   </ng-container> 
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click) = "rowClicked(row)"></tr> 
+<ng-container matColumnDef="operations">
+    <th mat-header-cell *matHeaderCellDef> OPERATIONS </th>
+    <td mat-cell *matCellDef="let element"> 
+      <div class="actions">
+          <button
+            tc-button
+            [afterIcon]="'icofont-ui-edit'"
+            [view]="'info'"
+            [square]="true"
+            [tcShape]="500"
+            (click)="updateuser(element,updateBody, '', null, { width: '100vh' })"
+            [size]="'sm'"
+            style="background-color:#ffffff;"
+            
+          ></button>
+
+         
+        </div>
+
+
+
+     </td>
+  </ng-container> 
+  
+  <tr mat-header-row *matHeaderRowDef="operatorColumns" class="header"></tr>
+  <tr mat-row *matRowDef="let row; columns: operatorColumns;" ></tr>
+
+
 </table>
 
- </div> 
 
- 
+</div> 
+
+
+
+
 <div id="contentToConvert" *ngIf="displayselecteddata">
   <div class="row">
     <h3>Printed Data</h3>
@@ -316,36 +316,36 @@
   
  
   <ng-container matColumnDef="studentname">
-    <th mat-header-cell *matHeaderCellDef> Name. </th>
+    <th mat-header-cell *matHeaderCellDef> NAME. </th>
     <td mat-cell *matCellDef="let element"> {{element? element.studentname || element.studentinfo.studentname: '-'}} </td>
   </ng-container>
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> Father </th>
+    <th mat-header-cell *matHeaderCellDef> FATHER </th>
     <td mat-cell *matCellDef="let element"> {{element? element.fathername || element.studentinfo.fathername: '-'}} </td>
   </ng-container>
 
   
    <ng-container matColumnDef="Schoolname">
-    <th mat-header-cell *matHeaderCellDef> School </th>
+    <th mat-header-cell *matHeaderCellDef> SCHOOL </th>
     <td mat-cell *matCellDef="let element"> {{element.schoolname? element.schoolname.schoolname : element.studentinfo? element.studentinfo.schoolname.schoolname : '-' }} </td>
   </ng-container>
 
 
    <ng-container matColumnDef="enrollmentnumber">
-    <th mat-header-cell *matHeaderCellDef> Roll No </th>
+    <th mat-header-cell *matHeaderCellDef> ROLL</th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo? element.studentinfo.enrollmentnumber: element.enrollmentnumber? element.enrollmentnumber: '-' }} </td>
   </ng-container>
 
  
   <ng-container matColumnDef="englishmarks">
-    <th mat-header-cell *matHeaderCellDef> Eng </th>
+    <th mat-header-cell *matHeaderCellDef> ENG </th>
     <td mat-cell *matCellDef="let element"> {{ element.ninthgeneraldata? element.ninthgeneraldata.englishmarks: element? element.englishmarks: '-'  }} </td>
   </ng-container>s
 
    <ng-container matColumnDef="sindhimarks">
-    <th mat-header-cell *matHeaderCellDef> Sindhi </th>
+    <th mat-header-cell *matHeaderCellDef> SIN </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata? element.ninthgeneraldata.sindhimarks: element? element.sindhimarks: '-'}} </td>
   </ng-container>
 
@@ -360,18 +360,18 @@
   </ng-container>
 
   <ng-container matColumnDef="mathmarks">
-    <th mat-header-cell *matHeaderCellDef> Maths </th>
+    <th mat-header-cell *matHeaderCellDef> MATHS </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata? element.ninthgeneraldata.mathsmarks: element? element.mathsmarks: '-'}} </td>
   </ng-container>
 
   
   <ng-container matColumnDef="group">
-    <th mat-header-cell *matHeaderCellDef> Group </th>
+    <th mat-header-cell *matHeaderCellDef> GROUP </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata? element.ninthgeneraldata.group: element? element.group: '-'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="totalclearedpaper">
-    <th mat-header-cell *matHeaderCellDef> Cleared </th>
+    <th mat-header-cell *matHeaderCellDef> CLEARED </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthgeneraldata? element.ninthgeneraldata.totalclearedpaper: element? element.totalclearedpaper: '-'}} </td>
   </ng-container> 
  
@@ -380,3 +380,67 @@
 </table>
 </div>
 </div>
+
+
+
+<ng-template #updateBody>
+   
+<div class="row">
+   <div class="col-12">
+<tc-card [title]="'Update User'" [view]="'accent'" [outline]="true">
+  
+   <form [formGroup]="updateform" novalidate >
+    
+   <tc-form-group>
+     <tc-form-label>Name</tc-form-label>
+    <tc-input formControlName="name"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+     <tc-form-label>Father</tc-form-label>
+    <tc-input  formControlName="fathername"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+     <tc-form-label>Eng</tc-form-label>
+    <tc-input formControlName="englishmarks"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+     <tc-form-label>Sin</tc-form-label>
+    <tc-input  formControlName="sindhimarks"></tc-input>
+    
+   </tc-form-group>
+
+   <tc-form-group>
+     <tc-form-label>PST</tc-form-label>
+    <tc-input  formControlName="pakistanstudiesmarks"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+     <tc-form-label>General Science</tc-form-label>
+    <tc-input  formControlName="generalsciencemarks"></tc-input>
+    
+   </tc-form-group>
+
+
+   <tc-form-group>
+     <tc-form-label>Maths</tc-form-label>
+    <tc-input  formControlName="mathsmarks"></tc-input>
+    
+   </tc-form-group>
+
+
+   
+
+   <button tc-button (click)="updateuserdetails()" tc-button [block]="true" [view]="'accent'" [disabled]="updateform.invalid" >Update User</button>
+</form>
+</tc-card>
+</div>
+</div>
+</ng-template>

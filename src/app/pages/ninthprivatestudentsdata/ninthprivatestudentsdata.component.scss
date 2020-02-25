@@ -1,8 +1,9 @@
 .header {
-	background-color: #bcbcbd;
-	color: rgb(0,0,0);
-	font-weight: bold;
-	width:10% !important;
+	background-color: #031E45;
+  color: #ffffff;
+  font-weight: bold;
+  width:10% !important;
+
 
 }
 
@@ -166,4 +167,27 @@ table {
   hyphens: auto;
   text-align: center;
 }
+
+
+.mat-header-cell {
+    color: rgba(255, 255, 255, 1);
+}
+
+
+
+
+::ng-deep .mat-checkbox-inner-container {
+margin-right: 8px !important;
+  
+}
+
+
+
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #7CFC00;
+
+  }
+
+
 

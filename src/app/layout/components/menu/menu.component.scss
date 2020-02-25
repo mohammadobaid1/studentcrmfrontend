@@ -98,7 +98,7 @@ $_sub-separator: main-palette(300);
           }
           &:hover {
             background: $_item-hover-bg;
-            color: $_item-hover-color;
+            color: #ffffff;
           }
         }
         .sub {
@@ -124,7 +124,7 @@ $_sub-separator: main-palette(300);
             transition: .2s transform .2s $_animation;
           }
           > .item-link {
-            color: $_item-active-color;
+            color: #ffffff;
 
             .link-caret {
               transform: rotate(90deg);

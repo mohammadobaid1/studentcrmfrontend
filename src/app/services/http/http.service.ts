@@ -31,10 +31,10 @@ export class HttpService {
 
 
 
-  loginuser(email,pass){
+  loginuser(username,pass){
 
     let body = new URLSearchParams();
-    body.set('email', email);
+    body.set('name', username);
     body.set('password', pass);
 
     let options = {
@@ -70,7 +70,7 @@ getninthbiobatch(){
 
 getninthregularbatch(){
         console.log("service");
-        return this.http.get('http://zeb.blockshift.com.pk/api/getninthgeneral');
+        return this.http.get('http:/zeb.blockshift.com.pk/api/getninthgeneral');
   }
 
   getmatricsciencebatch(){
@@ -113,7 +113,7 @@ getseconyearbatch(){
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
  
-        return this.http.post('http://zeb.blockshift.com.pk/api/register',data,options);
+        return this.http.post('http://127.0.0.1:8000/api/register',data,options);
 
   }
 
@@ -161,7 +161,7 @@ addninthgeneraldata(data){
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
  
-        return this.http.post('http://zeb.blockshift.com.pk/api/insertninthgeneral',data,options);
+        return this.http.post('http://127.0.0.1:8000/api/insertninthgeneral',data,options);
   }
  
 
@@ -349,6 +349,74 @@ logout(token) {
 
   }
 
+
+
+  deleteninthcomputerdata(formdata){
+
+      let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/deleteninthsciencedata',formdata,options);
+
+
+  }
+
+
+  updateninthcomputerdata(formdata){
+
+      let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/editninthsciencedata',formdata,options); 
+  }
+
+
+
+  deleteninthbiodata(formdata){
+
+      let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/deleteninthbiodata',formdata,options);
+
+
+  }
+
+
+  updateninthbiodata(formdata){
+
+      let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/editninthbiodata',formdata,options); 
+  }
+
+
+
+  deleteninthgeneraldata(formdata){
+
+      let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/deleteninthgeneraldata',formdata,options);
+
+
+  }
+
+
+  updateninthgeneraldata(formdata){
+
+      let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://zeb.blockshift.com.pk/api/editninthgeneraldata',formdata,options); 
+  }
 
 
 

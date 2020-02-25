@@ -14,11 +14,7 @@
   <tc-table-col [columnTitle]="'Operations'" [columnName]="'id'">
   
   
-<!--   <ng-template #tableTDTemplate let-value>
-    
-        <button tc-button (click)="updateuser(value,updateBody, '', null, { width: '100%' })" tc-button [block]="true" [view]="'accent'">updateuser</button>
-        <button tc-button (click)="deleteuser(value)" tc-button [block]="true" [view]="'accent'">deleteuser</button>
-      </ng-template> -->
+
 
       <ng-template #tableTDTemplate let-value>
         <div class="actions">
@@ -30,16 +26,18 @@
             [tcShape]="500"
             [size]="'sm'"
             (click)="updateuser(value,updateBody, '', null, { width: '100%' })"
+            style="background-color:#ffffff;"
           ></button>
 
           <button
             tc-button
-            [afterIcon]="'icofont-ui-delete'"
-            [view]="'error'"
+            [afterIcon]="'icofont-ui-close'"
+            [view]="'info'"
             [square]="true"
             [tcShape]="500"
             [size]="'sm'"
             (click)="deleteuser(value)"
+            style="background-color:#ffffff;"
           ></button>
         </div>
       </ng-template>

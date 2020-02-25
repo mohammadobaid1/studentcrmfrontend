@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { BasePageComponent } from '../base-page';
 import { Store } from '@ngrx/store';
@@ -16,6 +16,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
+import { Location } from "@angular/common";
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
@@ -31,18 +33,25 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export class NinthcomputerstudentsdataComponent extends BasePageComponent implements OnInit {
 
+  @ViewChild('content') content: ElementRef;
+
+
    tableData: any;
    form: FormGroup;
+   updateform: FormGroup;
    searchshowtrue: false;
    searchshow : true;
    searchresult: boolean = false;
    pdfdownloadtable: boolean = false;
    selecteddataarray: any;  
    displayselecteddata: boolean = false; 
+   userroles: string;
+   operator: boolean= true;
 
 
 
-    displayedColumns: string[] = ['select','studentinfo.studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
+    displayedColumns: string[] = ['select','studentinfo.studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper','operations'];
+    operatordisplayedColumns: string[] = ['select','studentinfo.studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper','operations'];
     pdftableColumns: string[] = ['studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
     
 
@@ -58,7 +67,8 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
     store: Store<IAppState>,
     httpSv: HttpService,
     private modal: TCModalService,
-    private formclass : AllForm
+    private formclass : AllForm,
+    private router: Router
 
   ) { 
 
@@ -81,16 +91,14 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
   ngOnInit() {
     super.ngOnInit();
   
-  
-    this.httpSv.getninthcomputerbatch()
-      .subscribe(data=>{
-        console.log("ninth data",data);
-        this.tableData = data;
-        this.dataSource = new MatTableDataSource(this.tableData);
-        console.log("Default data",this.tableData);
-      })
+    this.loaddata();
 
       this.form = this.formclass.getninthform();
+      this.updateform = this.formclass.updateninthscienceform();
+      this.userroles = localStorage.getItem ('userroles');
+      if (this.userroles == 'admin') {
+      this.operator = false;
+    }
 
     
     
@@ -98,16 +106,150 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
 
 
+  loaddata(){
+    this.httpSv.getninthcomputerbatch()
+      .subscribe(data=>{
+        console.log("ninth data",data);
+        this.tableData = data;
+        this.dataSource = new MatTableDataSource(this.tableData);
+        console.log("Default data",this.tableData);
+      })
+  }
+
+
+
+  deleteuser(value){
+   // console.log("DELETE user value",value);
+   this.httpSv.deleteninthcomputerdata(value)
+     .subscribe(data=>{
+      
+      this.loaddata();
+     },
+     error=>{
+       console.log(error);
+       this.modal.open({
+          "header":"Error",
+          "body": "Error occurred "
+        });
+
+
+
+     });
+
+     
+  }
+
+
+  updateuser<T>(value,body: Content<T>, header: Content<T> = null, footer: Content<T> = null, options: any = null){
+  //  this.updateform.controls['id'].setValue(rowdata);
+    console.log(value);
+
+    this.updateform.controls['studentid'].setValue(value.studentinfo.id);
+    this.updateform.controls['name'].setValue(value.studentinfo.studentname);
+    this.updateform.controls['fathername'].setValue(value.studentinfo.fathername);
+    this.updateform.controls['ninthrollnumber'].setValue(value.studentinfo.enrollmentnumber);
+    this.updateform.controls['englishmarks'].setValue(value.englishmarks);
+    this.updateform.controls['sindhimarks'].setValue(value.sindhimarks);
+    this.updateform.controls['pakistanstudiesmarks'].setValue(value.pakistanstudiesmark);
+    this.updateform.controls['chemistrytheory'].setValue(value.chemistrytheorymarks);
+    this.updateform.controls['chemistrypractical'].setValue(value.chemistrypracticalmarks);
+    this.updateform.controls['computertheory'].setValue(value.computertheorymarks);
+    this.updateform.controls['computerpractical'].setValue(value.computerpracticalmarks);
+    this.updateform.controls['recordid'].setValue(value.id);
+
+
+    this.modal.open({
+            body: body,
+            header: header,
+            footer: footer,
+            options: options,
+    })
+  }
+
+
+  updateuserdetails(){
+    console.log("update user form", this.updateform.value);
+    this.httpSv.updateninthcomputerdata(this.updateform.value)
+        .subscribe(data=>{
+          console.log(data);
+          this.modal.close();
+           this.loaddata();
+
+        },error=>{
+          console.log(error);
+          this.modal.open({
+            body: 'Error in updating record',
+            header: 'Error'
+          })
+        })
+  }
+
+  redirectuser(){
+    console.log("Router function")
+ 
+
+  }
+
+
+
+//   downloaduserdata(){
+
+
+//     this.displayselecteddata = true; 
+//     console.log(this.selecteddataarray);
+//     setTimeout(() => {
+//     var data = document.getElementById('content');
+    
+
+
+//     html2canvas(data).then(canvas => {  
+
+//    var imgData = canvas.toDataURL('image/png');
+//    var imgWidth = 210; 
+//    var pageHeight = 295;  
+//    var imgHeight = canvas.height * imgWidth / canvas.width;
+//    var heightLeft = imgHeight;
+//    var doc = new jsPDF('p', 'mm');
+//    var position = 10; // give some top padding to first page
+
+//    doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+//    heightLeft -= pageHeight;
+
+//    while (heightLeft >= 0) {
+//         position += heightLeft - imgHeight; // top padding for other pages
+//         doc.addPage();
+//         doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+//         heightLeft -= pageHeight;
+//       }
+// // doc.save( 'file.pdf');
+   
+
+// //       var imgWidth = 208;   
+// //       var pageHeight = 295;    
+// //       var imgHeight = canvas.height * imgWidth / canvas.width;  
+// //       var heightLeft = imgHeight;  
+  
+// //       const contentDataURL = canvas.toDataURL('image/png')  
+// //       let pdf = new jsPDF('p', 'mm', 'a4'); 
+// //       var position = 0;  
+// //      // pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+// //      // pdf.save('students.pdf'); 
+
+// //      pdf.addHTML(contentDataURL, function() {
+// //        pdf.save("obrz.pdf");
+// //     });
+
+// //       this.displayselecteddata = false;
+//     });  
+//   },0);
+//   }
+
   downloaduserdata(){
 
 
     this.displayselecteddata = true; 
-    console.log(this.selecteddataarray);
     setTimeout(() => {
-    var data = document.getElementById('contentToConvert');
-    
-
-
+      var data = document.getElementById('content');
     html2canvas(data).then(canvas => {  
    
 
@@ -123,9 +265,28 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
       pdf.save('students.pdf'); 
 
       this.displayselecteddata = false;
-    });  
-  },0);
-  }
+    });   
+    }, 0);
+   
+
+
+}
+
+ //  makepdf(){
+ //      this.displayselecteddata = true; 
+ //      console.log(this.content);
+ //    setTimeout(() => {  
+ //    let doc = new jsPDF();
+    
+
+ //    doc.addHTML(this.content.nativeElement, function() {
+ //        doc.save("obrz.pdf");
+
+ //        this.displayselecteddata = false;
+ //     });
+ // },0);
+
+ //   };
  
  generatePdf(data){
     console.log(data);
@@ -213,10 +374,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
   }
 
 
-  rowClicked(rows){
-    console.log(rows);
-  }
-
+  
 
 
 
