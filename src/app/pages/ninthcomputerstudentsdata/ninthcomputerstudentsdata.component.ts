@@ -339,12 +339,12 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
     var columnName = filter;
     this.dataSource.filterPredicate = (data: any, filter: String) => {      
         if(columnName == 'Schoolname')
-        return data.studentinfo.schoolname.schoolname.indexOf(filter) !== -1;
+        return data.studentinfo.schoolname.schoolname.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
         else if (columnName == 'studentname'){
-          return data.studentinfo.studentname.indexOf(filter) !== -1;;
+          return data.studentinfo.studentname.toLowerCase().indexOf(filter.toLowerCase()) !== -1;;
         }
         else if (columnName == 'fathername'){
-          return data.studentinfo.fathername.indexOf(filter) !== -1;;
+          return data.studentinfo.fathername.toLowerCase().indexOf(filter.toLowerCase()) !== -1;;
         }
         else if (columnName == 'enrollmentnumber'){
           return data.studentinfo.enrollmentnumber ? data.studentinfo.enrollmentnumber.indexOf(filter) !== -1 : false;
