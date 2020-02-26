@@ -113,18 +113,14 @@ export class HscPart1PreMedicalclassComponent extends BasePageComponent implemen
 
 
 
-  getstudentdata(){
-    console.log(this.form.value);
-
-
+  getstudentdata(){    
     this.httpSv.getstudentdata(this.form.value)
       .subscribe(data=>{
         console.log(data);
         console.log(data[0].studentname);
         this.form.patchValue({
           studentname: data[0].studentname,
-          fathername: data[0].fathername,
-          dateofbirth: data[0].dateofbirth,
+          fathername: data[0].fathername,          
           yearofappearing: data[0].yearofappearing,
           id: data[0].id
         })

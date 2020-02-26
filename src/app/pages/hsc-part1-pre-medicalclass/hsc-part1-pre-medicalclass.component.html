@@ -21,11 +21,11 @@
       <tc-card [title]="'Add Student Record'" [view]="'accent'" [outline]="true">
 
          <form [formGroup]="form" novalidate>
-            <div class="row">
+            <!-- <div class="row">
                <div class="col-6">
-                  <!-- <tc-form-group>
+                  <tc-form-group>
 					<tc-input [placeholder]="' Ninth Enrollment Number'" formControlName="ninthrollnumber"></tc-input>
-				</tc-form-group> -->
+				</tc-form-group>
 
                </div>
 
@@ -34,17 +34,11 @@
                   <button tc-button (click)="getstudentdata()" tc-button [block]="true" [view]="'accent'">Load student
                      data</button>
                </div>
-            </div>
+            </div> -->
 
-
-            <!-- 
-    <tc-form-group>      
-			      <tc-select [placeholder]="'Select Exam Type'"  [options]="examtypedropdown" formControlName="examtype" ></tc-select>
-    </tc-form-group>
-
-    <tc-form-group>      
-         <tc-select [placeholder]="'Select Group Type'"  [options]="groupdropdown" formControlName="group" ></tc-select>
-        </tc-form-group> -->
+            <tc-form-group>      
+               <tc-select [placeholder]="'Select School'"  [options]="dropdowndata" formControlName="schoolid" ></tc-select>
+           </tc-form-group>
 
             <tc-form-group>
 
@@ -115,7 +109,12 @@
 
                <tc-input [placeholder]="'Botany Marks'" formControlName="botanymarks"></tc-input>
 
-            </tc-form-group>      
+            </tc-form-group>
+            <tc-form-group>
+
+               <tc-input [placeholder]="'Total Marks'" formControlName="totalmarks"></tc-input>
+
+            </tc-form-group>            
             <tc-form-group>
 
                <tc-input [placeholder]="'Matric Passing Year'" formControlName="matricpassingyear"></tc-input>
@@ -125,8 +124,17 @@
 
                <tc-input [placeholder]="'Year Appearing'" formControlName="yearappearing"></tc-input>
 
-            </tc-form-group>         
-            
+            </tc-form-group>     
+            <tc-form-group>
+
+               <tc-input [placeholder]="'Percentage'" formControlName="percentage"></tc-input>
+
+            </tc-form-group>    
+            <tc-form-group>
+
+               <tc-input [placeholder]="'Grade'" formControlName="grade"></tc-input>
+
+            </tc-form-group>    
             
             <button tc-button (click)="insertstudent()" tc-button [block]="true" [view]="'accent'"
                [disabled]="form.invalid">Add Record</button>

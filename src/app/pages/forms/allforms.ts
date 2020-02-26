@@ -303,7 +303,10 @@ export class AllForm extends BaseForm {
             id: [''],
             schoolid: [''],
             matricpassingyear:[''],
-            yearappearing:['']
+            yearappearing:[''],
+            totalmarks:[''],        
+            percentage : [''],
+            grade : ['']    
         })
 
 
