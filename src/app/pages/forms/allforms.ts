@@ -290,59 +290,9 @@ export class AllForm extends BaseForm {
 
 
 
-    updateninthscienceform() {
-        return this.fb.group({
-            studentid: [''],
-            name: [''],
-            fathername: [''],
-            ninthrollnumber: [''],
-            englishmarks: [''],
-            sindhimarks: [''],
-            pakistanstudiesmarks: [''],
-            chemistrytheory: [''],
-            chemistrypractical: [''],
-            computertheory: [''],
-            computerpractical: [''],
-            recordid: ['']
-        })
+ 
 
-    }
-
-
-    updateninthbioform() {
-        return this.fb.group({
-            studentid: [''],
-            name: [''],
-            fathername: [''],
-            ninthrollnumber: [''],
-            englishmarks: [''],
-            sindhimarks: [''],
-            pakistanstudiesmarks: [''],
-            chemistrytheory: [''],
-            chemistrypractical: [''],
-            biotheory: [''],
-            biopractical: [''],
-            recordid: ['']
-        })
-
-    }
-
-
-    updateninthgeneralform() {
-        return this.fb.group({
-            studentid: [''],
-            name: [''],
-            fathername: [''],
-            ninthrollnumber: [''],
-            englishmarks: [''],
-            sindhimarks: [''],
-            pakistanstudiesmarks: [''],
-            generalsciencemarks: [''],
-            mathsmarks: [''],
-            recordid: ['']
-        })
-
-    }
+ 
 
     getPreMedicalclassform() {
         this.markAsSubmitted(false);
