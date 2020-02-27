@@ -8,18 +8,25 @@
    </div>
 
    <div class="col-6 ">
-      <tc-input [type]="'file'" (change)="convertFile($event)" ></tc-input >
+      <tc-input #fileinput [type]="'file'" (change)="convertFile($event)" ></tc-input >
    </div>
 
    <div class="col-6">
-      <button tc-button (click)="previewdata(modalBody, 'Modal title', modalFooter, { width: '100%' })">Preview Data</button>
+      <button tc-button (click)="previewdata(modalBody, 'Student Data', modalFooter, { width: '100%' })">Preview Data</button>
    </div>
 
-   <div class="col-12">
-      <h4>OR </h4>
-   </div>
+   
 </div>
 
+<div class="row">
+  <div class="col-1">
+      <h4>OR </h4>
+    </div>
+
+    <div class="col-6" *ngIf="successmessage">
+      <tc-badge [view]="'success'" style="margin-top:18px;">All data  are successfully inserted</tc-badge>
+   </div>
+  </div>
 
 
  <!-- <form [formGroup]="form" novalidate >
@@ -303,7 +310,7 @@
 
 <ng-template #modalBody>
 <tc-card class="mb-0">
-   <tc-table [rows]="previewimportdata"   [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" [search]="true">
+   <tc-table [rows]="previewimportdata"   [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
      <tc-table-col [columnTitle]="'Student Name'" [columnName]="'studentname'" [enableSorting]="true"> </tc-table-col>
      <tc-table-col [columnTitle]="'Father Name'" [columnName]="'fathername'"></tc-table-col>
      <tc-table-col [columnTitle]="'Roll Number'" [columnName]="'enrollmentnumber'"></tc-table-col>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild , ElementRef } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { BasePageComponent } from '../base-page';
 import { Store } from '@ngrx/store';
@@ -22,6 +22,9 @@ export class NinthbioclassComponent extends BasePageComponent implements OnInit 
   form: FormGroup;
   file: File;
   previewimportdata: any;
+  successmessage: boolean =  false;
+  @ViewChild('fileinput') fileinput;
+
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
@@ -79,6 +82,9 @@ export class NinthbioclassComponent extends BasePageComponent implements OnInit 
           "body": "Record Inserted"
         });
 
+
+        this.form.reset();
+
       },
       error=>{
         this.modal.open({
@@ -134,15 +140,21 @@ closeModal(){
   this.modal.close();
 }
 
+
+filereset(){
+  console.log("file reset here",this.fileinput);
+  this.fileinput.value = "";
+}
+
+
 bulkinsert(){
   console.log("bulk insert data",this.previewimportdata);
   this.httpSv.ninthziauddindatabio(this.previewimportdata)
     .subscribe(data=>{
+      this.successmessage = true;
+      this.filereset();
       this.modal.close();
-      // this.modal.open({
-      //    header: 'Successful',
-      //    body: 'All records are inserted successfully'
-      // });
+      
 
     },err=>{
 
@@ -150,6 +162,9 @@ bulkinsert(){
     })
 
 }
+
+
+
 
 
 textToCsv(text) {

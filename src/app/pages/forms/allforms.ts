@@ -237,13 +237,13 @@ export class AllForm extends BaseForm {
                             name: [''],
                             fathername: [''],
                             ninthrollnumber: [''],
-                            englishmarks: [''],
-                            sindhimarks: [''],
-                            pakistanstudiesmarks: [''],
-                            chemistrytheory: [''],
-                            chemistrypractical: [''],
-                            computertheory: [''],
-                            computerpractical: [''],
+                            englishmarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            sindhimarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            pakistanstudiesmarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            chemistrytheory: ['',[Validators.required,Validators.min(0),Validators.max(85)]],
+                            chemistrypractical: ['',[Validators.required,Validators.min(0),Validators.max(15)]],
+                            computertheory: ['',[Validators.required,Validators.min(0),Validators.max(85)]],
+                            computerpractical: ['',[Validators.required,Validators.min(0),Validators.max(15)]],
                             recordid: ['']
             })
 
@@ -256,13 +256,13 @@ export class AllForm extends BaseForm {
                             name: [''],
                             fathername: [''],
                             ninthrollnumber: [''],
-                            englishmarks: [''],
-                            sindhimarks: [''],
-                            pakistanstudiesmarks: [''],
-                            chemistrytheory: [''],
-                            chemistrypractical: [''],
-                            biotheory: [''],
-                            biopractical: [''],
+                            englishmarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            sindhimarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            pakistanstudiesmarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            chemistrytheory: ['',[Validators.required,Validators.min(0),Validators.max(85)]],
+                            chemistrypractical: ['',[Validators.required,Validators.min(0),Validators.max(15)]],
+                            biotheory: ['',[Validators.required,Validators.min(0),Validators.max(85)]],
+                            biopractical: ['',[Validators.required,Validators.min(0),Validators.max(15)]],
                             recordid: ['']
             })
 
@@ -275,11 +275,11 @@ export class AllForm extends BaseForm {
                             name: [''],
                             fathername: [''],
                             ninthrollnumber: [''],
-                            englishmarks: [''],
-                            sindhimarks: [''],
-                            pakistanstudiesmarks: [''],
-                            generalsciencemarks: [''],
-                            mathsmarks: [''],
+                            englishmarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            sindhimarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            pakistanstudiesmarks: ['',[Validators.required,Validators.min(0),Validators.max(75)]],
+                            generalsciencemarks: ['',[Validators.required,Validators.min(0),Validators.max(100)]],
+                            mathsmarks: ['',[Validators.required,Validators.min(0),Validators.max(100)]],
                             recordid: ['']
             })
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef} from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { BasePageComponent } from '../base-page';
 import { Store } from '@ngrx/store';
@@ -21,10 +21,13 @@ export class NinthcomputerclassComponent extends BasePageComponent implements On
   form: FormGroup;
   file: File;
   previewimportdata: any;
+  successmessage: boolean =  false;
+  @ViewChild('fileinput') fileinput;
   constructor(
     store: Store<IAppState>,
     httpSv: HttpService,
     private modal: TCModalService,
+    private secondmodal: TCModalService,
     private forminstance: AllForm
   ) { 
 
@@ -77,6 +80,7 @@ export class NinthcomputerclassComponent extends BasePageComponent implements On
           "header":"Successful",
           "body": "Record Inserted"
         });
+        this.form.reset();
 
       },
       error=>{
@@ -133,15 +137,24 @@ closeModal(){
   this.modal.close();
 }
 
+
+filereset(){
+  console.log("file reset here",this.fileinput);
+  this.fileinput.value = "";
+}
+
 bulkinsert(){
   console.log("bulk insert data",this.previewimportdata);
   this.httpSv.ninthziauddindata(this.previewimportdata)
     .subscribe(data=>{
+      console.log(data);
+      
+      this.successmessage = true;
+      this.filereset();
       this.modal.close();
-      // this.modal.open({
-      //    header: 'Successful',
-      //    body: 'All records are inserted successfully'
-      // });
+
+
+      
 
     },err=>{
 
@@ -149,6 +162,7 @@ bulkinsert(){
     })
 
 }
+
 
 
 textToCsv(text) {

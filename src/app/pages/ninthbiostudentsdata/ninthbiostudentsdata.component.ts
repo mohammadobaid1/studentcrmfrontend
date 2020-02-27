@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,TemplateRef,ViewChild } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { BasePageComponent } from '../base-page';
 import { Store } from '@ngrx/store';
@@ -38,6 +38,8 @@ export class NinthbiostudentsdataComponent extends BasePageComponent implements 
    operatorColumns: string[] = ['select','studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','biotheory','biopractical','examtype','totalclearedpaper','operations'];
    pdftableColumns: string[] = ['studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','biotheory','biopractical','examtype','totalclearedpaper'];
    displayselecteddata: boolean = false;
+   deletestudentdata : any;
+    @ViewChild('modalFooter') deletemodalfooter :  TemplateRef<any>;
 
    operator: boolean = true;
    userroles: string; 
@@ -89,12 +91,30 @@ this.httpSv.getninthbiobatch()
  }
 
 
-
-  deleteuser(value){
-   // console.log("DELETE user value",value);
-   this.httpSv.deleteninthbiodata(value)
-     .subscribe(data=>{
+ deletionconfirm(value){
+      this.modal.open({
+      body: 'Are you sure you want to delete this ?',
+      header: 'Confirmation Box',
+      footer: this.deletemodalfooter,
       
+    });
+
+      this.deletestudentdata = value;
+  }
+
+
+  unsetdelete(){
+    this.modal.close();
+    this.deletestudentdata = '';
+
+  }
+
+
+  deleteuser(){
+   // console.log("DELETE user value",value);
+   this.httpSv.deleteninthbiodata(this.deletestudentdata)
+     .subscribe(data=>{
+      this.modal.close();
       this.loaddata();
      },
      error=>{
@@ -181,16 +201,16 @@ this.httpSv.getninthbiobatch()
   }
 
 
- applyFilter(event: Event,filter : String) {
+   applyFilter(event: Event,filter : String) {
     var columnName = filter;
     this.dataSource.filterPredicate = (data: any, filter: String) => {      
         if(columnName == 'Schoolname')
-        return data.studentinfo.schoolname.schoolname.indexOf(filter) !== -1;
+        return data.studentinfo.schoolname.schoolname.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
         else if (columnName == 'studentname'){
-          return data.studentinfo.studentname.indexOf(filter) !== -1;;
+          return data.studentinfo.studentname.toLowerCase().indexOf(filter.toLowerCase()) !== -1;;
         }
         else if (columnName == 'fathername'){
-          return data.studentinfo.fathername.indexOf(filter) !== -1;;
+          return data.studentinfo.fathername.toLowerCase().indexOf(filter.toLowerCase()) !== -1;;
         }
         else if (columnName == 'enrollmentnumber'){
           return data.studentinfo.enrollmentnumber ? data.studentinfo.enrollmentnumber.indexOf(filter) !== -1 : false;

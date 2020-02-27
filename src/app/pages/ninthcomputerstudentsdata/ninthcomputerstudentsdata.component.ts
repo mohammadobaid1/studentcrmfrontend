@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef,TemplateRef } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { BasePageComponent } from '../base-page';
 import { Store } from '@ngrx/store';
@@ -34,7 +34,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 export class NinthcomputerstudentsdataComponent extends BasePageComponent implements OnInit {
 
   @ViewChild('content') content: ElementRef;
-
+  @ViewChild('modalFooter') deletemodalfooter :  TemplateRef<any>;
 
    tableData: any;
    form: FormGroup;
@@ -47,6 +47,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
    displayselecteddata: boolean = false; 
    userroles: string;
    operator: boolean= true;
+   deletestudentdata : any;
 
 
 
@@ -117,14 +118,39 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
   }
 
 
-
-  deleteuser(value){
-   // console.log("DELETE user value",value);
-   this.httpSv.deleteninthcomputerdata(value)
-     .subscribe(data=>{
+  deletionconfirm(value){
+      this.modal.open({
+      body: 'Are you sure you want to delete this ?',
+      header: 'Confirmation Box',
+      footer: this.deletemodalfooter,
       
-      this.loaddata();
-     },
+    });
+
+      this.deletestudentdata = value;
+  }
+
+
+  unsetdelete(){
+    this.modal.close();
+    this.deletestudentdata = '';
+
+  }
+
+
+  deleteuser(){
+   
+
+  // this.deletionconfirm();
+   this.httpSv.deleteninthcomputerdata(this.deletestudentdata)
+     .subscribe(data=>{
+
+
+      this.modal.close();
+      this.loaddata();     
+      this.deletestudentdata = '';
+
+
+    },
      error=>{
        console.log(error);
        this.modal.open({
@@ -192,64 +218,15 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
 
 
-//   downloaduserdata(){
 
 
-//     this.displayselecteddata = true; 
-//     console.log(this.selecteddataarray);
-//     setTimeout(() => {
-//     var data = document.getElementById('content');
-    
 
-
-//     html2canvas(data).then(canvas => {  
-
-//    var imgData = canvas.toDataURL('image/png');
-//    var imgWidth = 210; 
-//    var pageHeight = 295;  
-//    var imgHeight = canvas.height * imgWidth / canvas.width;
-//    var heightLeft = imgHeight;
-//    var doc = new jsPDF('p', 'mm');
-//    var position = 10; // give some top padding to first page
-
-//    doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-//    heightLeft -= pageHeight;
-
-//    while (heightLeft >= 0) {
-//         position += heightLeft - imgHeight; // top padding for other pages
-//         doc.addPage();
-//         doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-//         heightLeft -= pageHeight;
-//       }
-// // doc.save( 'file.pdf');
-   
-
-// //       var imgWidth = 208;   
-// //       var pageHeight = 295;    
-// //       var imgHeight = canvas.height * imgWidth / canvas.width;  
-// //       var heightLeft = imgHeight;  
-  
-// //       const contentDataURL = canvas.toDataURL('image/png')  
-// //       let pdf = new jsPDF('p', 'mm', 'a4'); 
-// //       var position = 0;  
-// //      // pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
-// //      // pdf.save('students.pdf'); 
-
-// //      pdf.addHTML(contentDataURL, function() {
-// //        pdf.save("obrz.pdf");
-// //     });
-
-// //       this.displayselecteddata = false;
-//     });  
-//   },0);
-//   }
-
-  downloaduserdata(){
+ downloaduserdata(){
 
 
     this.displayselecteddata = true; 
     setTimeout(() => {
-      var data = document.getElementById('content');
+      var data = document.getElementById('contentToConvert');
     html2canvas(data).then(canvas => {  
    
 
@@ -271,7 +248,6 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
 
 }
-
  //  makepdf(){
  //      this.displayselecteddata = true; 
  //      console.log(this.content);
@@ -339,12 +315,12 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
     var columnName = filter;
     this.dataSource.filterPredicate = (data: any, filter: String) => {      
         if(columnName == 'Schoolname')
-        return data.studentinfo.schoolname.schoolname.indexOf(filter) !== -1;
+        return data.studentinfo.schoolname.schoolname.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
         else if (columnName == 'studentname'){
-          return data.studentinfo.studentname.indexOf(filter) !== -1;;
+          return data.studentinfo.studentname.toLowerCase().indexOf(filter.toLowerCase()) !== -1;;
         }
         else if (columnName == 'fathername'){
-          return data.studentinfo.fathername.indexOf(filter) !== -1;;
+          return data.studentinfo.fathername.toLowerCase().indexOf(filter.toLowerCase()) !== -1;;
         }
         else if (columnName == 'enrollmentnumber'){
           return data.studentinfo.enrollmentnumber ? data.studentinfo.enrollmentnumber.indexOf(filter) !== -1 : false;

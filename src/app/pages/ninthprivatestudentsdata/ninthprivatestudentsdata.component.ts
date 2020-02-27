@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef,TemplateRef  } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { BasePageComponent } from '../base-page';
 import { Store } from '@ngrx/store';
@@ -42,6 +42,8 @@ export class NinthprivatestudentsdataComponent extends BasePageComponent impleme
    displayselecteddata: boolean = false; 
    userroles: string;
    operator : boolean = true;
+   deletestudentdata : any;
+   @ViewChild('modalFooter') deletemodalfooter :  TemplateRef<any>;
 
    constructor(
     store: Store<IAppState>,
@@ -91,12 +93,34 @@ loaddata(){
 
 }
 
- deleteuser(value){
+  deletionconfirm(value){
+      this.modal.open({
+      body: 'Are you sure you want to delete this ?',
+      header: 'Confirmation Box',
+      footer: this.deletemodalfooter,
+      
+    });
+
+      this.deletestudentdata = value;
+  }
+
+
+  unsetdelete(){
+    this.modal.close();
+    this.deletestudentdata = '';
+
+  }
+
+
+
+ deleteuser(){
    // console.log("DELETE user value",value);
-   this.httpSv.deleteninthgeneraldata(value)
+   this.httpSv.deleteninthgeneraldata(this.deletestudentdata)
      .subscribe(data=>{
       
-      this.loaddata();
+      this.modal.close();
+      this.loaddata();     
+      this.deletestudentdata = '';
      },
      error=>{
        console.log(error);
@@ -181,16 +205,16 @@ search(){
   }
 
 
-applyFilter(event: Event,filter : String) {
+ applyFilter(event: Event,filter : String) {
     var columnName = filter;
     this.dataSource.filterPredicate = (data: any, filter: String) => {      
         if(columnName == 'Schoolname')
-        return data.studentinfo.schoolname.schoolname.indexOf(filter) !== -1;
+        return data.studentinfo.schoolname.schoolname.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
         else if (columnName == 'studentname'){
-          return data.studentinfo.studentname.indexOf(filter) !== -1;;
+          return data.studentinfo.studentname.toLowerCase().indexOf(filter.toLowerCase()) !== -1;;
         }
         else if (columnName == 'fathername'){
-          return data.studentinfo.fathername.indexOf(filter) !== -1;;
+          return data.studentinfo.fathername.toLowerCase().indexOf(filter.toLowerCase()) !== -1;;
         }
         else if (columnName == 'enrollmentnumber'){
           return data.studentinfo.enrollmentnumber ? data.studentinfo.enrollmentnumber.indexOf(filter) !== -1 : false;
@@ -200,6 +224,7 @@ applyFilter(event: Event,filter : String) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue;
   }
+
 
 
 

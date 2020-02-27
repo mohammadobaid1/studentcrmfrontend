@@ -8,191 +8,31 @@
    </div>
 
    <div class="col-6 ">
-      <tc-input [type]="'file'" (change)="convertFile($event)" ></tc-input >
+      <tc-input #fileinput [type]="'file'" (change)="convertFile($event)" ></tc-input >
    </div>
 
    <div class="col-6">
-      <button tc-button (click)="previewdata(modalBody, 'Modal title', modalFooter, { width: '100%' })">Preview Data</button>
+      <button tc-button (click)="previewdata(modalBody, 'Student Data', modalFooter, { width: '100%' })">Preview Data</button>
    </div>
 
-   <div class="col-12">
+   
+
+   
+</div>
+
+<div class="row">
+  <div class="col-1">
       <h4>OR </h4>
-   </div>
-</div>
-
-
-
- <!-- <form [formGroup]="form" novalidate >
-
-<div class="row">
-	<div class="col-12">
-		<tc-card [title]="'School'" [view]="'accent'" [outline]="true">
-			
-			<div class="row">
-			<div class="col-6">
-			<tc-form-group>      
-			      <tc-select [placeholder]="'Select School'"  [options]="dropdowndata" formControlName="schoolid" ></tc-select>
-			  </tc-form-group>
-			  </div>
-			</div>
-			<div class="row">
-				<div class="col-6">
-			      <tc-form-group>
-			      <tc-input [placeholder]="'Add School'" formControlName="schoolname"></tc-input>
-			  </tc-form-group>
-			  </div>
-			</div>
-   		
-   	</tc-card>
-   	</div>
-		
-
-	</div>
-
-<div class="row">
-	<div class="col-12">
-	<tc-card [title]="'Biographic Details'" [view]="'accent'" [outline]="true">
-		<div class="row">
-			<div class="col-6">
-					<tc-form-group>
-						    <tc-input [placeholder]="'Name'" formControlName="studentname"></tc-input>
-			       	</tc-form-group>
-   			</div>
-
-   			<div class="col-6">
-
-   				<tc-form-group>
-
-			    			<tc-input [placeholder]="'Father Name'" formControlName="fathername" ></tc-input>
-    
-   				</tc-form-group>
-   			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="col-6">
-					<tc-form-group>
-						    <tc-input [placeholder]="'Date of Birth'" formControlName="dateofbirth"></tc-input>
-			       	</tc-form-group>
-   			</div>
-
-   			<div class="col-6">
-
-   				<tc-form-group>
-
-			    			<tc-input [placeholder]="'Year Appearing'" formControlName="yearofappearing" ></tc-input>
-    
-   				</tc-form-group>
-   			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-6">
-		   		<tc-form-group>
-		    		
-		    		<tc-input [placeholder]="'Enrollment Number'" formControlName="enrollmentnumber" ></tc-input>
-		      	</tc-form-group>
-
-   			</div>
-
-   			
-		</div>
-	
-	  </tc-card>
-	</div>
-
-</div>
-
-
-<div class="row">
-	<div class="col-12">
-	<tc-card [title]="'Student Marks'" [view]="'accent'" [outline]="true">
-		
-		
-		<div class="row">
-			<h5 class="mt-0">Compulsory Subjects</h5>
-		</div>
-		<div class="row">
-			<div class="col-6">
-					<tc-form-group>
-						    
-						    <tc-input [placeholder]="'English Marks'" formControlName="englishmarks"></tc-input>
-			       	</tc-form-group>
-   			</div>
-
-   			<div class="col-6">
-
-   				<tc-form-group>
-			    			<tc-input [placeholder]="'Sindhi Marks'" formControlName="sindhimarks" ></tc-input>
-    
-   				</tc-form-group>
-   			</div>
-		</div>
-
-
-
-		<div class="row">
-			<div class="col-6">
-		   		<tc-form-group>
-		    		<tc-input [placeholder]="'Pakistan Studies Marks'" formControlName="pakistanstudiesmark" ></tc-input>
-		      	</tc-form-group>
-
-   			</div>
-
-   			
-		</div>
-
-    <div class="row">
-      <div class="col-6">
-          <tc-form-group>
-            <tc-input [placeholder]="'Chemistry Theory Marks'" formControlName="chemistrytheorymarks" ></tc-input>
-            </tc-form-group>
-
-        </div>
-
-        <div class="col-6">
-
-          <tc-form-group>
-              <tc-input [placeholder]="'Chemistry Practical Marks'"  formControlName="chemistrypracticalmarks"></tc-input>
-          </tc-form-group>
-        </div>
     </div>
 
-<div class="row">
-			<h5 class="mt-0">Optional Subjects</h5>
-		</div>
-		<div class="row">
-			<div class="col-6">
-		   		<tc-form-group>
-		    		<tc-input [placeholder]="'Computer Theory Marks'" formControlName="computertheorymarks" ></tc-input>
-		      	</tc-form-group>
-
-   			</div>
-
-   			<div class="col-6">
-
-		   		<tc-form-group>
-		    			<tc-input [placeholder]="'Computer Practical Marks'"  formControlName="computerpracticalmarks"></tc-input>
-		   		</tc-form-group>
-   			</div>
-		</div>
-	
-	  </tc-card>
-	</div>
-
-</div>
+    <div class="col-6" *ngIf="successmessage">
+      <tc-badge [view]="'success'" style="margin-top:18px;">All data  are successfully inserted</tc-badge>
+   </div>
+  </div>
 
 
 
-	
-
-
-	
-
-</form>
- -->
-
+ 
 
 <div class="row">
    <div class="col-6">
@@ -286,7 +126,7 @@
 
 <ng-template #modalBody>
 <tc-card class="mb-0">
-   <tc-table [rows]="previewimportdata"   [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" [search]="true">
+   <tc-table [rows]="previewimportdata"   [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
      <tc-table-col [columnTitle]="'Name'" [columnName]="'studentname'" [enableSorting]="true"> </tc-table-col>
      <tc-table-col [columnTitle]="'FName'" [columnName]="'fathername'"></tc-table-col>
      <tc-table-col [columnTitle]="'Roll Np'" [columnName]="'enrollmentnumber'"></tc-table-col>

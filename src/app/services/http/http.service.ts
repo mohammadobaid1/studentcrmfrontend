@@ -70,7 +70,7 @@ getninthbiobatch(){
 
 getninthregularbatch(){
         console.log("service");
-        return this.http.get('http:/zeb.blockshift.com.pk/api/getninthgeneral');
+        return this.http.get('http://zeb.blockshift.com.pk/api/getninthgeneral');
   }
 
   getmatricsciencebatch(){
@@ -113,7 +113,7 @@ getseconyearbatch(){
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
  
-        return this.http.post('http://127.0.0.1:8000/api/register',data,options);
+        return this.http.post('http://zeb.blockshift.com.pk/api/register',data,options);
 
   }
 
@@ -161,7 +161,7 @@ addninthgeneraldata(data){
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
  
-        return this.http.post('http://127.0.0.1:8000/api/insertninthgeneral',data,options);
+        return this.http.post('http://zeb.blockshift.com.pk/api/insertninthgeneral',data,options);
   }
  
 

@@ -93,7 +93,7 @@
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> FATHER </th>
+    <th mat-header-cell *matHeaderCellDef> FATHER NAME </th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.fathername}} </td>
   </ng-container>
 
@@ -179,8 +179,8 @@
             [square]="true"
             [tcShape]="500"
             [size]="'sm'"
-            (click)="deleteuser(element)"
-            style="background-color:#ffffff;"
+            (click)="deletionconfirm(element)"
+            style="background-color:#ffffff;color: red;"
            
           ></button>
         </div>
@@ -237,7 +237,7 @@
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> FATHER </th>
+    <th mat-header-cell *matHeaderCellDef> FATHER NAME </th>
     <td mat-cell *matCellDef="let element"> {{element.studentinfo.fathername}} </td>
   </ng-container>
 
@@ -301,7 +301,7 @@
 
 
   <ng-container matColumnDef="operations">
-    <th mat-header-cell *matHeaderCellDef> OPERATIONS </th>
+    <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
     <td mat-cell *matCellDef="let element"> 
       <div class="actions">
           <button
@@ -346,7 +346,7 @@
 
 
 
-<div #content *ngIf="displayselecteddata">
+<div id="contentToConvert" *ngIf="displayselecteddata">
   <div class="row">
     <h3>Printed Data</h3>
   </div>
@@ -364,7 +364,7 @@
 
   
   <ng-container matColumnDef="fathername">
-    <th mat-header-cell *matHeaderCellDef> FATHER </th>
+    <th mat-header-cell *matHeaderCellDef> FATHER NAME </th>
     <td mat-cell *matCellDef="let element"> {{element? element.fathername || element.studentinfo.fathername: '-'}} </td>
   </ng-container>
 
@@ -511,3 +511,11 @@
 </div>
 </div>
 </ng-template>
+
+
+<ng-template #modalFooter>
+    <div class="actions justify-content-between">
+      <button tc-button [view]="'error'" (click)="deleteuser()">Yes</button>
+      <button tc-button [view]="'success'" (click)="unsetdelete()">No</button>
+    </div>
+  </ng-template>
