@@ -61,9 +61,9 @@ export class TCTableComponent implements OnInit, OnChanges {
   ngOnInit() {
 	  this.getColumns();
     this.data = this.rows;
-    this.pagesCount = Math.ceil(this.rows.length / this.itemsPerPage);
+    this.pagesCount = this.rows ? Math.ceil(this.rows.length / this.itemsPerPage) : 0;
 
-    if (this.data.length > 0) {
+    if (this.data && this.data.length > 0) {
       setTimeout(() => {
         this.onChangeTable(this.config, null);
       });
