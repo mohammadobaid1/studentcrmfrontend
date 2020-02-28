@@ -20,6 +20,8 @@ export class HscPart1PreMedicalstudentsdataComponent extends BasePageComponent i
 
   rows: any; 
   form: FormGroup;
+  showmarksheet = false;
+  marksheetdata : any;
   constructor(
    store: Store<IAppState>,
    httpSv: HttpService,
@@ -73,14 +75,17 @@ search(){
 
  }
 
- generatePdf(data){
-   console.log(data);
-   var jsonstringfy = JSON.stringify(data);
+ showPDF(data){
+  this.showmarksheet = true;
+  this.marksheetdata = data;
+ }
+ isSuccessful(){
+   this.showmarksheet = false;   
+ }
+ generatePdf(data){   
+ var jsonstringfy = JSON.stringify(data);
  const documentDefinition = { content: jsonstringfy };
  pdfMake.createPdf(documentDefinition).download();
 }
-
-
-
 
 }

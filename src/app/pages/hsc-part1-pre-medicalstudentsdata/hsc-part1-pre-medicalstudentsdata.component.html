@@ -6,7 +6,7 @@
 
 
 <tc-card class="mb-0">
-<tc-table [rows]="rows" [search]="true"  [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
+<tc-table *ngIf="!showmarksheet" [rows]="rows" [search]="true"  [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
   <tc-table-col [columnTitle]="'Name'" [columnName]="'studentname'" [enableSorting]="true">   
   </tc-table-col>
 
@@ -38,12 +38,12 @@
   
 
 <tc-table-col [columnTitle]="'Operations'">
-  <ng-template #tableTDTemplate >
-  <button tc-button [block]="true" [view]="'accent'" (click)="generatePdf(rows)"  > Print Marksheet</button>
+  <ng-template #tableTDTemplate let-row>
+  <button tc-button [block]="true" [view]="'accent'" (click)="showPDF(rows)"  > Print Marksheet</button>
   <button tc-button [block]="true" [view]="'accent'" > Print Data</button>
 </ng-template>
   </tc-table-col>
     
  </tc-table>
-
+ <app-hscmarksheet *ngIf="showmarksheet" [marksheetdata]="marksheetdata" (success)="isSuccessful()"></app-hscmarksheet>
  </tc-card>

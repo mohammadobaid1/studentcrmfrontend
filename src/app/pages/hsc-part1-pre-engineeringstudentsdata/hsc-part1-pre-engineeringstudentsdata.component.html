@@ -54,9 +54,9 @@
 </tc-table-col>
 
 <tc-table-col [columnTitle]="'Operations'">
-  <ng-template #tableTDTemplate >
+  <ng-template #tableTDTemplate let-value >
   <button tc-button [block]="true" [view]="'accent'" (click)="generatePdf(rows)"  > Print Marksheet</button>
-  <button tc-button [block]="true" [view]="'accent'" > Print Data</button>
+  <button tc-button [block]="true" [view]="'accent'" > {{value}} Print Data</button>
 </ng-template>
   </tc-table-col>
     

@@ -287,13 +287,6 @@ export class AllForm extends BaseForm {
     }    
 
 
-
-
-
- 
-
- 
-
     getPreMedicalclassform() {
         this.markAsSubmitted(false);
         return this.fb.group({
