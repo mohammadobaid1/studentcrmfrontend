@@ -20,7 +20,7 @@ export class HscPart1PreMedicalstudentsdataComponent extends BasePageComponent i
 
   rows: any; 
   form: FormGroup;
-  showmarksheet = true;
+  showmarksheet = false;
   marksheetdata : any;
   constructor(
    store: Store<IAppState>,

@@ -346,18 +346,18 @@
 
 
 
-<div id="contentToConvert" *ngIf="displayselecteddata">
-  <div class="row">
+<div  #content  id="contentToConvert" *ngIf="displayselecteddata">
+  <div class="row ">
     <h3>Printed Data</h3>
   </div>
 
- <div class="row" >
+ <div class="row " >
 
  <table mat-table [dataSource]="selecteddataarray"   class="mat-elevation-z8" >
 
   
- 
-  <ng-container matColumnDef="studentname">
+
+  <ng-container matColumnDef="studentinfo.studentname">
     <th mat-header-cell *matHeaderCellDef> NAME. </th>
     <td mat-cell *matCellDef="let element"> {{element? element.studentname || element.studentinfo.studentname: '-'}} </td>
   </ng-container>
@@ -425,8 +425,8 @@
     <th mat-header-cell *matHeaderCellDef> CLEARED </th>
     <td mat-cell *matCellDef="let element"> {{element.ninthcomputerdata? element.ninthcomputerdata.totalclearedpaper: element? element.totalclearedpaper: '-'}} </td>
   </ng-container> 
- -->
-  <tr mat-header-row *matHeaderRowDef="pdftableColumns"></tr>
+ 
+  <tr mat-header-row *matHeaderRowDef="pdftableColumns" class="header"></tr>
   <tr mat-row *matRowDef="let row; columns: pdftableColumns;"  ></tr> 
 </table>
 </div>

@@ -53,7 +53,7 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
 
     displayedColumns: string[] = ['select','studentinfo.studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper','operations'];
     operatordisplayedColumns: string[] = ['select','studentinfo.studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper','operations'];
-    pdftableColumns: string[] = ['studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
+    pdftableColumns: string[] = ['studentinfo.studentname', 'fathername','Schoolname','enrollmentnumber','englishmarks','sindhimarks','pakistanstudiesmark','chemistryteory','chemistrypractical','computertheory','computerpractical','examtype','totalclearedpaper'];
     
 
 
@@ -231,14 +231,18 @@ export class NinthcomputerstudentsdataComponent extends BasePageComponent implem
    
 
       var imgWidth = 208;   
-      var pageHeight = 295;    
+      var pageHeight = 297;    
       var imgHeight = canvas.height * imgWidth / canvas.width;  
       var heightLeft = imgHeight;  
   
       const contentDataURL = canvas.toDataURL('image/png')  
-      let pdf = new jsPDF('p', 'mm', 'a4'); 
-      var position = 0;  
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      // let pdf = new jsPDF('p', 'mm', 'a4'); 
+      // var position = 0;  
+      // pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      var pdf = new jsPDF('p', 'pt', [canvas.width, canvas.height]);
+      var pdfWidth = pdf.internal.pageSize.getWidth();
+      var pdfHeight = pdf.internal.pageSize.getHeight();
+      pdf.addImage(contentDataURL, 'PNG', 0, 0, pdfWidth, pdfHeight);
       pdf.save('students.pdf'); 
 
       this.displayselecteddata = false;
