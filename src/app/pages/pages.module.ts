@@ -56,6 +56,8 @@ import { HscPart1MedicaltechnologystudentsdataComponent } from './hsc-part1-medi
 import { HscPart1PreEngineeringstudentsdataComponent } from './hsc-part1-pre-engineeringstudentsdata/hsc-part1-pre-engineeringstudentsdata.component';
 import { HscPart1PreMedicalstudentsdataComponent } from './hsc-part1-pre-medicalstudentsdata/hsc-part1-pre-medicalstudentsdata.component';
 import { HscPart1RegularPrivatestudentsdataComponent } from './hsc-part1-regular-privatestudentsdata/hsc-part1-regular-privatestudentsdata.component';
+import { HscmarksheetComponent } from './hscmarksheet/hscmarksheet.component';
+import {NgxPrintModule} from 'ngx-print';
 @NgModule({
   imports: [
     CommonModule,
@@ -67,7 +69,8 @@ import { HscPart1RegularPrivatestudentsdataComponent } from './hsc-part1-regular
     MatTableModule,
     MatCheckboxModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxPrintModule
     ],
   declarations: [
     BasePageComponent,
@@ -115,6 +118,7 @@ import { HscPart1RegularPrivatestudentsdataComponent } from './hsc-part1-regular
     HscPart1PreEngineeringstudentsdataComponent,
     HscPart1PreMedicalstudentsdataComponent,
     HscPart1RegularPrivatestudentsdataComponent,
+    HscmarksheetComponent,
     
   ],
   providers: [AllForm],
