@@ -152,7 +152,6 @@ convertFile(event: any) {
   const file = event.target.files[0];
   this.readFileContent(file).then(content => {
     console.log('This is your file as string: ', content);
-    // Operate your string as required in a separate function
     this.processCsv(content)    
   }).catch(error => console.log(error))
 }
@@ -175,13 +174,10 @@ closeModal(){
 
 bulkinsert(){
   console.log("bulk insert data",this.previewimportdata);
-  this.httpSv.ninthziauddindatabio(this.previewimportdata)
+  this.httpSv.hscmedbulkddata(this.previewimportdata)
     .subscribe(data=>{
       this.modal.close();
-      // this.modal.open({
-      //    header: 'Successful',
-      //    body: 'All records are inserted successfully'
-      // });
+     
 
     },err=>{
 

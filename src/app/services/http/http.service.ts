@@ -424,18 +424,29 @@ logout(token) {
   getPremedicalbatch(){
     return this.http.get('http://zeb.blockshift.com.pk/api/hsconepremed');
   }
+
+
   addPremedicaldata(data){
     
    let options = {
        headers: new HttpHeaders({'Content-Type':'application/json'})
        };
 
-    return this.http.post('http://zeb.blockshift.com.pk/api/hsconepremed',data,options);   
+    return this.http.post('http://127.0.0.1:8000/api/hsconepremed',data,options);   
 
 
 }
 
 
+ hscmedbulkddata(data){
+        console.log(data);
+        let options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+            };
+
+         return this.http.post('http://127.0.0.1:8000/api/bulkhsconepremed',data,options);   
+
+  }
 
 
 
