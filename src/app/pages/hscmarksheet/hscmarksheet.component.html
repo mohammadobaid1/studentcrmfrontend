@@ -1,372 +1,379 @@
-<div #content class="download" >
+<button tc-button [block]="true" [view]="'accent'" printSectionId="print-section" [useExistingCss]="true" ngxPrint>print</button>
+<button tc-button [block]="true" [view]="'accent'"(click)="exportAsPDF()">download</button>
+<div #content class="download" [hidden]="hidden">
   <div id="print-section" >
-    <div class="row marksheet justify-content-center text-center">
-      <div class="col-md-12">
-        <h5 class="my-1">STATEMENT OF MARKS</h5>
-      </div>
-      <div class="col-md-12">
-        <h4 class="my-1"><u><strong>H.S.C PART-I EXAMINATION</strong></u></h4>
-      </div>
-  
-      <div class="col-md-12">
-        <h5 class="my-2"><strong> GENERAL SCIENCE GROUP</strong></h5>
-      </div>
-    </div>
-  
-  
-    <div class="row justify-content-left text-left mt-2">
-      <div class="col-md-4">
-        EXAMINATION
-      </div>
-      <div class="col-md-8">
-        <strong>ANNUAL,2019</strong>
-      </div>
-      <div class="col-md-4">
-        NAME
-      </div>
-      <div class="col-md-8">
-        MUHAMMAD OBAID
-      </div>
-      <div class="col-md-4">
-        FATHER'S NAME
-      </div>
-      <div class="col-md-8">
-        IZHAR AHMED
-      </div>
-      <div class="col-md-4">
-        ROLL NUMBER
-      </div>
-      <div class="col-md-8">
-        <strong>731126</strong>
-      </div>
-      <div class="col-md-4">
-        NAME OF COLLEGE
-      </div>
-      <div class="col-md-8">
-        CITY GRAMMER HIGH SCHOOL AND COLLEGE
-      </div>
-    </div>
-    <div class="row table-border  text-center my-3">
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-1 vertical-align border-right border-bottom">
-            S.NO
+    <div *ngFor="let data of marksheetdata;let i=index" class="downloadpdf">
+     
+        <div class="row marksheet justify-content-center text-center">
+          <div class="col-md-12">
+            <h5 class="my-1">STATEMENT OF MARKS</h5>
           </div>
-          <div class="col-md-3  vertical-align border-right border-bottom">
-              SUBJECTS
+          <div class="col-md-12">
+            <h4 class="my-1"><u><strong>H.S.C PART-I EXAMINATION</strong></u></h4>
           </div>
-          <div class="col-md-2 ">
-              <div class="row ">
-                  <div class="col-md-12 border-right border-bottom">
-                      MAXIMUM
-                  </div>
-                  <div class="col-md-12 border-right border-bottom">
-                    MARKS
-                  </div>
-                  <div class="col-md-8 border-right border-bottom">
-                    TH
-                  </div>
-                  <div class="col-md-4 border-right border-bottom">
-                    PR
-                  </div>
+      
+          <div class="col-md-12">
+            <h5 class="my-2"><strong> GENERAL SCIENCE GROUP</strong></h5>
+          </div>
+        </div>
+      
+      
+        <div class="row justify-content-left text-left mt-2">
+          <div class="col-md-4">
+            EXAMINATION
+          </div>
+          <div class="col-md-8">
+            <strong>ANNUAL,2019</strong>
+          </div>
+          <div class="col-md-4">
+            NAME
+          </div>
+          <div class="col-md-8">
+            {{data.studentname.toUpperCase()}}
+          </div>
+          <div class="col-md-4">
+            FATHER'S NAME
+          </div>
+          <div class="col-md-8">
+            {{data.studentfathername.toUpperCase()}}
+          </div>
+          <div class="col-md-4">
+            ROLL NUMBER
+          </div>
+          <div class="col-md-8">
+            <strong>{{data.studentrollnumber.toUpperCase()}}</strong>
+          </div>
+          <div class="col-md-4">
+            NAME OF COLLEGE
+          </div>
+          <div class="col-md-8">
+            {{data.schoolName.toUpperCase()}}
+          </div>
+        </div>
+        <div class="row table-border  text-center my-3">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-1 vertical-align border-right border-bottom">
+                S.NO
               </div>
-          </div>
-          <div class="col-md-4 ">
-         
-              <div class="row h-100 align-content border-right">
-                <div class="col-md-12 vertical-align ">           
-                  <div class="row">
-                    <div class="col-md-12   border-bottom pb-2">
-                      OBTAINED MARKS         
-                    </div>
-                    <div class="col-md-3 border-right border-bottom">
-                      <p >
+              <div class="col-md-3  vertical-align border-right border-bottom">
+                  SUBJECTS
+              </div>
+              <div class="col-md-2 ">
+                  <div class="row ">
+                      <div class="col-md-12 border-right border-bottom">
+                          MAXIMUM
+                      </div>
+                      <div class="col-md-12 border-right border-bottom">
+                        MARKS
+                      </div>
+                      <div class="col-md-8 border-right border-bottom">
                         TH
-                      </p>
-                    </div>
-                    <div class="col-md-3 border-right print-padding border-bottom">
-                      <p >
+                      </div>
+                      <div class="col-md-4 border-right border-bottom">
                         PR
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4 ">
+             
+                  <div class="row h-100 align-content border-right">
+                    <div class="col-md-12 vertical-align ">           
+                      <div class="row">
+                        <div class="col-md-12   border-bottom pb-2">
+                          OBTAINED MARKS         
+                        </div>
+                        <div class="col-md-3 border-right border-bottom">
+                          <p >
+                            TH
+                          </p>
+                        </div>
+                        <div class="col-md-3 border-right print-padding border-bottom">
+                          <p >
+                            PR
+                          </p>
+                        </div>
+                        <div class="col-md-6 border-bottom">
+                          TOTAL
+                        </div> 
+                      </div>
+                          
+                    </div>
+                 
+                  </div>       
+              </div>
+              <div class="col-md-2 vertical-align  border-bottom">
+                REMARKS
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row ">
+              <div class="col-md-1 vertical-align border-right py-2">
+               1
+              </div>
+              <div class="col-md-3  vertical-align border-right py-2">
+                  URDU NORMAL
+              </div>
+              <div class="col-md-2 ">
+                  <div class="row ">
+                      <div class="col-md-8 border-right py-2">
+                          100
+                      </div>               
+                      <div class="col-md-4 border-right py-2">
+                       -
+                      </div>                
+                  </div>
+              </div>
+              <div class="col-md-4 ">
+             
+                  <div class="row align-self-center">            
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.urdumarks}}
                       </p>
                     </div>
-                    <div class="col-md-6 border-bottom">
-                      TOTAL
-                    </div> 
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                       -
+                      </p>
+                    </div>
+                    <div class="col-md-6 border-right py-2">
+                      {{data.urdumarks}}
+                    </div>    
+                  </div>       
+              </div>
+              <div class="col-md-2 vertical-align py-2">
+               CLEARED
+              </div>
+            </div>
+          </div>
+      
+          <div class="col-md-12">
+            <div class="row ">
+              <div class="col-md-1 vertical-align border-right py-2">
+               2
+              </div>
+              <div class="col-md-3  vertical-align border-right py-2">
+                  ENGLISH NORMAL
+              </div>
+              <div class="col-md-2 ">
+                  <div class="row ">
+                      <div class="col-md-8 border-right py-2">
+                          100
+                      </div>               
+                      <div class="col-md-4 border-right py-2">
+                       -
+                      </div>                
                   </div>
-                      
-                </div>
+              </div>
+              <div class="col-md-4 ">
              
-              </div>       
-          </div>
-          <div class="col-md-2 vertical-align  border-bottom">
-            REMARKS
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="row ">
-          <div class="col-md-1 vertical-align border-right py-2">
-           1
-          </div>
-          <div class="col-md-3  vertical-align border-right py-2">
-              URDU NORMAL
-          </div>
-          <div class="col-md-2 ">
-              <div class="row ">
-                  <div class="col-md-8 border-right py-2">
-                      100
-                  </div>               
-                  <div class="col-md-4 border-right py-2">
-                   -
-                  </div>                
+                  <div class="row align-self-center">            
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.englishmarks}}
+                      </p>
+                    </div>
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                       -
+                      </p>
+                    </div>
+                    <div class="col-md-6 border-right py-2">
+                      {{data.englishmarks}}
+                    </div>    
+                  </div>       
               </div>
-          </div>
-          <div class="col-md-4 ">
-         
-              <div class="row align-self-center">            
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   75
-                  </p>
-                </div>
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   -
-                  </p>
-                </div>
-                <div class="col-md-6 border-right py-2">
-                  75
-                </div>    
-              </div>       
-          </div>
-          <div class="col-md-2 vertical-align py-2">
-           CLEARED
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-md-12">
-        <div class="row ">
-          <div class="col-md-1 vertical-align border-right py-2">
-           1
-          </div>
-          <div class="col-md-3  vertical-align border-right py-2">
-              URDU NORMAL
-          </div>
-          <div class="col-md-2 ">
-              <div class="row ">
-                  <div class="col-md-8 border-right py-2">
-                      100
-                  </div>               
-                  <div class="col-md-4 border-right py-2">
-                   -
-                  </div>                
+              <div class="col-md-2 vertical-align py-2">
+               CLEARED
               </div>
+            </div>
           </div>
-          <div class="col-md-4 ">
-         
-              <div class="row align-self-center">            
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   75
-                  </p>
-                </div>
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   -
-                  </p>
-                </div>
-                <div class="col-md-6 border-right py-2">
-                  75
-                </div>    
-              </div>       
-          </div>
-          <div class="col-md-2 vertical-align py-2">
-           CLEARED
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="row ">
-          <div class="col-md-1 vertical-align border-right py-2">
-           1
-          </div>
-          <div class="col-md-3  vertical-align border-right py-2">
-              URDU NORMAL
-          </div>
-          <div class="col-md-2 ">
-              <div class="row ">
-                  <div class="col-md-8 border-right py-2">
-                      100
-                  </div>               
-                  <div class="col-md-4 border-right py-2">
-                   -
-                  </div>                
+          <div class="col-md-12">
+            <div class="row ">
+              <div class="col-md-1 vertical-align border-right py-2">
+               3
               </div>
-          </div>
-          <div class="col-md-4 ">
-         
-              <div class="row align-self-center">            
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   75
-                  </p>
-                </div>
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   -
-                  </p>
-                </div>
-                <div class="col-md-6 border-right py-2">
-                  75
-                </div>    
-              </div>       
-          </div>
-          <div class="col-md-2 vertical-align py-2">
-           CLEARED
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="row ">
-          <div class="col-md-1 vertical-align border-right py-2">
-           1
-          </div>
-          <div class="col-md-3  vertical-align border-right py-2">
-              URDU NORMAL
-          </div>
-          <div class="col-md-2 ">
-              <div class="row ">
-                  <div class="col-md-8 border-right py-2">
-                      100
-                  </div>               
-                  <div class="col-md-4 border-right py-2">
-                   -
-                  </div>                
+              <div class="col-md-3  vertical-align border-right py-2">
+                  ISLAMIC EDUCATION
               </div>
-          </div>
-          <div class="col-md-4 ">
-         
-              <div class="row align-self-center">            
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   75
-                  </p>
-                </div>
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   -
-                  </p>
-                </div>
-                <div class="col-md-6 border-right py-2">
-                  75
-                </div>    
-              </div>       
-          </div>
-          <div class="col-md-2 vertical-align py-2">
-           CLEARED
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="row ">
-          <div class="col-md-1 vertical-align border-right py-2">
-           1
-          </div>
-          <div class="col-md-3  vertical-align border-right py-2">
-              URDU NORMAL
-          </div>
-          <div class="col-md-2 ">
-              <div class="row ">
-                  <div class="col-md-8 border-right py-2">
-                      100
-                  </div>               
-                  <div class="col-md-4 border-right py-2">
-                   -
-                  </div>                
+              <div class="col-md-2 ">
+                  <div class="row ">
+                      <div class="col-md-8 border-right py-2">
+                      50
+                      </div>               
+                      <div class="col-md-4 border-right py-2">
+                       -
+                      </div>                
+                  </div>
               </div>
-          </div>
-          <div class="col-md-4 ">
-         
-              <div class="row align-self-center">            
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   75
-                  </p>
-                </div>
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   -
-                  </p>
-                </div>
-                <div class="col-md-6 border-right py-2">
-                  75
-                </div>    
-              </div>       
-          </div>
-          <div class="col-md-2 vertical-align py-2">
-           CLEARED
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="row ">
-          <div class="col-md-1 vertical-align border-right py-2">
-           1
-          </div>
-          <div class="col-md-3  vertical-align border-right py-2">
-              URDU NORMAL
-          </div>
-          <div class="col-md-2 ">
-              <div class="row ">
-                  <div class="col-md-8 border-right py-2">
-                      100
-                  </div>               
-                  <div class="col-md-4 border-right py-2">
-                   -
-                  </div>                
+              <div class="col-md-4 ">
+             
+                  <div class="row align-self-center">            
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.islamiatmarks}}
+                      </p>
+                    </div>
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                       -
+                      </p>
+                    </div>
+                    <div class="col-md-6 border-right py-2">
+                      {{data.islamiatmarks}}
+                    </div>    
+                  </div>       
               </div>
+              <div class="col-md-2 vertical-align py-2">
+               CLEARED
+              </div>
+            </div>
           </div>
-          <div class="col-md-4 ">
-         
-              <div class="row align-self-center">            
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   75
-                  </p>
-                </div>
-                <div class="col-md-3 border-right py-2">
-                  <p >
-                   -
-                  </p>
-                </div>
-                <div class="col-md-6 border-right py-2">
-                  75
-                </div>    
-              </div>       
+          <div class="col-md-12">
+            <div class="row ">
+              <div class="col-md-1 vertical-align border-right py-2">
+               4
+              </div>
+              <div class="col-md-3  vertical-align border-right py-2">
+                  CHEMISTRY
+              </div>
+              <div class="col-md-2 ">
+                  <div class="row ">
+                      <div class="col-md-8 border-right py-2">
+                       85
+                      </div>               
+                      <div class="col-md-4 border-right py-2">
+                        15
+                      </div>                
+                  </div>
+              </div>
+              <div class="col-md-4 ">
+             
+                  <div class="row align-self-center">            
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.chemistrytheorymarks}}
+                      </p>
+                    </div>
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.chemistrypracticalmarks}}
+                      </p>
+                    </div>
+                    <div class="col-md-6 border-right py-2">
+                      {{data.chemistrytheorymarks*1 + data.chemistrypracticalmarks*1}}
+                    </div>    
+                  </div>       
+              </div>
+              <div class="col-md-2 vertical-align py-2">
+               CLEARED
+              </div>
+            </div>
           </div>
-          <div class="col-md-2 vertical-align py-2">
-           CLEARED
+          <div class="col-md-12">
+            <div class="row ">
+              <div class="col-md-1 vertical-align border-right py-2">
+               5
+              </div>
+              <div class="col-md-3  vertical-align border-right py-2">
+                  PHYSICS
+              </div>
+              <div class="col-md-2 ">
+                  <div class="row ">
+                      <div class="col-md-8 border-right py-2">
+                          85
+                      </div>               
+                      <div class="col-md-4 border-right py-2">
+                      15
+                      </div>                
+                  </div>
+              </div>
+              <div class="col-md-4 ">
+             
+                  <div class="row align-self-center">            
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.physicstheorymarks}}
+                      </p>
+                    </div>
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.physicspracticalmarks}}
+                      </p>
+                    </div>
+                    <div class="col-md-6 border-right py-2">
+                      {{data.physicspracticalmarks*1 + data.physicstheorymarks*1}}
+                    </div>    
+                  </div>       
+              </div>
+              <div class="col-md-2 vertical-align py-2">
+               CLEARED
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row ">
+              <div class="col-md-1 vertical-align border-right py-2">
+               6
+              </div>
+              <div class="col-md-3  vertical-align border-right py-2">
+                  BIOLOGY
+              </div>
+              <div class="col-md-2 ">
+                  <div class="row ">
+                      <div class="col-md-8 border-right py-2">
+                        85
+                      </div>               
+                      <div class="col-md-4 border-right py-2">
+                       15
+                      </div>                
+                  </div>
+              </div>
+              <div class="col-md-4 ">
+             
+                  <div class="row align-self-center">            
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.botanymarks}}
+                      </p>
+                    </div>
+                    <div class="col-md-3 border-right py-2">
+                      <p >
+                        {{data.zoologymarks}}
+                      </p>
+                    </div>
+                    <div class="col-md-6 border-right py-2">
+                      {{data.zoologymarks*1 + data.botanymarks*1}}
+                    </div>    
+                  </div>       
+              </div>
+              <div class="col-md-2 vertical-align py-2">
+               CLEARED
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        <div class="row justify-content-center text-center py-4">
+          <div class="col-md-2">     
+          </div>
+          <div class="col-md-4 border p-3">
+            <strong>NO. OF SUBJECT CLEARED</strong>
+          </div>
+          <div class="col-md-1">     
+          </div>
+          <div class="col-md-2 border p-3">
+            <strong>SIX</strong>
+          </div>   
+          <div class="col-md-3">      
+          </div>   
+        </div>      
+     
+    <div class="page-break">
+
     </div>
-    <div class="row justify-content-center text-center py-4">
-      <div class="col-md-2">     
-      </div>
-      <div class="col-md-4 border p-3">
-        <strong>NO. OF SUBJECT CLEARED</strong>
-      </div>
-      <div class="col-md-1">     
-      </div>
-      <div class="col-md-2 border p-3">
-        <strong>SIX</strong>
-      </div>   
-      <div class="col-md-3">      
-      </div>   
-    </div>
+    </div>    
   </div>
  
 </div>
-<button tc-button [block]="true" [view]="'accent'" printSectionId="print-section" [useExistingCss]="true" ngxPrint>print</button>
-<button tc-button [block]="true" [view]="'accent'"(click)="exportAsPDF()">download</button>

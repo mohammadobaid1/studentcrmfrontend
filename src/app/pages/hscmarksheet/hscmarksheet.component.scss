@@ -1,7 +1,11 @@
 .download{
   background: #fff;
 }
-
+.downloadpdf{
+    padding: 40px ;    
+    padding-top: 43%;
+    padding-bottom: 43%;
+}
 .border {
   border: 1px solid #161718 !important;
 }
@@ -34,6 +38,11 @@
   * {
     -webkit-print-color-adjust: exact !important;
   }
+  .downloadpdf{
+    padding: 0 !important;    
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
   .marksheet {
     padding-top: 30%;
     // margin:0 auto;
@@ -69,4 +78,5 @@
   .print-padding{
    left: 1px;
   }
+  .page-break {page-break-after: always;}
 }

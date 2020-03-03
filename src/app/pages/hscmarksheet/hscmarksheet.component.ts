@@ -8,38 +8,48 @@ import html2canvas from 'html2canvas';
   styleUrls: ['./hscmarksheet.component.scss']
 })
 export class HscmarksheetComponent implements OnInit {
-
-  @Input() marksheetdata: any;
+  
+  @Input() isArray: boolean = false;
+  @Input() marksheetdata: any[];
   @Output() success = new EventEmitter();
   @ViewChild('content') content: ElementRef;
+  hidden = true;
   constructor() { }
 
   
 
   ngOnInit() {
+    console.log(this.marksheetdata);
   }
 
-//   exportAsPDF() {    
-//     var data = document.getElementById('MyDIv');
-//     html2canvas(data).then(canvas => {
-//       // Few necessary setting options
-//       var imgWidth = 1140-240;
-//       var pageHeight = 295;
-//       var imgHeight = canvas.height * imgWidth / canvas.width;
-//       var heightLeft = imgHeight;
-
-//       const contentDataURL = canvas.toDataURL('image/png')
-//       let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
-//       var position = 0;
-//       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
-//       pdf.save('MYPdf.pdf'); // Generated PDF
-//     });  
-// }
-exportAsPDF(){
-  let doc = new jspdf();
-  doc.addHTML(this.content.nativeElement, function() {
-     doc.save("marksheet.pdf");
+  exportAsPDF() {    
+    this.hidden = false;
+    setTimeout(() => {
+      var data = document.getElementById('print-section');
+      html2canvas(data).then(canvas => {         
+        var imgWidth = 210;
+        var pageHeight = 295;
+        var imgHeight = canvas.height * imgWidth / canvas.width;
+        var heightLeft = imgHeight;
+        
+        var doc = new jspdf('p', 'mm');
+        var position = 0;
+        const contentDataURL = canvas.toDataURL('image/png')     
+        doc.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+  
+        while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        doc.addPage();
+        doc.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        }
+        doc.save('marksheet.pdf'); 
+        this.hidden = true;
+  
   });
+    }, 0);
+  
 }
 
 }

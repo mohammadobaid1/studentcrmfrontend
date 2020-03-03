@@ -47,15 +47,18 @@ export class HscPart1PreMedicalstudentsdataComponent extends BasePageComponent i
  }
 
  ngOnInit() {
-   super.ngOnInit();
-   this.httpSv.getPremedicalbatch()
-     .subscribe(data=>{
-
-       console.log("matric regular data",data);
-       this.rows = data;
-     });
-
+   super.ngOnInit();  
       this.form = this.formclass.getninthform();
+      this.httpSv.getallschools()
+      .subscribe((schoolData :any)=>{        
+        this.httpSv.getPremedicalbatch()
+        .subscribe((data :any)=>{
+          data.forEach(element => {
+            element.schoolName = schoolData.find(x=>x.value == element.schoolid).label;
+          });             
+          this.rows = data;
+        });
+      })
  }
 
 
