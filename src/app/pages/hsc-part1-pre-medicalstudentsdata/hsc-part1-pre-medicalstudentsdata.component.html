@@ -1,21 +1,13 @@
 
-<div class="row">
-  <h3>Data</h3>
-  </div>
-
-
 
 <tc-card class="mb-0">
-<tc-table *ngIf="!showmarksheet" [rows]="rows" [search]="true"  [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
+<!-- <tc-table *ngIf="!showmarksheet" [rows]="rows" [search]="true"  [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
   <tc-table-col [columnTitle]="'Name'" [columnName]="'studentname'" [enableSorting]="true">   
   </tc-table-col>
 
   <tc-table-col [columnTitle]="'FName'" [columnName]="'studentfathername'" [enableSorting]="true"> </tc-table-col>
 
   <tc-table-col [columnTitle]="'Roll Number'" [columnName]="'studentrollnumber'"> </tc-table-col>
-  <!-- <tc-table-col [columnTitle]="'Group'" [columnName]="'grouptype'">
-  </tc-table-col> -->
-
   <tc-table-col [columnTitle]="'English'" [columnName]="'englishmarks'"></tc-table-col>
   <tc-table-col [columnTitle]="'Urdu'" [columnName]="'urdumarks'"></tc-table-col>
   <tc-table-col [columnTitle]="'IslamicStudies'" [columnName]="'islamiatmarks'"></tc-table-col>
@@ -44,6 +36,267 @@
 </ng-template>
   </tc-table-col>
     
- </tc-table>
+ </tc-table> -->
+ <table mat-table  *ngIf="!showmarksheet" [dataSource]="dataSource"  >
+
+  <ng-container matColumnDef="select">
+   <th mat-header-cell *matHeaderCellDef>
+     <mat-checkbox (change)="$event ? masterToggle() : null"
+                   [checked]="selection.hasValue() && isAllSelected()"
+                   [indeterminate]="selection.hasValue() && !isAllSelected()"
+                  >
+     </mat-checkbox>
+   </th>
+   <td mat-cell *matCellDef="let row">
+     <mat-checkbox (click)="$event.stopPropagation()"
+                   (change)="$event ? selection.toggle(row) : null"
+                   [checked]="selection.isSelected(row)"
+                   >
+     </mat-checkbox>
+   </td>
+ </ng-container>
+
+
+  <ng-container matColumnDef="studentname">
+   <th mat-header-cell *matHeaderCellDef> NAME. </th>
+   <td mat-cell *matCellDef="let element"> {{element.studentinfo.studentname}} </td>
+ </ng-container>
+
+ 
+ <ng-container matColumnDef="studentfathername">
+   <th mat-header-cell *matHeaderCellDef> FATHER </th>
+   <td mat-cell *matCellDef="let element"> {{element.studentinfo.fathername}} </td>
+ </ng-container>
+
+ 
+  <ng-container matColumnDef="studentrollnumber">
+   <th mat-header-cell *matHeaderCellDef> Rollnumber </th>
+   <td mat-cell *matCellDef="let element"> {{element.enrollmentnumber}} </td>
+ </ng-container>
+
+
+ <ng-container matColumnDef="englishmarks">
+   <th mat-header-cell *matHeaderCellDef> ENG </th>
+   <td mat-cell *matCellDef="let element"> {{element.englishmarks}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="urdumarks">
+   <th mat-header-cell *matHeaderCellDef> Urdu </th>
+   <td mat-cell *matCellDef="let element"> {{element.urdumarks}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="chemistrytheorymarks">
+   <th mat-header-cell *matHeaderCellDef> CHEM(T) </th>
+   <td mat-cell *matCellDef="let element"> {{element.chemistrytheorymarks}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="chemistrypracticalmarks">
+   <th mat-header-cell *matHeaderCellDef> CHEM(P) </th>
+   <td mat-cell *matCellDef="let element"> {{element.chemistrypracticalmarks}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="physicstheorymarks">
+   <th mat-header-cell *matHeaderCellDef> PHY(T) </th>
+   <td mat-cell *matCellDef="let element"> {{element.physicstheorymarks}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="physicspracticalmarks">
+   <th mat-header-cell *matHeaderCellDef> PHY(P) </th>
+   <td mat-cell *matCellDef="let element"> {{element.physicspracticalmarks}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="islamiatmarks">
+   <th mat-header-cell *matHeaderCellDef> ISL </th>
+   <td mat-cell *matCellDef="let element"> {{element.islamiatmarks}} </td>
+ </ng-container>
+
+ <ng-container matColumnDef="totalmarks">
+   <th mat-header-cell *matHeaderCellDef> Total Marks </th>
+   <td mat-cell *matCellDef="let element"> {{element.totalmarks}} </td>
+ </ng-container> 
+ <ng-container matColumnDef="percentage">
+  <th mat-header-cell *matHeaderCellDef> Percentage </th>
+  <td mat-cell *matCellDef="let element"> {{element.percentage}} </td>
+</ng-container> 
+
+<ng-container matColumnDef="grade">
+  <th mat-header-cell *matHeaderCellDef> Grade </th>
+  <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+</ng-container> 
+
+
+  <ng-container matColumnDef="operations">
+   <th mat-header-cell *matHeaderCellDef> OPERATIONS </th>
+   <td mat-cell *matCellDef="let element"> 
+     <div class="actions">
+         <button
+           tc-button
+           [afterIcon]="'icofont-ui-edit'"
+           [view]="'info'"
+           [square]="true"
+           [tcShape]="500"
+           (click)="updateuser(element,updateBody, '', null, { width: '100vh' })"
+           [size]="'sm'"
+           style="background-color:#ffffff;"
+           
+         ></button>
+
+         <button
+           tc-button
+           [afterIcon]="'icofont-ui-close'"
+           [view]="'info'"
+           [square]="true"
+           [tcShape]="500"
+           [size]="'sm'"
+           (click)="deletionconfirm(element)"
+           style="background-color:#ffffff;color: red;"
+          
+         ></button>
+         <button
+         tc-button
+         [afterIcon]="'icofont-foot-print'"
+         [view]="'info'"
+         [square]="true"
+         [tcShape]="500"
+         [size]="'sm'"
+         (click)="showPDF(element)"
+         style="background-color:#ffffff;color: red;"
+        
+       ></button>
+       </div>
+
+
+
+    </td>
+ </ng-container> 
+
+ <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header"></tr>
+ <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+
+
+</table>
+
+<ng-template #updateBody>
+   
+  <div class="row">
+     <div class="col-12">
+  <tc-card [title]="'Update User'" [view]="'accent'" [outline]="true">
+    
+     <form [formGroup]="updateform" novalidate >
+      
+      <tc-form-group>      
+        <tc-select [placeholder]="'Select School'"  [options]="dropdowndata" formControlName="schoolid" ></tc-select>
+    </tc-form-group>
+
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Name'" formControlName="studentname"></tc-input>
+
+     </tc-form-group>
+
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Father Name'" formControlName="studentfathername"></tc-input>
+
+     </tc-form-group>
+
+
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Enrollment Number'" formControlName="studentrollnumber"></tc-input>
+
+     </tc-form-group>
+
+
+     <tc-form-group>
+
+        <tc-input [placeholder]="'English Marks'" formControlName="englishmarks"></tc-input>
+
+     </tc-form-group>
+
+
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Urdu Marks'" formControlName="urdumarks"></tc-input>
+
+     </tc-form-group>
+
+
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Islamic Studies Marks'" formControlName="islamiatmarks"></tc-input>
+
+     </tc-form-group>
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Physics Theory Marks'" formControlName="physicstheorymarks"></tc-input>
+
+     </tc-form-group>
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Physics Practical Marks'" formControlName="physicspracticalmarks"></tc-input>
+
+     </tc-form-group>
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Chemistry Theory Marks'" formControlName="chemistrypracticalmarks"></tc-input>
+
+     </tc-form-group>
+
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Chemistry Practical Marks'" formControlName="chemistrytheorymarks"></tc-input>
+
+     </tc-form-group>
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Zoology  Marks'" formControlName="zoologymarks"></tc-input>
+
+     </tc-form-group>
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Botany Marks'" formControlName="botanymarks"></tc-input>
+
+     </tc-form-group>
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Total Marks'" formControlName="totalmarks"></tc-input>
+
+     </tc-form-group>            
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Matric Passing Year'" formControlName="matricpassingyear"></tc-input>
+
+     </tc-form-group>    
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Year Appearing'" formControlName="yearappearing"></tc-input>
+
+     </tc-form-group>     
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Percentage'" formControlName="percentage"></tc-input>
+
+     </tc-form-group>    
+     <tc-form-group>
+
+        <tc-input [placeholder]="'Grade'" formControlName="grade"></tc-input>
+
+     </tc-form-group>    
+ 
+     <button tc-button (click)="updateuserdetails()" tc-button [block]="true" [view]="'accent'" [disabled]="updateform.invalid" >Update User</button>
+  </form>
+  </tc-card>
+  </div>
+  </div>
+  </ng-template>
+  
+  
+     <ng-template #modalFooter>
+        <div class="actions justify-content-between">
+          <button tc-button [view]="'error'" (click)="deleteuser()">Yes</button>
+          <button tc-button [view]="'success'" (click)="unsetdelete()">No</button>
+        </div>
+      </ng-template>
  <app-hscmarksheet *ngIf="showmarksheet" [marksheetdata]="marksheetdata" (success)="isSuccessful()"></app-hscmarksheet>
  </tc-card>
