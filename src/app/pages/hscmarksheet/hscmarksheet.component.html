@@ -1,5 +1,5 @@
-<button tc-button [block]="true" [view]="'accent'" printSectionId="print-section" [useExistingCss]="true" ngxPrint>print</button>
-<button tc-button [block]="true" [view]="'accent'"(click)="exportAsPDF()">download</button>
+<button tc-button [block]="true" [view]="'accent'" printSectionId="print-section" [useExistingCss]="true" ngxPrint (click)="onsuccess()">PRINT</button>
+<button tc-button [block]="true" [view]="'accent'"(click)="exportAsPDF()">Download</button>
 <div #content class="download" [hidden]="hidden">
   <div id="print-section" >
     <div *ngFor="let data of marksheetdata;let i=index" class="downloadpdf">

@@ -46,10 +46,13 @@ export class HscmarksheetComponent implements OnInit {
         }
         doc.save('marksheet.pdf'); 
         this.hidden = true;
-  
+        this.success.emit(true);
   });
     }, 0);
+    
   
 }
-
+onsuccess(){
+  this.success.emit(true);
+}
 }

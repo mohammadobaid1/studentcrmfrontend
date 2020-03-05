@@ -6,11 +6,10 @@ import { IAppState } from '../../interfaces/app-state';
 import { HttpService } from '../../services/http/http.service';
 import { TCModalService } from '../../ui/services/modal/modal.service';
 import { AllForm } from '../forms/allforms';
-
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Content } from 'src/app/ui/interfaces/modal';
+import { Content } from '../../ui/interfaces/modal';
 import { MatTableDataSource } from '@angular/material/table';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -82,6 +81,10 @@ loadData(){
  showPDF(data){
   this.showmarksheet = true;
   this.marksheetdata = [data];
+ }
+ showPDFs(){
+  this.showmarksheet = true;
+  this.marksheetdata = this.selection.selected;
  }
  isSuccessful(){
    this.showmarksheet = false;   

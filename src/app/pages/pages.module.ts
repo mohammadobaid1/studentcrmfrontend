@@ -41,6 +41,8 @@ import { MatTableModule } from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+
 import { UsermanagmentComponent } from './usermanagment/usermanagment.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { UpdateuserComponent } from './updateuser/updateuser.component';
@@ -70,7 +72,8 @@ import {NgxPrintModule} from 'ngx-print';
     MatCheckboxModule,
     MatPaginatorModule,
     MatSelectModule,
-    NgxPrintModule
+    NgxPrintModule,
+    MatMenuModule
     ],
   declarations: [
     BasePageComponent,

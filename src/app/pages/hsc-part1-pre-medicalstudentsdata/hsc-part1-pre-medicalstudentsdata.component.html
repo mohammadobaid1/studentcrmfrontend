@@ -1,43 +1,43 @@
 
 
 <tc-card class="mb-0">
-<!-- <tc-table *ngIf="!showmarksheet" [rows]="rows" [search]="true"  [hovered]="true" [pagination]="true" [headerBgColor]="'#336cfb'" [headerColor]="'#fff'" >
-  <tc-table-col [columnTitle]="'Name'" [columnName]="'studentname'" [enableSorting]="true">   
-  </tc-table-col>
-
-  <tc-table-col [columnTitle]="'FName'" [columnName]="'studentfathername'" [enableSorting]="true"> </tc-table-col>
-
-  <tc-table-col [columnTitle]="'Roll Number'" [columnName]="'studentrollnumber'"> </tc-table-col>
-  <tc-table-col [columnTitle]="'English'" [columnName]="'englishmarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Urdu'" [columnName]="'urdumarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'IslamicStudies'" [columnName]="'islamiatmarks'"></tc-table-col>
-
-  <tc-table-col [columnTitle]="'Physics Theory'" [columnName]="'physicstheorymarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Physics Practical'" [columnName]="'physicspracticalmarks'"></tc-table-col>
-  
-  
-  <tc-table-col [columnTitle]="'Chemistry Theory'" [columnName]="'chemistrytheorymarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Chemistry Practical'" [columnName]="'chemistrypracticalmarks'"></tc-table-col>
-
-  <tc-table-col [columnTitle]="'Zoology'" [columnName]="'zoologymarks'"></tc-table-col>
-  <tc-table-col [columnTitle]="'Botany'" [columnName]="'botanymarks'"></tc-table-col>
-  
-
-  <tc-table-col [columnTitle]="'Total Marks'" [columnName]="'totalmarks'"></tc-table-col>  
-
-  <tc-table-col [columnTitle]="'Percentage'" [columnName]="'percentage'" > </tc-table-col>
-<tc-table-col [columnTitle]="'Grade'" [columnName]="'grade'"></tc-table-col> 
-  
-
-<tc-table-col [columnTitle]="'Operations'">
-  <ng-template #tableTDTemplate let-row>
-  <button tc-button [block]="true" [view]="'accent'" (click)="showPDF(rows)"  > Print Marksheet</button>
-  <button tc-button [block]="true" [view]="'accent'" > Print Data</button>
-</ng-template>
-  </tc-table-col>
+<ng-container *ngIf="!showmarksheet">
+  <form [formGroup]="form"   novalidate>
+    <div class="row">      
+        <div class="col-6">
+          <tc-input [placeholder]="'Search school'" [type]="'search'" (keyup)="applyFilter($event,'Schoolname')" formControlName="schoolname" ></tc-input>
     
- </tc-table> -->
- <table mat-table  *ngIf="!showmarksheet" [dataSource]="dataSource"  >
+        </div>
+    
+        <div class="col-6">
+          <tc-input [placeholder]="'Search by Name'" [type]="'search'" (keyup)="applyFilter($event,'studentname')" formControlName="studentname" ></tc-input>
+        </div>
+          
+         
+    
+        <div class="col-6 mt-2">
+          <tc-input [placeholder]="'Search by fathername'" (keyup)="applyFilter($event,'fathername')" [type]="'search'" formControlName="fathername" ></tc-input>
+        </div>
+    
+        <div class="col-6 mt-2">
+          <tc-input [placeholder]="'Search by roll number'" (keyup)="applyFilter($event,'enrollmentnumber')" [type]="'search'" formControlName="enrollmentnumber" ></tc-input>
+        </div>
+        </div>
+      </form>
+    
+    <div class="row" >
+      <div class="col-6">
+      <h3>Student Data</h3>
+    </div>
+    
+      <div class="col-6 " style="margin-top:23px;" >
+          <button tc-button [block]="true"  [view]="'accent'" (click)="showPDFs()" > Print Data</button>
+        </div>
+      </div>
+    
+
+
+ <table mat-table   [dataSource]="dataSource"  >
 
   <ng-container matColumnDef="select">
    <th mat-header-cell *matHeaderCellDef>
@@ -128,8 +128,8 @@
   <ng-container matColumnDef="operations">
    <th mat-header-cell *matHeaderCellDef> OPERATIONS </th>
    <td mat-cell *matCellDef="let element"> 
-     <div class="actions">
-         <button
+    <mat-menu #menu="matMenu" class="mt-2">
+      <button
            tc-button
            [afterIcon]="'icofont-ui-edit'"
            [view]="'info'"
@@ -141,6 +141,7 @@
            
          ></button>
 
+     
          <button
            tc-button
            [afterIcon]="'icofont-ui-close'"
@@ -163,7 +164,16 @@
          style="background-color:#ffffff;color: red;"
         
        ></button>
-       </div>
+    </mat-menu>
+    <button tc-button
+    [afterIcon]="'icofont-navigation-menu'"
+    [view]="'info'"
+    [square]="true"
+    [tcShape]="500"    
+    [size]="'sm'"
+    style="background-color:#ffffff;" [matMenuTriggerFor]="menu">     
+     </button>
+        
 
 
 
@@ -298,5 +308,7 @@
           <button tc-button [view]="'success'" (click)="unsetdelete()">No</button>
         </div>
       </ng-template>
+</ng-container>
+
  <app-hscmarksheet *ngIf="showmarksheet" [marksheetdata]="marksheetdata" (success)="isSuccessful()"></app-hscmarksheet>
  </tc-card>
